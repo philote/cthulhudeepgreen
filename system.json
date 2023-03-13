@@ -1,0 +1,33 @@
+{
+  "id": "cthulhudeepgreen",
+  "title": "Cthulhu Deep Green",
+  "description": "An Unofficial Cthulhu Deep Green system for Foundry VTT.",
+  "version": "0.0.1",
+  "compatibility": {
+    "minimum": 10,
+    "verified": "10.291",
+    "maximum": 10
+  },
+  "authors": [{
+    "name": "ephson",
+    "url": "https://github.com/philote",
+    "discord": "ephson#3451"
+  }],
+  "esmodules": ["module/cthulhudeepgreen.mjs"],
+  "styles": ["css/cthulhudeepgreen.css"],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "primaryTokenAttribute": "health",
+  "secondaryTokenAttribute": "power",
+  "url": "https://github.com/philote/FoundryVTT-CthulhuDeepGreen",
+  "manifest": "",
+  "download": "",
+  "license": "LICENSE",
+  "changelog": "CHANGELOG.md",
+  "bugs": "https://github.com/philote/FoundryVTT-CthulhuDeepGreen/issues"
+}
