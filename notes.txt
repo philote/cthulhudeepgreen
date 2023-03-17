@@ -1,0 +1,31 @@
+picture
+Name
+Alias
+Occupation
+Description: age, distinguishing characteristics, and pronouns
+
+Insight 0-6
+stress 0-6
+    - Disorders 0-3
+
+Anchors 0+
+    - Anchors may be marked to flashback and activate an At Home scene
+Harm 0-3
+
+SPECIALTY SKILLS (one)
+notes
+
+rolls
+- dark die roll (Stress/insight checks)
+- resolution roll
+    - Compete
+    - Cooperate
+    - Combat (Mark harm on 1-3?)
+    - Stay on the Case: You investigate some aspect of your operation in order to illuminate unanswered questions or pursue your own ends. Ask a question and take up dice appropriate to the situation.
+- failure roll
+- Engage in Self Care: Spending time re-centering yourself. Roll a d6 and reduce your Stress by that amount.
+
+rules without rolls
+- Care for Someone: Un-mark an Anchor you’ve crossed out or craft a new one.
+- Go to Therapy: Temporarily cross out a Disorder. It won’t influence you until you receive another Disorder or a harrowing event brings it to the surface. If you choose to tell the truth about the illegal or supernatural events you’ve witnessed The Handler may advance the Exposure track.
+- Receive Treatment: Reduce all Harm to zero.

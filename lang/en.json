@@ -1,4 +1,11 @@
 {
+  "CDG.ActorName": "Name",
+  "CDG.ActorAlias": "Alias",
+  "CDG.ActorOccupation": "Occupation",
+
+  "CDG.ItemName": "Name",
+  "CDG.ItemDescription": "Description",
+
   "CDG.AbilityStr": "Strength",
   "CDG.AbilityCon": "Constitution",
   "CDG.AbilityDex": "Dexterity",
