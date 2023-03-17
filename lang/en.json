@@ -4,26 +4,5 @@
   "CDG.ActorOccupation": "Occupation",
 
   "CDG.ItemName": "Name",
-  "CDG.ItemDescription": "Description",
-
-  "CDG.AbilityStr": "Strength",
-  "CDG.AbilityCon": "Constitution",
-  "CDG.AbilityDex": "Dexterity",
-  "CDG.AbilityInt": "Intelligence",
-  "CDG.AbilityWis": "Wisdom",
-  "CDG.AbilityCha": "Charisma",
-
-  "CDG.AbilityStrAbbr": "str",
-  "CDG.AbilityConAbbr": "con",
-  "CDG.AbilityDexAbbr": "dex",
-  "CDG.AbilityIntAbbr": "int",
-  "CDG.AbilityWisAbbr": "wis",
-  "CDG.AbilityChaAbbr": "cha",
-
-  "CDG.EffectCreate": "Create Effect",
-  "CDG.EffectToggle": "Toggle Effect",
-  "CDG.EffectEdit": "Edit Effect",
-  "CDG.EffectDelete": "Delete Effect",
-
-  "CDG.Add": "Add"
+  "CDG.ItemDescription": "Description"
 }
