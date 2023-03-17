@@ -3,71 +3,66 @@
     "types": ["character", "npc"],
     "templates": {
       "base": {
-        "health": {
-          "value": 10,
-          "min": 0,
-          "max": 10
-        },
-        "power": {
-          "value": 5,
-          "min": 0,
-          "max": 5
-        },
-        "biography": ""
+        "notes": ""
       }
     },
     "character": {
       "templates": ["base"],
-      "attributes": {
-        "level": {
-          "value": 1
+      "alias": "",
+      "occupation": "",
+      "description": "",
+      "specialty": "",
+      "insight": {
+        "min": 0,
+        "value": [0],
+        "max": 6
+      },
+      "stress": {
+        "min": 0,
+        "value": [0],
+        "max": 6
+      },
+      "disorders": {
+        "first": {
+          "checked": false,
+          "name": ""
+        },
+        "second": {
+          "checked": false,
+          "name": ""
+        },
+        "third": {
+          "checked": false,
+          "name": ""
         }
       },
-      "abilities": {
-        "str": {
-          "value": 10
+      "harm": {
+        "injury": {
+          "checked": false,
+          "name": ""
         },
-        "dex": {
-          "value": 10
+        "debility": {
+          "checked": false,
+          "name": ""
         },
-        "con": {
-          "value": 10
-        },
-        "int": {
-          "value": 10
-        },
-        "wis": {
-          "value": 10
-        },
-        "cha": {
-          "value": 10
+        "mortal_wound": {
+          "checked": false,
+          "name": ""
         }
       }
     },
     "npc": {
       "templates": ["base"],
-      "cr": 0
+      "looks": "",
+      "behaviors": "",
+      "motivations": ""
     }
   },
   "Item": {
-    "types": ["item", "feature", "spell"],
-    "templates": {
-      "base": {
-        "description": ""
-      }
-    },
+    "types": ["item"],
     "item": {
-      "templates": ["base"],
-      "quantity": 1,
-      "weight": 0,
-      "formula": "d20 + @str.mod + ceil(@lvl / 2)"
-    },
-    "feature": {
-      "templates": ["base"]
-    },
-    "spell": {
-      "templates": ["base"],
-      "spellLevel": 1
+      "description": "",
+      "quantity": 1
     }
   }
 }
