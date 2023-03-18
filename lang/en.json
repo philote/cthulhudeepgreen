@@ -3,7 +3,13 @@
   "CDG.ActorAlias": "Alias",
   "CDG.ActorOccupation": "Occupation",
   "CDG.ActorNotes": "Notes",
-  "CDG.ActorAnchors": "Anchors",  
+  "CDG.ActorAnchors": "Anchors",
+  "CDG.ActorSpecialty": "Specialty",
+  "CDG.ActorInsight": "Insight",
+  "CDG.ActorStress": "Stress",
+  "CDG.ActorFirstDisorder": "First Disorder",
+  "CDG.ActorSecondDisorder": "Second Disorder",
+  "CDG.ActorThirdDisorder": "Third Disorder",
 
   "CDG.ItemName": "Name",
   "CDG.ItemDescription": "Description"

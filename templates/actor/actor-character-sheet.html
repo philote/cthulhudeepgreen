@@ -5,8 +5,8 @@
     <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="160" width="160"/>
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize "CDG.ActorName"}}"/></h1>
-      <h2 class="header-input"><input name="alias" type="text" value="{{actor.alias}}" placeholder="{{localize "CDG.ActorAlias"}}"/></h2>
-      <h2 class="header-input"><input name="occupation" type="text" value="{{actor.occupation}}" placeholder="{{localize "CDG.ActorOccupation"}}"/></h2>
+      <h2 class="header-input"><input name="system.alias" type="text" value="{{system.alias}}" placeholder="{{localize "CDG.ActorAlias"}}"/></h2>
+      <h2 class="header-input"><input name="system.occupation" type="text" value="{{system.occupation}}" placeholder="{{localize "CDG.ActorOccupation"}}"/></h2>
     </div>
   </header>
 
@@ -22,23 +22,46 @@
 
     {{!-- Main Tab --}}
     <div class="tab main" data-group="primary" data-tab="main">
-      <section class="grid grid-3col">
-        <aside class="sidebar">
-
-          {{!-- The grid classes are defined in scss/global/_grid.scss. To use,
-          use both the "grid" and "grid-Ncol" class where "N" can be any number
-          from 1 to 12 and will create that number of columns.  --}}
-          <div class="flexcol">
-            <div class="flexrow flex-group-center">
-              <!-- stuff here -->
-              <h1>Stuff goes here</h1>
+      <section class="grid grid-2col">
+        
+        <section class="main grid-span-1">
+          <div class="grid grid-5col">
+            <b class="grid-span-1">{{localize "CDG.ActorInsight"}}</b>
+            <div class="grid-span-4">
+              {{#multiboxes system.insight.value}}
+                <input type="radio" id="character-{{../_id}}-insight-0" name="system.insight.value" value="0">
+                <label for="character-{{../_id}}-insight-0">|</label>
+                {{#times_from_1 system.insight.max}}
+                  <input type="radio" id="character-{{../_id}}-insight-{{this}}" name="system.insight.value" value="{{this}}">
+                  <label for="character-{{../_id}}-insight-{{this}}"></label>
+                {{/times_from_1}}
+              {{/multiboxes}}
             </div>
           </div>
-        </aside>
+          <div class="grid grid-5col">
+            <b class="grid-span-1">{{localize "CDG.ActorStress"}}</b>
+            <div class="grid-span-4">
+              {{#multiboxes system.stress.value}}
+                <input type="radio" id="character-{{../_id}}-stress-0" name="system.stress.value" value="0">
+                <label for="character-{{../_id}}-stress-0">|</label>
+                {{#times_from_1 system.stress.max}}
+                  <input type="radio" id="character-{{../_id}}-stress-{{this}}" name="system.stress.value" value="{{this}}">
+                  <label for="character-{{../_id}}-stress-{{this}}"></label>
+                {{/times_from_1}}
+              {{/multiboxes}}
+            </div>
+            <input class="grid-span-1" type="checkbox" id="first-disorder" name="system.disorders.first.checked" {{checked system.disorders.first.checked}}>
+            <input class="grid-span-4" name="system.disorders.first.name" id="first-disorder" type="text" value="{{system.disorders.first.name}}" placeholder="{{localize "CDG.ActorFirstDisorder"}}"/>
+            <input class="grid-span-1" type="checkbox" id="second-disorder" name="system.disorders.second.checked" {{checked system.disorders.second.checked}}>
+            <input class="grid-span-4" name="system.disorders.second.name" id="second-disorder" type="text" value="{{system.disorders.second.name}}" placeholder="{{localize "CDG.ActorSecondDisorder"}}"/>
+            <input class="grid-span-1" type="checkbox" id="third-disorder" name="system.disorders.third.checked" {{checked system.disorders.third.checked}}>
+            <input class="grid-span-4" name="system.disorders.third.name" id="third-disorder" type="text" value="{{system.disorders.third.name}}" placeholder="{{localize "CDG.ActorThirdDisorder"}}"/>
+          </div>
+        </section>
 
-        {{!-- For the main features list, span the right two columns --}}
-        <section class="main grid-span-2">
-          <h1>Stuff goes here</h1>
+        <section class="main grid-span-1">
+          <h3><label for="specialty">{{localize "CDG.ActorSpecialty"}}</label></h3>
+          <input name="system.specialty" id="specialty" type="text" value="{{system.specialty}}" placeholder="{{localize "CDG.ActorSpecialty"}}"/>
         </section>
 
       </section>
