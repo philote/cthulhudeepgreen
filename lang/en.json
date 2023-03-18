@@ -2,6 +2,8 @@
   "CDG.ActorName": "Name",
   "CDG.ActorAlias": "Alias",
   "CDG.ActorOccupation": "Occupation",
+  "CDG.ActorNotes": "Notes",
+  "CDG.ActorAnchors": "Anchors",  
 
   "CDG.ItemName": "Name",
   "CDG.ItemDescription": "Description"
