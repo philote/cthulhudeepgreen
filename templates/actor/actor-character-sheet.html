@@ -2,17 +2,47 @@
 
   {{!-- Sheet Header --}}
   <header class="sheet-header">
-    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="160" width="160"/>
+    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="170" width="170"/>
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize "CDG.ActorName"}}"/></h1>
-      <h2 class="header-input"><input name="system.alias" type="text" value="{{system.alias}}" placeholder="{{localize "CDG.ActorAlias"}}"/></h2>
-      <h2 class="header-input"><input name="system.occupation" type="text" value="{{system.occupation}}" placeholder="{{localize "CDG.ActorOccupation"}}"/></h2>
+      <section class="grid grid-2col">
+        <h3 class="header-input"><input name="system.alias" type="text" value="{{system.alias}}" placeholder="{{localize "CDG.ActorAlias"}}"/></h3>
+        <h3 class="header-input"><input name="system.occupation" type="text" value="{{system.occupation}}" placeholder="{{localize "CDG.ActorOccupation"}}"/></h3>
+
+        <div class="specialty grid-span-2">
+          <label for="specialty">{{localize "CDG.ActorSpecialty"}}</label>
+          <input name="system.specialty" id="specialty" type="text" value="{{system.specialty}}" placeholder="{{localize "CDG.ActorSpecialty"}}"/>
+        </div>
+
+        <div>
+          <b>{{localize "CDG.ActorInsight"}}</b>
+          {{#multiboxes system.insight.value}}
+            <input type="radio" id="character-{{../_id}}-insight-0" name="system.insight.value" value="0">
+            <label for="character-{{../_id}}-insight-0">|</label>
+            {{#times_from_1 system.insight.max}}
+              <input type="radio" id="character-{{../_id}}-insight-{{this}}" name="system.insight.value" value="{{this}}">
+              <label for="character-{{../_id}}-insight-{{this}}"></label>
+            {{/times_from_1}}
+          {{/multiboxes}}
+        </div>
+
+        <div>
+          <b>{{localize "CDG.ActorStress"}}</b>
+          {{#multiboxes system.stress.value}}
+            <input type="radio" id="character-{{../_id}}-stress-0" name="system.stress.value" value="0">
+            <label for="character-{{../_id}}-stress-0">|</label>
+            {{#times_from_1 system.stress.max}}
+              <input type="radio" id="character-{{../_id}}-stress-{{this}}" name="system.stress.value" value="{{this}}">
+              <label for="character-{{../_id}}-stress-{{this}}"></label>
+            {{/times_from_1}}
+          {{/multiboxes}}
+        </div>
+      </section>
     </div>
   </header>
 
   {{!-- Sheet Tab Navigation --}}
   <nav class="sheet-tabs tabs" data-group="primary">
-    {{!-- Default tab is specified in actor-sheet.mjs --}}
     <a class="item" data-tab="main">Main</a>
     <a class="item" data-tab="biography">Biography</a>
   </nav>
@@ -21,64 +51,104 @@
   <section class="sheet-body">
 
     {{!-- Main Tab --}}
-    <div class="tab" data-group="primary" data-tab="main">
-      <section class="grid grid-2col">
+    <div class="tab full-height" data-group="primary" data-tab="main">
+      <section class="grid grid-2col full-height">
         <section class="grid-span-1">
-          
-          <div class="grid grid-5col">
-            <b class="grid-span-1">{{localize "CDG.ActorInsight"}}</b>
-            <div class="grid-span-4">
-              {{#multiboxes system.insight.value}}
-                <input type="radio" id="character-{{../_id}}-insight-0" name="system.insight.value" value="0">
-                <label for="character-{{../_id}}-insight-0">|</label>
-                {{#times_from_1 system.insight.max}}
-                  <input type="radio" id="character-{{../_id}}-insight-{{this}}" name="system.insight.value" value="{{this}}">
-                  <label for="character-{{../_id}}-insight-{{this}}"></label>
-                {{/times_from_1}}
-              {{/multiboxes}}
-            </div>
+          <h3>{{localize "CDG.ActorDisorders"}}</h3>
+          <div class="disorder flexrow">
+            <input type="checkbox" id="first-disorder" name="system.disorders.first.checked" {{checked system.disorders.first.checked}}>
+            <input name="system.disorders.first.name" id="first-disorder" type="text" value="{{system.disorders.first.name}}" placeholder="{{localize "CDG.ActorFirstDisorder"}}"/>
+          </div>
+          <div class="disorder flexrow">
+            <input type="checkbox" id="second-disorder" name="system.disorders.second.checked" {{checked system.disorders.second.checked}}>
+            <input name="system.disorders.second.name" id="second-disorder" type="text" value="{{system.disorders.second.name}}" placeholder="{{localize "CDG.ActorSecondDisorder"}}"/>
+          </div>
+          <div class="disorder flexrow">
+            <input type="checkbox" id="third-disorder" name="system.disorders.third.checked" {{checked system.disorders.third.checked}}>
+            <input name="system.disorders.third.name" id="third-disorder" type="text" value="{{system.disorders.third.name}}" placeholder="{{localize "CDG.ActorThirdDisorder"}}"/>
           </div>
 
-          <div class="grid grid-5col">
-            <b class="grid-span-1">{{localize "CDG.ActorStress"}}</b>
-            <div class="grid-span-4">
-              {{#multiboxes system.stress.value}}
-                <input type="radio" id="character-{{../_id}}-stress-0" name="system.stress.value" value="0">
-                <label for="character-{{../_id}}-stress-0">|</label>
-                {{#times_from_1 system.stress.max}}
-                  <input type="radio" id="character-{{../_id}}-stress-{{this}}" name="system.stress.value" value="{{this}}">
-                  <label for="character-{{../_id}}-stress-{{this}}"></label>
-                {{/times_from_1}}
-              {{/multiboxes}}
+          <br/>
+
+          <div class="rollbox">
+            <div class="rolltitle">
+              <h3>{{localize "CDG.ActionRiskyThingTitle"}}</h3>
+              <button><i class="fa-solid fa-dice"></i>{{localize "CDG.ActionRoll"}}</button>
             </div>
-            <input class="grid-span-1" type="checkbox" id="first-disorder" name="system.disorders.first.checked" {{checked system.disorders.first.checked}}>
-            <input class="grid-span-4" name="system.disorders.first.name" id="first-disorder" type="text" value="{{system.disorders.first.name}}" placeholder="{{localize "CDG.ActorFirstDisorder"}}"/>
-            <input class="grid-span-1" type="checkbox" id="second-disorder" name="system.disorders.second.checked" {{checked system.disorders.second.checked}}>
-            <input class="grid-span-4" name="system.disorders.second.name" id="second-disorder" type="text" value="{{system.disorders.second.name}}" placeholder="{{localize "CDG.ActorSecondDisorder"}}"/>
-            <input class="grid-span-1" type="checkbox" id="third-disorder" name="system.disorders.third.checked" {{checked system.disorders.third.checked}}>
-            <input class="grid-span-4" name="system.disorders.third.name" id="third-disorder" type="text" value="{{system.disorders.third.name}}" placeholder="{{localize "CDG.ActorThirdDisorder"}}"/>
+            <p>{{localize "CDG.ActionRiskyThingDesc"}}</p>
           </div>
 
+          <div class="rollbox">
+            <div class="rolltitle">
+              <h3>{{localize "CDG.ActionFailureTitle"}}</h3>
+              <button><i class="fa-solid fa-dice"></i>{{localize "CDG.ActionRoll"}}</button>
+            </div>
+            <p>{{localize "CDG.ActionFailureDesc"}}</p>
+          </div>
         </section>
 
-        <section class="grid-span-1">
-          <h3><label for="specialty">{{localize "CDG.ActorSpecialty"}}</label></h3>
-          <input name="system.specialty" id="specialty" type="text" value="{{system.specialty}}" placeholder="{{localize "CDG.ActorSpecialty"}}"/>
+        <section class="right-side grid-span-1 full-height">
+          <div class="harm-label">
+            <h3>{{localize "CDG.ActorHarm"}}</h3>
+            <button><i class="fa-solid fa-circle-x"></i>{{localize "CDG.ClearHarm"}}</button>
+          </div>
+          <div class="harm">
+            <label for="harm-injury">{{localize "CDG.ActorHarmInjuryT"}}</label>
+            <input name="system.harm.injury.name" id="harm-injury" type="text" value="{{system.harm.injury.name}}" placeholder="{{localize "CDG.ActorHarmInjury"}}"/>
+          </div>
+          <div class="harm">
+            <label for="harm-debility">{{localize "CDG.ActorHarmDebilityT"}}</label>
+            <input name="system.harm.debility.name" id="harm-debility" type="text" value="{{system.harm.debility.name}}" placeholder="{{localize "CDG.ActorHarmDebility"}}"/>
+          </div>
+          <div class="harm">
+            <label for="harm-mortal-wound">{{localize "CDG.ActorHarmMortalWoundT"}}</label>
+            <input name="system.harm.mortal_wound.name" id="harm-mortal-wound" type="text" value="{{system.harm.mortal_wound.name}}" placeholder="{{localize "CDG.ActorHarmMortalWound"}}"/>
+          </div>
+
+          <br/>
+          
+          <div class="rollbox">
+            <div class="rolltitle">
+              <h3>{{localize "CDG.ActionDarkDieTitle"}}</h3>
+              <button><i class="fa-solid fa-dice"></i>{{localize "CDG.ActionRoll"}}</button>
+            </div>
+            <p>{{localize "CDG.ActionDarkDieDesc"}}</p>
+          </div>
+
+          <div class="rollbox">
+            <div class="rolltitle">
+              <h3>{{localize "CDG.ActionSelfCareTitle"}}</h3>
+              <button><i class="fa-solid fa-dice"></i>{{localize "CDG.ActionRoll"}}</button>
+            </div>
+            <p>{{localize "CDG.ActionSelfCareDesc"}}</p>
+          </div>
         </section>
 
       </section>
     </div>
 
     {{!-- Biography Tab --}}
-    <div class="tab biography" data-group="primary" data-tab="biography">
-      <section class="biography grid grid-3col">
-        <aside class="sidebar">
-          <h1>{{localize "CDG.ActorAnchors"}}</h1>
-          <!-- stuff here -->
-        </aside>
+    <div class="tab full-height" data-group="primary" data-tab="biography">
+      <section class="full-height grid grid-2col">
+        <section class="grid-span-1">
+          <h3>{{localize "CDG.ActorAnchors"}}</h3>
+          <div class="grid grid-5col">
+            <input class="grid-span-1" type="checkbox" id="first-anchor" name="system.anchors.first.checked" {{checked system.anchors.first.checked}}>
+            <input class="grid-span-4" name="system.anchors.first.name" id="first-anchor" type="text" value="{{system.anchors.first.name}}" placeholder="{{localize "CDG.ActorAnchorName"}}"/>
+            <textarea class="grid-span-5" name="system.anchors.first.description" type="text" value="{{system.anchors.first.description}}" placeholder="{{localize "CDG.ActorAnchorDescription"}}">{{system.anchors.first.description}}</textarea>
 
-        <section class="biography grid-span-2">
-          <h1>{{localize "CDG.ActorNotes"}}</h1>
+            <input class="grid-span-1" type="checkbox" id="second-anchor" name="system.anchors.second.checked" {{checked system.anchors.second.checked}}>
+            <input class="grid-span-4" name="system.anchors.second.name" id="second-anchor" type="text" value="{{system.anchors.second.name}}" placeholder="{{localize "CDG.ActorAnchorName"}}"/>
+            <textarea class="grid-span-5" name="system.anchors.second.description" type="text" value="{{system.anchors.second.description}}" placeholder="{{localize "CDG.ActorAnchorDescription"}}">{{system.anchors.second.description}}</textarea>
+
+            <input class="grid-span-1" type="checkbox" id="third-anchor" name="system.anchors.third.checked" {{checked system.anchors.third.checked}}>
+            <input class="grid-span-4" name="system.anchors.third.name" id="third-anchor" type="text" value="{{system.anchors.third.name}}" placeholder="{{localize "CDG.ActorAnchorName"}}"/>
+            <textarea class="grid-span-5" name="system.anchors.third.description" type="text" value="{{system.anchors.third.description}}" placeholder="{{localize "CDG.ActorAnchorDescription"}}">{{system.anchors.third.description}}</textarea>
+          </div>
+        </section>
+
+        <section class="full-height right-side grid-span-1">
+          <h3>{{localize "CDG.ActorNotes"}}</h3>
           {{editor system.notes target="system.notes" rollData=rollData button=true owner=owner editable=editable}}
         </section>
 

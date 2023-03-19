@@ -2,6 +2,13 @@
   font-family: $font-primary;
 }
 
+.character {
+  h1, h2, h3, h4 {
+    border-bottom: none;
+    font-weight: bold;
+  }
+}
+
 .sheet-header {
   flex: 0 auto;
   overflow: hidden;
@@ -12,8 +19,8 @@
   margin-bottom: 10px;
 
   .profile-img {
-    flex: 0 0 160px;
-    height: 160px;
+    flex: 0 0 170px;
+    height: 170px;
     margin-right: 10px;
   }
 
@@ -33,7 +40,7 @@
     }
   }
 
-  h2.header-input {
+  h3.header-input {
     height: 40px;
     padding: 0px;
     margin: 5px 0;
@@ -43,6 +50,73 @@
       height: 100%;
       margin: 0;
     }
+  }
+}
+
+.specialty {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+
+  input {
+    flex: 1;
+  }
+
+  label {
+    font-weight: bold;
+    flex-basis: content;
+    margin-right: 5px;
+    align-self: center;
+  }
+}
+
+.disorder {
+  margin: 5px 0;
+}
+
+.right-side {
+  padding-left: 5px;
+  border-left: $border-groove;
+}
+
+.harm-label {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+
+  h3 {
+    flex: 1;
+  }
+
+  button {
+    flex-basis: content;
+    font-size: 10px;
+    line-height: 1;
+    padding: 5px !important;
+    margin: 0;
+    height: fit-content;
+
+    i{
+      color: brown;
+    }
+  }
+}
+
+.harm {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 0;
+  margin-bottom: 5px;
+
+  input {
+    flex: 1;
+  }
+
+  label {
+    flex-basis: content;
+    margin-right: 5px;
+    align-self: center;
   }
 }
 
@@ -56,9 +130,10 @@
   height: 100%;
 }
 
-.biography,
+.full-height,
 .editor {
   height: 100%;
+  overflow: hidden;
 }
 
 .tox {
@@ -68,5 +143,36 @@
 
   .tox-edit-area {
     padding: 0 8px;
+  }
+}
+
+.rollbox {
+  margin: 10px 0;
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+
+  .rolltitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  h3{
+    flex: 1;
+    font-size: 16px;
+  }
+
+  button {
+    flex-basis: content;
+    font-size: 10px;
+    line-height: 1;
+    padding: 5px !important;
+    margin: 0;
+    height: fit-content;
+
+    i{
+      color: brown;
+    }
   }
 }

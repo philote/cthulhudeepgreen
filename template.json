@@ -36,6 +36,23 @@
           "name": ""
         }
       },
+      "anchors": {
+        "first": {
+          "checked": false,
+          "name": "",
+          "description": ""
+        },
+        "second": {
+          "checked": false,
+          "name": "",
+          "description": ""
+        },
+        "third": {
+          "checked": false,
+          "name": "",
+          "description": ""
+        }
+      },
       "harm": {
         "injury": {
           "checked": false,

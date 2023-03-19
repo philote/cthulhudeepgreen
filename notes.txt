@@ -17,6 +17,19 @@ notes
 
 rolls
 - dark die roll (Stress/insight checks)
+
+Do A Risky Thing
+Whenever an Agent does something that risks their life or their emotional stability.
+
+Dark Die Roll
+When an Agent willingly exposes themselves to supernatural forces, disturbing imagery, or moral quandaries.
+
+Failure Roll
+Describe a worse outcome for another Agent's action. If this result is up higher than their highest die, that action fails in the way described.
+
+Engage in Self Care
+When an Agent engages in a stress relieving activity. Roll and reduce your Stress by the result.
+
 - resolution roll
     - Compete
     - Cooperate

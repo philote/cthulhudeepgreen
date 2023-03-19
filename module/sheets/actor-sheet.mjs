@@ -9,8 +9,8 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: ["cthulhudeepgreen", "sheet", "actor"],
       template: "systems/cthulhudeepgreen/templates/actor/actor-sheet.html",
-      width: 600,
-      height: 600,
+      width: 650,
+      height: 665,
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "main" }]
     });
   }
