@@ -30,15 +30,28 @@
   "CDG.ActionDarkDieTitle": "Dark Die Roll",
   "CDG.ActionDarkDieDesc": "When an Agent willingly exposes themselves to supernatural forces, disturbing imagery, or moral quandaries.",
   "CDG.ActionFailureTitle": "Failure Roll",
-  "CDG.ActionFailureDesc": "Describe a worse outcome for another Agent's action. If this result is up higher than their highest die, that action fails in the way described.",
+  "CDG.ActionFailureDesc": "Describe a worse outcome for another Agent's action. If the result is higher than their highest die, their action fails in the way described.",
   "CDG.ActionSelfCareTitle": "Engage in Self Care",
-  "CDG.ActionSelfCareDesc": "When an Agent engages in a stress relieving activity. Roll and reduce your Stress by the result.",
+  "CDG.ActionSelfCareDesc": "When an Agent engages in a stress relieving activity, roll and reduce Stress by the result.",
 
   "CDG.FailureRollContent": "If your roll is higher than the other <b><i>Agent's</i></b> highest die, they fail, just as you described. If not, they succeed as before.",
   "CDG.FailureRoll": "<b>Failure Roll</b>:",
 
   "CDG.SelfCareRollContent": "You engaged in Self Care. Your {stress1} was <b>{previousstress}</b>, your {stress2} has been reduced to <b>{newstress}</b>.",
   "CDG.SelfCareRoll": "<b>Self Care Roll</b>:",
+
+  "CDG.DarkDieDialogTitle": "Dark Die Roll",
+
+  "CDG.RiskyDialogTitle": "Do Something Risky",
+  "CDG.DialogHumanDie": "TBD - If the task is within human capabilities.",
+  "CDG.DialogOccupDie": "TBD - If it’s within your occupational expertise.",
+  "CDG.DialogRiskDie": "TBD - If you will risk your mind to succeed.",
+  "CDG.RiskMoveMessage": "TBD - The situation reveals some horror behind the universe, make an {darkdieroll}",
+
+  "CDG.MaxDieMessage123": "You get the bare minimum: if something needs to happen to proceed with the scenario, you get it, but that’s all you get.",
+  "CDG.MaxDieMessage4": "You succeed competently.",
+  "CDG.MaxDieMessage5": "You succeed well and may get something extra.",
+  "CDG.MaxDieMessage6": "You succeed brilliantly, get something extra, but maybe more than you wanted (and probably make an {darkdieroll}).",
 
   "CDG.Insight": "Insight",
   "CDG.Stress": "Stress",
