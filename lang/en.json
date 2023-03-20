@@ -21,6 +21,8 @@
   "CDG.ActorHarmInjuryT": "Tier 1",
   "CDG.ActorHarmDebilityT": "Tier 2",
   "CDG.ActorHarmMortalWoundT": "Tier 3",
+  "CDG.ActorTabMain": "Main",
+  "CDG.ActorTabBiography": "Biography",
 
   "CDG.ActionRoll": "Roll!",
   "CDG.ActionRiskyThingTitle": "Do A Risky Thing",
@@ -31,6 +33,15 @@
   "CDG.ActionFailureDesc": "Describe a worse outcome for another Agent's action. If this result is up higher than their highest die, that action fails in the way described.",
   "CDG.ActionSelfCareTitle": "Engage in Self Care",
   "CDG.ActionSelfCareDesc": "When an Agent engages in a stress relieving activity. Roll and reduce your Stress by the result.",
+
+  "CDG.FailureRollContent": "If your roll is higher than the other <b><i>Agent's</i></b> highest die, they fail, just as you described. If not, they succeed as before.",
+  "CDG.FailureRoll": "<b>Failure Roll</b>:",
+
+  "CDG.SelfCareRollContent": "You engaged in Self Care. Your {stress1} was <b>{previousstress}</b>, your {stress2} has been reduced to <b>{newstress}</b>.",
+  "CDG.SelfCareRoll": "<b>Self Care Roll</b>:",
+
+  "CDG.Insight": "Insight",
+  "CDG.Stress": "Stress",
 
   "CDG.ItemName": "Name",
   "CDG.ItemDescription": "Description"

@@ -19,8 +19,8 @@
   margin-bottom: 10px;
 
   .profile-img {
-    flex: 0 0 170px;
-    height: 170px;
+    flex: 0 0 180px;
+    height: 180px;
     margin-right: 10px;
   }
 
@@ -51,6 +51,15 @@
       margin: 0;
     }
   }
+
+  input[type="radio"] {
+    top: 2px;
+    margin: 5px 3px;
+  }
+}
+
+.bottomspace {
+  margin-bottom: 15px;
 }
 
 .specialty {
@@ -75,7 +84,7 @@
 }
 
 .right-side {
-  padding-left: 5px;
+  padding-left: 10px;
   border-left: $border-groove;
 }
 
@@ -146,6 +155,10 @@
   }
 }
 
+.rollsection {
+  margin-top: 20px;
+}
+
 .rollbox {
   margin: 10px 0;
   padding: 5px 10px;
@@ -156,11 +169,13 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    align-items: center;
   }
 
   h3{
     flex: 1;
     font-size: 16px;
+    margin: 0;
   }
 
   button {
