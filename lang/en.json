@@ -40,18 +40,26 @@
   "CDG.SelfCareRollContent": "You engaged in Self Care. Your {stress1} was <b>{previousstress}</b>, your {stress2} has been reduced to <b>{newstress}</b>.",
   "CDG.SelfCareRoll": "<b>Self Care Roll</b>:",
 
-  "CDG.DarkDieDialogTitle": "Dark Die Roll",
+  "CDG.DarkDieDialogRoll": "Dark Die Roll!",
+  "CDG.DarkDie": "Dark Die",
 
   "CDG.RiskyDialogTitle": "Do Something Risky",
-  "CDG.DialogHumanDie": "TBD - If the task is within human capabilities.",
-  "CDG.DialogOccupDie": "TBD - If it’s within your occupational expertise.",
-  "CDG.DialogRiskDie": "TBD - If you will risk your mind to succeed.",
+  "CDG.RiskyDialogDesc": "Do something that risks your life or emotional stability, choose all that apply:",
+  "CDG.DialogHumanDie": "<b>Human Die</b>: If the action is humanly possible.",
+  "CDG.DialogOccupDie": "<b>Occupation Die</b>: If the action falls under Agent's personal field of expertise.",
+  "CDG.DialogRiskDie": "{darkdie}: If the action would risk the Agent's physical or emotional well-being to succeed <b>OR</b> if the player would add an element of the horrific to an otherwise mundane task.",
+  "CDG.DialogRiskDieInsight": "If the action would expose the Agent to Mythos Knowledge also risk their {insight}.",
   "CDG.RiskMoveMessage": "TBD - The situation reveals some horror behind the universe, make an {darkdieroll}",
 
-  "CDG.MaxDieMessage123": "You get the bare minimum: if something needs to happen to proceed with the scenario, you get it, but that’s all you get.",
-  "CDG.MaxDieMessage4": "You succeed competently.",
-  "CDG.MaxDieMessage5": "You succeed well and may get something extra.",
-  "CDG.MaxDieMessage6": "You succeed brilliantly, get something extra, but maybe more than you wanted (and probably make an {darkdieroll}).",
+  "CDG.DarkDieDialogTitle": "Dark Die Roll",
+
+  "CDG.StressContent": "Your {stress} increases! It was <b>{previousstress}</b>, now it is <b>{newstress}</b>.",
+  "CDG.InsightContent": "Your {insight} increases! It was <b>{previousinsight}</b>, now it is <b>{newinsight}</b>.",
+
+  "CDG.MaxDieMessage123": "You barely succeed, but maybe not in the way they intended. The Handler determines how.",
+  "CDG.MaxDieMessage4": "You succeed competently. Describe how.",
+  "CDG.MaxDieMessage5": "You succeed and may get an advantage. The Handler decides what it is.",
+  "CDG.MaxDieMessage6": "You succeed brilliantly and get something extra. Maybe more than bargained for. The Handler may confront you with a difficult truth.",
 
   "CDG.Insight": "Insight",
   "CDG.Stress": "Stress",

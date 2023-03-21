@@ -102,11 +102,8 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
         }
         case 'riskything': {
           const title = game.i18n.localize("CDG.RiskyDialogTitle");
-          const content = this.riskyDialogContent(title);
-          // console.log("title: "+title);
-          // console.log("content: "+content);
-          // TODO not working atm.
-          this.asyncCDGDarkDieDialog(title, content);
+          const content = this.riskyDialogContent();
+          this.asyncCDGRiskyThingDialog({title, content});
           return;
         }
         default: {
@@ -156,12 +153,16 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
     return `<b style="color: ${CONFIG.CDG.InsightColor}"><i>${game.i18n.localize("CDG.Insight")}</i></b>`;
   }
 
+  getWordDarkDieWithFormatting() {
+    return `<b style="color: ${CONFIG.CDG.DarkDieColor}"><i>${game.i18n.localize("CDG.DarkDie")}</i></b>`;
+  }
+
   getWordStressWithFormatting() {
     return `<b style="color: ${CONFIG.CDG.StressColor}"><i>${game.i18n.localize("CDG.Stress")}</i></b>`;
   }
 
   getWordDarkDieRollWithFormatting() {
-    return `<b style="color: ${CONFIG.CDG.DarkDieColor}"><i>${game.i18n.localize("CDG.DarkDieDialogTitle")}!</i></b>`;
+    return `<b style="color: ${CONFIG.CDG.DarkDieColor}"><i>${game.i18n.localize("CDG.DarkDieDialogRoll")}</i></b>`;
   }
 
   // ------------
@@ -173,44 +174,45 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
     return `
             <p><b>${dialogTitle}</b></p>
             <form class="flexcol">
-                <div class="form-group">
-                    <input type="checkbox" id="humanDie" name="humanDie">
-                    <label for="humanDie"><i class="fa-solid fa-dice-five"></i>&#8194;${game.i18n.localize("CDG.DialogHumanDie")}</label>
-                </div>
-                <div class="form-group">
-                    <input type="checkbox" id="occupationalDie" name="occupationalDie">
-                    <label for="occupationalDie"><i class="fa-solid fa-dice-five"></i>&#8194;${game.i18n.localize("CDG.DialogOccupDie")}</label>
-                </div>
-                <div class="form-group">
-                    <input type="checkbox" id="insightDie" name="insightDie">
-                    <label for="insightDie" style="color: ${CONFIG.CDG.DarkDieColor}"><i class="fa-solid fa-dice-five"></i>&#8194;<b>${game.i18n.localize("CDG.DialogRiskDie")}</b></label>
-                </div>
+              <div class="form-group">
+                <input style="align-self: flex-start;" type="checkbox" id="stress" name="stress">
+                <label for="stress">${game.i18n.format('CDG.DialogRiskDieInsight', { insight: this.getWordInsightWithFormatting() })}</label>
+              </div>
+              <div class="form-group">
+                <input style="align-self: flex-start;" type="checkbox" id="insight" name="insight">
+                <label for="insight">${game.i18n.format('CDG.DialogRiskDieInsight', { insight: this.getWordInsightWithFormatting() })}</label>
+              </div>
             </form>
             </br>
         `;
   }
 
-  riskyDialogContent(dialogTitle) {
+  riskyDialogContent() {
     return `
-            <p><b>${dialogTitle}</b></p>
+            <p><b>${game.i18n.localize("CDG.RiskyDialogDesc")}</b></p>
+            <hr>
             <form class="flexcol">
                 <div class="form-group">
-                    <input type="checkbox" id="humanDie" name="humanDie">
+                    <input style="align-self: flex-start;" type="checkbox" id="humanDie" name="humanDie">
                     <label for="humanDie"><i class="fa-solid fa-dice-five"></i>&#8194;${game.i18n.localize("CDG.DialogHumanDie")}</label>
                 </div>
                 <div class="form-group">
-                    <input type="checkbox" id="occupationalDie" name="occupationalDie">
+                    <input style="align-self: flex-start;" type="checkbox" id="occupationalDie" name="occupationalDie">
                     <label for="occupationalDie"><i class="fa-solid fa-dice-five"></i>&#8194;${game.i18n.localize("CDG.DialogOccupDie")}</label>
                 </div>
                 <div class="form-group">
-                    <input type="checkbox" id="insightDie" name="insightDie">
-                    <label for="insightDie" style="color: ${CONFIG.CDG.DarkDieColor}"><i class="fa-solid fa-dice-five"></i>&#8194;<b>${game.i18n.localize("CDG.DialogRiskDie")}</b></label>
+                    <input style="align-self: flex-start;" type="checkbox" id="darkDie" name="darkDie">
+                    <label for="darkDie"><i style="color: ${CONFIG.CDG.DarkDieColor}" class="fa-solid fa-dice-five"></i>&#8194;${game.i18n.format('CDG.DialogRiskDie', { darkdie: this.getWordDarkDieWithFormatting() })}</label>
+                </div>
+                <div class="form-group" style="margin-left: 30px">
+                  <input style="align-self: flex-start;" type="checkbox" id="insight" name="insight">
+                  <label for="insight">${game.i18n.format('CDG.DialogRiskDieInsight', { insight: this.getWordInsightWithFormatting() })}</label>
                 </div>
             </form>
             </br>
         `;
   }
-
+  
   getRiskMoveMessage() {
     return `
         <hr>
@@ -225,13 +227,13 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
       case "1":
       case "2":
       case "3":
-          return game.i18n.localize("CDG.DieMessage123");
+          return game.i18n.localize("CDG.MaxDieMessage123");
       case "4":
           return game.i18n.localize("CDG.MaxDieMessage4");
       case "5":
           return game.i18n.localize("CDG.MaxDieMessage5");
       case "6":
-          return game.i18n.format('CDG.MaxDieMessage6', {darkdieroll: this.getWordDarkDieRollWithFormatting()});
+          return game.i18n.localize("CDG.MaxDieMessage6");
       default: {
           console.error("ERROR(getMaxDieMessage)");
           return;
@@ -251,8 +253,42 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
     `;
   }
 
-  // TODO Needs updated
-  async asyncCDGDarkDieDialog({
+  darkDieChatContent(diceNumber, effectsInsight) {
+    const previousStress = duplicate(this.actor.system.stress.value);
+    const previousInsight = duplicate(this.actor.system.insight.value);
+    const rollValue = +diceNumber;
+    let newStress = previousStress;
+    let newInsight = previousInsight;
+
+    let darkDieMessage = "";
+
+    if ((rollValue > previousStress) || (effectsInsight && rollValue > previousInsight)) {
+      darkDieMessage = "<hr>";
+    }
+
+    if (rollValue > previousStress) {
+      // update Stress
+      ++newStress;
+      this.actor.system.stress.value = newStress;
+      this.actor.update({"system.stress.value": newStress});
+      darkDieMessage = darkDieMessage.concat(game.i18n.format('CDG.StressContent', {stress: this.getWordStressWithFormatting(), previousstress: previousStress, newstress: newStress}));
+    }
+
+    if (effectsInsight && rollValue > previousInsight) {
+      if (rollValue > previousStress) {
+        darkDieMessage = darkDieMessage.concat("<br>");
+      }
+      // update Inisght
+      ++newInsight;
+      this.actor.system.insight.value = newInsight;
+      this.actor.update({"system.insight.value": newInsight});
+      darkDieMessage = darkDieMessage.concat(game.i18n.format('CDG.InsightContent', {insight: this.getWordInsightWithFormatting(), previousinsight: previousInsight, newinsight: newInsight}));
+    }
+
+    return darkDieMessage;
+  }
+
+  async asyncCDGRiskyThingDialog({
     title = "",
     content = ""
   } = {}) {
@@ -286,7 +322,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
                             });
                         };
 
-                        if (document.getElementById("insightDie").checked) {
+                        if (document.getElementById("darkDie").checked) {
                             let idRoll = await new Roll('1d6').evaluate({ async: true });
                             dice.push({
                                 dieColor: CONFIG.CDG.DarkDieColor,
@@ -294,9 +330,12 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
                                 rollVal: idRoll.result
                             });
                         };
-
-                        const maxDie = dice.reduce((a, b) => (a.rollVal > b.rollVal) ? a : b);
                         
+                        const darkDieEffectsInsight = document.getElementById("insight").checked && document.getElementById("darkDie").checked;
+                        // console.error("darkDieEffectsInsight: "+darkDieEffectsInsight);
+                        
+                        const maxDie = dice.reduce((a, b) => (a.rollVal > b.rollVal) ? a : b);
+
                         // Determine if the risk die won
                         let isRiskDie = false;
                         dice.every(die => {
@@ -307,9 +346,12 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
                           return true;
                         });
 
+                        console.log("isRiskDie: "+isRiskDie);
+
                         let riskMessage = "";
                         if (isRiskDie) {
-                            riskMessage = this.getRiskMoveMessage();
+                            riskMessage = this.darkDieChatContent(maxDie.rollVal, darkDieEffectsInsight);
+                            console.log("riskMessage: "+riskMessage);
                         }
 
                         // Build Dice list
