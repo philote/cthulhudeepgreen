@@ -42,6 +42,9 @@
 
   "CDG.DarkDieDialogRoll": "Dark Die Roll!",
   "CDG.DarkDie": "Dark Die",
+  "CDG.DialogStressCheck": "Test for {stress}.",
+  "CDG.DialogInsightCheck": "Test for {insight}.",
+  "CDG.DialogDarkDieRollPositive": "Your resolve is tested and holds up, for now...",
 
   "CDG.RiskyDialogTitle": "Do Something Risky",
   "CDG.RiskyDialogDesc": "Do something that risks your life or emotional stability, choose all that apply:",

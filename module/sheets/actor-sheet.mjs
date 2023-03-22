@@ -98,6 +98,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
           // TODO Dialog to ask if you risk stress, insight or both
           const title = game.i18n.localize("CDG.DarkDieDialogTitle");
           const content = this.darkDieDialogContent(title);
+          this.asyncCDGDarkDieRollDialog({title, content});
           return;
         }
         case 'riskything': {
@@ -165,27 +166,107 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
     return `<b style="color: ${CONFIG.CDG.DarkDieColor}"><i>${game.i18n.localize("CDG.DarkDieDialogRoll")}</i></b>`;
   }
 
-  // ------------
-  // Dialog Rolls
-  // ------------
+  getMaxDieMessage(maxDieNumber) {
+    switch (maxDieNumber) {
+      case "1":
+      case "2":
+      case "3":
+          return game.i18n.localize("CDG.MaxDieMessage123");
+      case "4":
+          return game.i18n.localize("CDG.MaxDieMessage4");
+      case "5":
+          return game.i18n.localize("CDG.MaxDieMessage5");
+      case "6":
+          return game.i18n.localize("CDG.MaxDieMessage6");
+      default: {
+          console.error("ERROR(getMaxDieMessage)");
+          return;
+      }
+    }
+  }
 
-  // TODO Needs updated
-  darkDieDialogContent(dialogTitle) {
+  // -------------
+  // Dark Die Roll
+  // -------------
+
+  darkDieDialogContent() {
     return `
-            <p><b>${dialogTitle}</b></p>
+            <p><b>Stress and/or Insight Check:</b></p>
             <form class="flexcol">
               <div class="form-group">
                 <input style="align-self: flex-start;" type="checkbox" id="stress" name="stress">
-                <label for="stress">${game.i18n.format('CDG.DialogRiskDieInsight', { insight: this.getWordInsightWithFormatting() })}</label>
-              </div>
-              <div class="form-group">
+                <label for="stress">${game.i18n.format('CDG.DialogStressCheck', { stress: this.getWordStressWithFormatting() })}</label>
                 <input style="align-self: flex-start;" type="checkbox" id="insight" name="insight">
-                <label for="insight">${game.i18n.format('CDG.DialogRiskDieInsight', { insight: this.getWordInsightWithFormatting() })}</label>
+                <label for="insight">${game.i18n.format('CDG.DialogInsightCheck', { insight: this.getWordInsightWithFormatting() })}</label>
               </div>
             </form>
-            </br>
         `;
   }
+
+  darkDieRollChatContent(diceOutput, riskMessage) {
+    return `
+        <p>
+          <b style="font-size: 1.5em;">${game.i18n.localize("CDG.DarkDieDialogRoll")}: </b>
+          ${diceOutput}
+        </p>
+        ${riskMessage}
+    `;
+  }
+
+  async asyncCDGDarkDieRollDialog({
+    title = "",
+    content = ""
+  } = {}) {
+    return await new Promise(async (resolve) => {
+        new Dialog({
+            title: title,
+            content: content,
+            buttons: {
+                button1: {
+                    icon: '<i class="fa-solid fa-dice"></i>',
+                    label: "Roll!",
+                    callback: async (html) => {
+                      const darkDieEffectsInsight = document.getElementById("insight").checked;
+                      const darkDieEffectsStress = document.getElementById("stress").checked;  
+
+                      if (!darkDieEffectsInsight && !darkDieEffectsStress) {return;}
+
+                      const darkDieRoll = await new Roll('1d6').evaluate({ async: true });
+                      let riskMessage = this.darkDieChatContent(darkDieRoll.result, darkDieEffectsInsight, darkDieEffectsStress);
+                      let diceOutput = this.getDiceForOutput(darkDieRoll.result, CONFIG.CDG.DarkDieColor);
+
+                      if (!riskMessage) {
+                        riskMessage = game.i18n.localize("CDG.DialogDarkDieRollPositive");
+                      }
+
+                      // Initialize chat data.
+                      const chatContentMessage = this.darkDieRollChatContent(diceOutput, riskMessage);
+                      const user = game.user.id;
+                      const speaker = ChatMessage.getSpeaker({ actor: this.actor });
+                      const rollMode = game.settings.get('core', 'rollMode');
+
+                      ChatMessage.create({
+                        user: user,
+                        speaker: speaker,
+                        rollMode: rollMode,
+                        content: chatContentMessage
+                      });
+
+                      // ----
+                      resolve(null);
+                    }
+                }
+            },
+            close: () => {
+                resolve(null);
+            }
+        }).render(true);
+    });
+  }
+  
+  // ----------------
+  // Risky Thing Roll
+  // ----------------
 
   riskyDialogContent() {
     return `
@@ -209,10 +290,10 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
                   <label for="insight">${game.i18n.format('CDG.DialogRiskDieInsight', { insight: this.getWordInsightWithFormatting() })}</label>
                 </div>
             </form>
-            </br>
+            
         `;
   }
-  
+
   getRiskMoveMessage() {
     return `
         <hr>
@@ -222,26 +303,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
     `;
   }
 
-  getMaxDieMessage(maxDieNumber) {
-    switch (maxDieNumber) {
-      case "1":
-      case "2":
-      case "3":
-          return game.i18n.localize("CDG.MaxDieMessage123");
-      case "4":
-          return game.i18n.localize("CDG.MaxDieMessage4");
-      case "5":
-          return game.i18n.localize("CDG.MaxDieMessage5");
-      case "6":
-          return game.i18n.localize("CDG.MaxDieMessage6");
-      default: {
-          console.error("ERROR(getMaxDieMessage)");
-          return;
-      }
-    }
-  }
-
-  chatContent(diceOutput, maxDieNumber, riskMessage) {
+  riskyThingChatContent(diceOutput, maxDieNumber, riskMessage) {
     return `
         <p>
           <b style="font-size: 1.5em;">${game.i18n.localize("CDG.RiskyDialogTitle")}: </b>
@@ -253,7 +315,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
     `;
   }
 
-  darkDieChatContent(diceNumber, effectsInsight) {
+  darkDieChatContent(diceNumber, effectsInsight, effectsStress) {
     const previousStress = duplicate(this.actor.system.stress.value);
     const previousInsight = duplicate(this.actor.system.insight.value);
     const rollValue = +diceNumber;
@@ -262,11 +324,11 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
 
     let darkDieMessage = "";
 
-    if ((rollValue > previousStress) || (effectsInsight && rollValue > previousInsight)) {
+    if ((effectsStress && rollValue > previousStress) || (effectsInsight && rollValue > previousInsight)) {
       darkDieMessage = "<hr>";
     }
 
-    if (rollValue > previousStress) {
+    if (effectsStress && rollValue > previousStress) {
       // update Stress
       ++newStress;
       this.actor.system.stress.value = newStress;
@@ -275,7 +337,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
     }
 
     if (effectsInsight && rollValue > previousInsight) {
-      if (rollValue > previousStress) {
+      if (effectsStress && rollValue > previousStress) {
         darkDieMessage = darkDieMessage.concat("<br>");
       }
       // update Inisght
@@ -346,11 +408,9 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
                           return true;
                         });
 
-                        console.log("isRiskDie: "+isRiskDie);
-
                         let riskMessage = "";
                         if (isRiskDie) {
-                            riskMessage = this.darkDieChatContent(maxDie.rollVal, darkDieEffectsInsight);
+                            riskMessage = this.darkDieChatContent(maxDie.rollVal, darkDieEffectsInsight, true);
                             console.log("riskMessage: "+riskMessage);
                         }
 
@@ -361,7 +421,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
                         });
 
                         // Initialize chat data.
-                        const chatContentMessage = this.chatContent(diceOutput, maxDie.rollVal, riskMessage);
+                        const chatContentMessage = this.riskyThingChatContent(diceOutput, maxDie.rollVal, riskMessage);
                         const user = game.user.id;
                         const speaker = ChatMessage.getSpeaker({ actor: this.actor });
                         const rollMode = game.settings.get('core', 'rollMode');
