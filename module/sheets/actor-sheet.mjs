@@ -72,6 +72,12 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
     // Everything below here is only needed if the sheet is editable
     if (!this.isEditable) return;
 
+    html.find('.first-disorder').click(ev => {
+      // ev.preventDefault();
+      console.log("---TEST---");
+      // $(ev.currentTarget).next().css("background-color", "yellow")
+    });
+
     // Rollable.
     html.find('.rollable').click(this._onRoll.bind(this));
   }
@@ -183,6 +189,41 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
           return;
       }
     }
+  }
+
+  darkDieChatContent(diceNumber, effectsInsight, effectsStress) {
+    const previousStress = duplicate(this.actor.system.stress.value);
+    const previousInsight = duplicate(this.actor.system.insight.value);
+    const rollValue = +diceNumber;
+    let newStress = previousStress;
+    let newInsight = previousInsight;
+
+    let darkDieMessage = "";
+
+    if ((effectsStress && rollValue > previousStress) || (effectsInsight && rollValue > previousInsight)) {
+      darkDieMessage = "<hr>";
+    }
+
+    if (effectsStress && rollValue > previousStress) {
+      // update Stress
+      ++newStress;
+      this.actor.system.stress.value = newStress;
+      this.actor.update({"system.stress.value": newStress});
+      darkDieMessage = darkDieMessage.concat(game.i18n.format('CDG.StressContent', {stress: this.getWordStressWithFormatting(), previousstress: previousStress, newstress: newStress}));
+    }
+
+    if (effectsInsight && rollValue > previousInsight) {
+      if (effectsStress && rollValue > previousStress) {
+        darkDieMessage = darkDieMessage.concat("<br>");
+      }
+      // update Insight
+      ++newInsight;
+      this.actor.system.insight.value = newInsight;
+      this.actor.update({"system.insight.value": newInsight});
+      darkDieMessage = darkDieMessage.concat(game.i18n.format('CDG.InsightContent', {insight: this.getWordInsightWithFormatting(), previousinsight: previousInsight, newinsight: newInsight}));
+    }
+
+    return darkDieMessage;
   }
 
   // -------------
@@ -313,41 +354,6 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
         <p>${this.getMaxDieMessage(maxDieNumber)}</p>
         ${riskMessage}
     `;
-  }
-
-  darkDieChatContent(diceNumber, effectsInsight, effectsStress) {
-    const previousStress = duplicate(this.actor.system.stress.value);
-    const previousInsight = duplicate(this.actor.system.insight.value);
-    const rollValue = +diceNumber;
-    let newStress = previousStress;
-    let newInsight = previousInsight;
-
-    let darkDieMessage = "";
-
-    if ((effectsStress && rollValue > previousStress) || (effectsInsight && rollValue > previousInsight)) {
-      darkDieMessage = "<hr>";
-    }
-
-    if (effectsStress && rollValue > previousStress) {
-      // update Stress
-      ++newStress;
-      this.actor.system.stress.value = newStress;
-      this.actor.update({"system.stress.value": newStress});
-      darkDieMessage = darkDieMessage.concat(game.i18n.format('CDG.StressContent', {stress: this.getWordStressWithFormatting(), previousstress: previousStress, newstress: newStress}));
-    }
-
-    if (effectsInsight && rollValue > previousInsight) {
-      if (effectsStress && rollValue > previousStress) {
-        darkDieMessage = darkDieMessage.concat("<br>");
-      }
-      // update Inisght
-      ++newInsight;
-      this.actor.system.insight.value = newInsight;
-      this.actor.update({"system.insight.value": newInsight});
-      darkDieMessage = darkDieMessage.concat(game.i18n.format('CDG.InsightContent', {insight: this.getWordInsightWithFormatting(), previousinsight: previousInsight, newinsight: newInsight}));
-    }
-
-    return darkDieMessage;
   }
 
   async asyncCDGRiskyThingDialog({
