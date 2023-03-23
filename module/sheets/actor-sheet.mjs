@@ -59,7 +59,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
    * @return {undefined}
    */
   _prepareCharacterData(context) {
-    
+
   }
 
   /* -------------------------------------------- */
@@ -72,11 +72,24 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
     // Everything below here is only needed if the sheet is editable
     if (!this.isEditable) return;
 
-    html.find('.first-disorder').click(ev => {
+    /*
+    const stress = duplicate(this.actor.system.stress.value);
+    this.actor.system.stress.value = newStress;
+    this.actor.update({"system.stress.value": newStress});
+    */
+
+    // html.find('.first-disorder').click(ev => {
       // ev.preventDefault();
-      console.log("---TEST---");
+      // console.log("---TEST---");
+      // const isChecked = duplicate(this.actor.system.disorders.first.checked);
+      // console.log("isChecked: "+isChecked);
+      // const newStress = 6;
+      // this.actor.system.stress.value = newStress;
+      // this.actor.update({"system.stress.value": newStress});
+      // console.log("this.actor.system.stress.value: "+this.actor.system.stress.value);
+      // $( ".third-disorder" ).hide();
       // $(ev.currentTarget).next().css("background-color", "yellow")
-    });
+    // });
 
     // Rollable.
     html.find('.rollable').click(this._onRoll.bind(this));
