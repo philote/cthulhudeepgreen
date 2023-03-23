@@ -54,7 +54,13 @@
           <h3>{{localize "CDG.ActorDisorders"}}</h3>
           <div class="disorder flexrow">
             <input type="checkbox" id="first-disorder" name="system.disorders.first.checked" {{checked system.disorders.first.checked}}>
+
+            {{#if system.disorders.first.checked}}
             <input name="system.disorders.first.name" id="first-disorder" type="text" value="{{system.disorders.first.name}}" placeholder="{{localize "CDG.ActorFirstDisorder"}}"/>
+            {{else}}
+            <b>{{system.disorders.first.name}}</b>
+            {{/if}}
+            
           </div>
           <div class="disorder flexrow">
             <input type="checkbox" id="second-disorder" name="system.disorders.second.checked" {{checked system.disorders.second.checked}}>
