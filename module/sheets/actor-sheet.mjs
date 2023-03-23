@@ -72,25 +72,6 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
     // Everything below here is only needed if the sheet is editable
     if (!this.isEditable) return;
 
-    /*
-    const stress = duplicate(this.actor.system.stress.value);
-    this.actor.system.stress.value = newStress;
-    this.actor.update({"system.stress.value": newStress});
-    */
-
-    // html.find('.first-disorder').click(ev => {
-      // ev.preventDefault();
-      // console.log("---TEST---");
-      // const isChecked = duplicate(this.actor.system.disorders.first.checked);
-      // console.log("isChecked: "+isChecked);
-      // const newStress = 6;
-      // this.actor.system.stress.value = newStress;
-      // this.actor.update({"system.stress.value": newStress});
-      // console.log("this.actor.system.stress.value: "+this.actor.system.stress.value);
-      // $( ".third-disorder" ).hide();
-      // $(ev.currentTarget).next().css("background-color", "yellow")
-    // });
-
     // Rollable.
     html.find('.rollable').click(this._onRoll.bind(this));
   }
@@ -126,6 +107,10 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
           this.asyncCDGRiskyThingDialog({title, content});
           return;
         }
+        case 'clearharm': {
+          this.clearHarm();
+          return;
+        }
         default: {
           console.error("_onRoll, bad roll type.");
           return;
@@ -144,6 +129,17 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
       });
       return roll;
     }
+  }
+
+  clearHarm() {
+    this.actor.system.harm.injury.name = "";
+    this.actor.update({"system.harm.injury.name": ""});
+
+    this.actor.system.harm.debility.name = "";
+    this.actor.update({"system.harm.debility.name": ""});
+
+    this.actor.system.harm.mortal_wound.name = "";
+    this.actor.update({"system.harm.mortal_wound.name": ""});
   }
 
   // ----------------------

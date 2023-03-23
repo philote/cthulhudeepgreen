@@ -52,24 +52,16 @@
       <section class="grid grid-2col full-height">
         <section class="grid-span-1">
           <h3>{{localize "CDG.ActorDisorders"}}</h3>
-          <div class="disorder flexrow">
-            <input type="checkbox" id="first-disorder" name="system.disorders.first.checked" {{checked system.disorders.first.checked}}>
-
-            {{#if system.disorders.first.checked}}
-            <input name="system.disorders.first.name" id="first-disorder" type="text" value="{{system.disorders.first.name}}" placeholder="{{localize "CDG.ActorFirstDisorder"}}"/>
-            {{else}}
-            <b>{{system.disorders.first.name}}</b>
-            {{/if}}
-            
-          </div>
-          <div class="disorder flexrow">
-            <input type="checkbox" id="second-disorder" name="system.disorders.second.checked" {{checked system.disorders.second.checked}}>
-            <input name="system.disorders.second.name" id="second-disorder" type="text" value="{{system.disorders.second.name}}" placeholder="{{localize "CDG.ActorSecondDisorder"}}"/>
-          </div>
-          <div class="disorder flexrow">
-            <input type="checkbox" id="third-disorder" name="system.disorders.third.checked" {{checked system.disorders.third.checked}}>
-            <input name="system.disorders.third.name" id="third-disorder" type="text" value="{{system.disorders.third.name}}" placeholder="{{localize "CDG.ActorThirdDisorder"}}"/>
-          </div>
+          {{#each system.disorders as |disorder key|}}
+            <div class="disorder flexrow">
+              <input type="checkbox" name="system.disorders.{{key}}.checked" {{checked disorder.checked}}>
+              {{#if disorder.checked}}
+                <input class="strike-input" name="system.disorders.{{key}}.name" type="text" value="{{disorder.name}}" placeholder="{{localize disorder.placeholderName}}" disabled>
+              {{else}}
+                <input name="system.disorders.{{key}}.name" type="text" value="{{disorder.name}}" placeholder="{{localize disorder.placeholderName}}"/>
+              {{/if}}
+            </div>
+          {{/each}}
 
           <div class="rollsection">
             <div class="rollbox">
@@ -95,20 +87,14 @@
         <section class="right-side grid-span-1 full-height">
           <div class="harm-label">
             <h3>{{localize "CDG.ActorHarm"}}</h3>
-            <button><i class="fa-solid fa-circle-x"></i>{{localize "CDG.ClearHarm"}}</button>
+            <button class="rollable" data-roll-type="clearharm"><i class="fa-solid fa-circle-x"></i>{{localize "CDG.ClearHarm"}}</button>
           </div>
-          <div class="harm">
-            <label for="harm-injury">{{localize "CDG.ActorHarmInjuryT"}}</label>
-            <input name="system.harm.injury.name" id="harm-injury" type="text" value="{{system.harm.injury.name}}" placeholder="{{localize "CDG.ActorHarmInjury"}}"/>
-          </div>
-          <div class="harm">
-            <label for="harm-debility">{{localize "CDG.ActorHarmDebilityT"}}</label>
-            <input name="system.harm.debility.name" id="harm-debility" type="text" value="{{system.harm.debility.name}}" placeholder="{{localize "CDG.ActorHarmDebility"}}"/>
-          </div>
-          <div class="harm">
-            <label for="harm-mortal-wound">{{localize "CDG.ActorHarmMortalWoundT"}}</label>
-            <input name="system.harm.mortal_wound.name" id="harm-mortal-wound" type="text" value="{{system.harm.mortal_wound.name}}" placeholder="{{localize "CDG.ActorHarmMortalWound"}}"/>
-          </div>
+          {{#each system.harm as |harm key|}}
+            <div class="harm">
+              <label for="harm-{{key}}">{{localize harm.labelName}}</label>
+              <input name="system.harm.{{key}}.name" id="harm-{{key}}" type="text" value="{{harm.name}}" placeholder="{{localize harm.placeholderName}}"/>
+            </div>
+          {{/each}}
 
           <div class="rollsection">
             <div class="rollbox">
@@ -138,17 +124,16 @@
         <section class="grid-span-1">
           <h3>{{localize "CDG.ActorAnchors"}}</h3>
           <div class="grid grid-5col">
-            <input class="grid-span-1" type="checkbox" id="first-anchor" name="system.anchors.first.checked" {{checked system.anchors.first.checked}}>
-            <input class="grid-span-4" name="system.anchors.first.name" id="first-anchor" type="text" value="{{system.anchors.first.name}}" placeholder="{{localize "CDG.ActorAnchorName"}}"/>
-            <textarea class="grid-span-5 bottomspace" name="system.anchors.first.description" type="text" value="{{system.anchors.first.description}}" placeholder="{{localize "CDG.ActorAnchorDescription"}}">{{system.anchors.first.description}}</textarea>
-            
-            <input class="grid-span-1" type="checkbox" id="second-anchor" name="system.anchors.second.checked" {{checked system.anchors.second.checked}}>
-            <input class="grid-span-4" name="system.anchors.second.name" id="second-anchor" type="text" value="{{system.anchors.second.name}}" placeholder="{{localize "CDG.ActorAnchorName"}}"/>
-            <textarea class="grid-span-5  bottomspace" name="system.anchors.second.description" type="text" value="{{system.anchors.second.description}}" placeholder="{{localize "CDG.ActorAnchorDescription"}}">{{system.anchors.second.description}}</textarea>
-            
-            <input class="grid-span-1" type="checkbox" id="third-anchor" name="system.anchors.third.checked" {{checked system.anchors.third.checked}}>
-            <input class="grid-span-4" name="system.anchors.third.name" id="third-anchor" type="text" value="{{system.anchors.third.name}}" placeholder="{{localize "CDG.ActorAnchorName"}}"/>
-            <textarea class="grid-span-5" name="system.anchors.third.description" type="text" value="{{system.anchors.third.description}}" placeholder="{{localize "CDG.ActorAnchorDescription"}}">{{system.anchors.third.description}}</textarea>
+            {{#each system.anchors as |anchor key|}}
+              <input class="grid-span-1" type="checkbox" id="{{key}}-anchor" name="system.anchors.{{key}}.checked" {{checked anchor.checked}}>
+              {{#if anchor.checked}} 
+                <input class="grid-span-4 strike-input" name="system.anchors.{{key}}.name" id="{{key}}-anchor-name" type="text" value="{{anchor.name}}" placeholder="{{localize anchor.placeholderName}}" disabled/>
+                <textarea class="grid-span-5 bottomspace" name="system.anchors.{{key}}.description" type="text" value="{{anchor.description}}" placeholder="{{localize anchor.placeholderDesc}}" disabled>{{localize "CDG.ActorAnchorMarked"}}</textarea>
+              {{else}}
+                <input class="grid-span-4" name="system.anchors.{{key}}.name" id="{{key}}-anchor-name" type="text" value="{{anchor.name}}" placeholder="{{localize anchor.placeholderName}}"/>
+                <textarea class="grid-span-5 bottomspace" name="system.anchors.{{key}}.description" type="text" value="{{anchor.description}}" placeholder="{{localize anchor.placeholderDesc}}">{{anchor.description}}</textarea>
+              {{/if}}
+            {{/each}}
           </div>
         </section>
 

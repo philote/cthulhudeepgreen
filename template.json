@@ -25,46 +25,58 @@
       "disorders": {
         "first": {
           "checked": false,
-          "name": ""
+          "name": "",
+          "placeholderName": "CDG.ActorFirstDisorder"
         },
         "second": {
           "checked": false,
-          "name": ""
+          "name": "",
+          "placeholderName": "CDG.ActorSecondDisorder"
         },
         "third": {
           "checked": false,
-          "name": ""
+          "name": "",
+          "placeholderName": "CDG.ActorThirdDisorder"
         }
       },
       "anchors": {
         "first": {
           "checked": false,
           "name": "",
-          "description": ""
+          "description": "",
+          "placeholderName": "CDG.ActorAnchorName",
+          "placeholderDesc": "CDG.ActorAnchorDescription"
         },
         "second": {
           "checked": false,
           "name": "",
-          "description": ""
+          "description": "",
+          "placeholderName": "CDG.ActorAnchorName",
+          "placeholderDesc": "CDG.ActorAnchorDescription"
         },
         "third": {
           "checked": false,
           "name": "",
-          "description": ""
+          "description": "",
+          "placeholderName": "CDG.ActorAnchorName",
+          "placeholderDesc": "CDG.ActorAnchorDescription"
         }
       },
       "harm": {
         "injury": {
-          "checked": false,
-          "name": ""
+          "name": "",
+          "placeholderName": "CDG.ActorHarmInjury",
+          "labelName": "CDG.ActorHarmInjuryLabel"
         },
         "debility": {
-          "checked": false,
-          "name": ""
+          "name": "",
+          "placeholderName": "CDG.ActorHarmDebility",
+          "labelName": "CDG.ActorHarmDebilityLabel"
         },
         "mortal_wound": {
-          "checked": false,
-          "name": ""
+          "name": "",
+          "placeholderName": "CDG.ActorHarmMortalWound",
+          "labelName": "CDG.ActorHarmMortalWoundLabel"
         }
       }
     },
