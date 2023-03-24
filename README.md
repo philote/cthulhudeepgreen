@@ -25,13 +25,13 @@ Image of the Character Sheet and roll messages in Foundry's chat:
 - The Dark Die roll automatically increases your Insight & or Stress when appropriate
 - All rolls print appropriate outputs into the chat
 - Tokens can be setup to show Insight & Stress state
+- A simple NPC Sheet
 
 ## To Be Done
 
-- Fix NPCs
+- Add in a version of Lancer Clocks for the Exposure Track
+- Add roll tables to the module
 - Designs and CSS improvements
-- Add System Settings
-  - Add in rules from CD Variants
 
 ## How to Install
 
