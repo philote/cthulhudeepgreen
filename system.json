@@ -2,7 +2,7 @@
   "id": "cthulhudeepgreen",
   "title": "Cthulhu Deep Green",
   "description": "An Unofficial Cthulhu Deep Green system for Foundry VTT.",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "compatibility": {
     "minimum": 10,
     "verified": "10.291",
