@@ -82,6 +82,15 @@
     },
     "npc": {
       "templates": ["base"],
+      "type": "",
+      "types": {
+        "innocent": {
+          "label": "CDG.InnocentNpcLabel"
+        },
+        "opposition": {
+          "label": "CDG.OppositionNpcLabel"
+        }
+      },
       "looks": "",
       "behaviors": "",
       "motivations": ""

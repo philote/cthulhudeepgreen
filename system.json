@@ -2,7 +2,7 @@
   "id": "cthulhudeepgreen",
   "title": "Cthulhu Deep Green",
   "description": "An Unofficial Cthulhu Deep Green system for Foundry VTT.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "compatibility": {
     "minimum": 10,
     "verified": "10.291",
@@ -35,6 +35,12 @@
       "url": "https://raw.githubusercontent.com/philote/FoundryVTT-CthulhuDeepGreen/main/screenshot.webp",
       "loop": false,
       "caption": "Cthulhu Deep Green screenshot from Foundry VTT."
+    },
+    {
+      "type": "cover",
+      "url": "https://raw.githubusercontent.com/philote/FoundryVTT-CthulhuDeepGreen/main/cover.webp",
+      "loop": false,
+      "caption": "Cover Images for the Unofficial Cthulhu Deep Green package."
     }
   ]
 }

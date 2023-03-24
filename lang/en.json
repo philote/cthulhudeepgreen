@@ -25,6 +25,12 @@
   "CDG.ActorTabMain": "Main",
   "CDG.ActorTabBiography": "Biography",
 
+  "CDG.LooksNpcInput": "Looks",
+  "CDG.BehaviorsNpcInput": "Behaviors",
+  "CDG.MotivationsNpcInput": "Motivations",
+  "CDG.InnocentNpcLabel": "Innocent Bystander",
+  "CDG.OppositionNpcLabel": "Agent of The Opposition",
+
   "CDG.ActionRoll": "Roll!",
   "CDG.ActionRiskyThingTitle": "Do A Risky Thing",
   "CDG.ActionRiskyThingDesc": "Whenever an Agent does something that risks their life or their emotional stability.",

@@ -76,6 +76,58 @@
   }
 }
 
+.npc-sheet-header {
+  flex: 0 auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  // margin-bottom: 10px;
+
+  .insight {
+    font-size: 20px;
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  .profile-img {
+    // flex: 0 0 292px;
+    height: 292px;
+    margin-bottom: 5px;
+  }
+
+  .header-fields {
+    height: 30px;
+    padding: 0px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .sub-header-fields {
+    height: 20px;
+    padding: 2px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .charname {
+    height: 40px;
+    padding: 0px;
+    margin: 0 0 10px 0;
+    font-size: 30px;
+    text-align: center;
+    width: 100%;
+  }
+
+  textarea {
+    resize: none;
+  }
+}
+
 .bottomspace {
   margin-bottom: 15px;
 }
