@@ -2,29 +2,63 @@
   font-family: $font-primary;
 }
 
+.window-content {
+  background: none;
+  background-color: black;
+  background-image: url(../assets/ui/actor/actor-sheet-bg.webp);
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: rgb(161, 161, 161);
+
+  input[type="text"].strike-input {
+    text-decoration: line-through;
+    color: rgba(205, 92, 92, 0.645);
+  }
+
+  input[type="text"], input[type="number"], input[type="password"], input[type="date"], input[type="time"], input[type="search"] {
+    color: $c-title;
+  }
+
+  input:disabled {
+    border: 1px solid rgba(137, 21, 0, 0.751);
+    color: var(--color-text-dark-secondary);
+  }
+
+  img {
+    border: 1px solid white;
+  }
+
+  .editor-content {
+    background-color: #FFFFFF1A;
+    padding: 5px;
+  }
+
+  textarea {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--color-border-light-tertiary);
+    color: $c-title;
+  }
+}
+
 .character {
   h1, h2, h3, h4 {
     border-bottom: none;
     font-weight: bold;
+    color: $c-title;
   }
 
   ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: darkgray;
+    color: $c-placeholder;
     opacity: 1; /* Firefox */
   }
   
   :-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: darkgray;
+    color: $c-placeholder;
   }
 
   ::-ms-input-placeholder { /* Microsoft Edge */
-    color: darkgrey;
+    color: $c-placeholder;
   }
-}
-
-.strike-input {
-  text-decoration: line-through;
-  color: indianred;
 }
 
 .sheet-header {
@@ -55,6 +89,7 @@
       width: 100%;
       height: 100%;
       margin: 0;
+      color: $c-title;
     }
   }
 
@@ -67,6 +102,7 @@
       width: 100%;
       height: 100%;
       margin: 0;
+      color: $c-title;
     }
   }
 
@@ -174,6 +210,12 @@
     padding: 5px !important;
     margin: 0;
     height: fit-content;
+    color: $c-title;
+    background-color: #ffffff77;
+
+    &:hover {
+      color: brown;
+    }
 
     i{
       color: brown;
@@ -196,6 +238,7 @@
     flex-basis: content;
     margin-right: 5px;
     align-self: center;
+    color: $c-title;
   }
 }
 
@@ -225,6 +268,21 @@
   }
 }
 
+button {
+  flex-basis: content;
+  font-size: 10px;
+  line-height: 1;
+  padding: 5px !important;
+  margin: 0;
+  height: fit-content;
+  color: brown;
+  background-color: rgba(255, 255, 255, 0.842);
+
+  i{
+    color: brown;
+  }
+}
+
 .rollsection {
   margin-top: 20px;
 }
@@ -232,7 +290,8 @@
 .rollbox {
   margin: 10px 0;
   padding: 5px 10px;
-  border: 1px solid black;
+  border: 1px solid #FFFFFF1A;
+  background-color: #FFFFFF1A;
   border-radius: 5px;
 
   .rolltitle {
@@ -240,24 +299,12 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    color: $c-title;
   }
 
   h3{
     flex: 1;
     font-size: 16px;
     margin: 0;
-  }
-
-  button {
-    flex-basis: content;
-    font-size: 10px;
-    line-height: 1;
-    padding: 5px !important;
-    margin: 0;
-    height: fit-content;
-
-    i{
-      color: brown;
-    }
   }
 }
