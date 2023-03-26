@@ -9,6 +9,8 @@
   background-size: cover;
   background-repeat: no-repeat;
   color: rgb(161, 161, 161);
+  margin: 0;
+  padding: 0;
 
   input[type="text"].strike-input {
     text-decoration: line-through;
@@ -22,6 +24,12 @@
   input:disabled {
     border: 1px solid rgba(137, 21, 0, 0.751);
     color: var(--color-text-dark-secondary);
+    background-color: rgba(0, 0, 0, 0.086);
+  }
+
+  textarea {
+    border: 1px solid var(--color-border-light-tertiary);
+    color: $c-title;
   }
 
   img {
@@ -33,11 +41,6 @@
     padding: 5px;
   }
 
-  textarea {
-    background: rgba(0, 0, 0, 0.05);
-    border: 1px solid var(--color-border-light-tertiary);
-    color: $c-title;
-  }
 }
 
 .character {
@@ -68,7 +71,9 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  margin-bottom: 10px;
+  background-color: #ffffff14;
+  margin: 0;
+  padding: 5px 10px 10px 10px;
 
   .profile-img {
     flex: 0 0 180px;
@@ -109,6 +114,14 @@
   input[type="radio"] {
     top: 2px;
     margin: 5px 3px;
+  }
+
+  input[type="text"], input[type="number"], input[type="password"], input[type="date"], input[type="time"], input[type="search"] {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  
+  textarea {
+    background-color: rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -186,7 +199,7 @@
 }
 
 .disorder {
-  margin: 5px 0;
+  margin: 8px 0;
 }
 
 .right-side {
@@ -202,25 +215,6 @@
   h3 {
     flex: 1;
   }
-
-  button {
-    flex-basis: content;
-    font-size: 10px;
-    line-height: 1;
-    padding: 5px !important;
-    margin: 0;
-    height: fit-content;
-    color: $c-title;
-    background-color: #ffffff77;
-
-    &:hover {
-      color: brown;
-    }
-
-    i{
-      color: brown;
-    }
-  }
 }
 
 .harm {
@@ -228,7 +222,7 @@
   flex-direction: row;
   justify-content: flex-start;
   margin: 0;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 
   input {
     flex: 1;
@@ -244,12 +238,39 @@
 
 .sheet-tabs {
   flex: 0;
+  background-color: #00000088;
+  margin: 0;
+  padding: 0;
+}
+
+nav.sheet-tabs {
+  margin: 0px 0px;
+  // border-top: 1px solid var(--color-border-light-primary);
+  // border-bottom: 1px solid var(--color-border-light-primary);
+}
+
+.sheet-body {
+  padding: 5px 10px;
+
+  input[type="text"], input[type="number"], input[type="password"], input[type="date"], input[type="time"], input[type="search"] {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  textarea {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
 }
 
 .sheet-body,
 .sheet-body .tab,
 .sheet-body .tab .editor {
   height: 100%;
+}
+
+.tabs .item.active {
+  background-color: #ffffff1f;
+  color: white;
+  text-shadow: none;
 }
 
 .full-height,
@@ -276,7 +297,8 @@ button {
   margin: 0;
   height: fit-content;
   color: brown;
-  background-color: rgba(255, 255, 255, 0.842);
+  background-color: rgba(255, 255, 255, 0.645);
+  border: none;
 
   i{
     color: brown;
