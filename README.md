@@ -31,7 +31,6 @@ Image of the Character Sheet and roll messages in Foundry's chat:
 
 - Add in a version of Lancer Clocks for the Exposure Track
 - Add roll tables to the module
-- Designs and CSS improvements
 
 ## How to Install
 
