@@ -50,29 +50,10 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
     context.system = actorData.system;
     context.flags = actorData.flags;
 
-    // Prepare character data and items.
-    if (actorData.type == 'character') {
-      this._prepareCharacterData(context);
-    }
-
-    // Prepare NPC data and items.
-    // if (actorData.type == 'npc') {}
-
     // Add roll data for TinyMCE editors.
     context.rollData = context.actor.getRollData();
 
     return context;
-  }
-
-  /**
-   * Organize and classify Items for Character sheets.
-   *
-   * @param {Object} actorData The actor to prepare.
-   *
-   * @return {undefined}
-   */
-  _prepareCharacterData(context) {
-
   }
 
   /* -------------------------------------------- */
@@ -275,7 +256,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
         ${riskMessage}
     `;
   }
-
+//new Dialog({dialog stuff}, {id:"my-unique-dialog-id"}).render(true)
   async asyncCDGDarkDieRollDialog({
     title = "",
     content = ""
@@ -323,7 +304,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
             close: () => {
                 resolve(null);
             }
-        }).render(true);
+        }, {id:"cdg-dialog-darkdie"}).render(true);
     });
   }
   
@@ -469,7 +450,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
             close: () => {
                 resolve(null);
             }
-        }).render(true);
+        }, {id:"cdg-dialog-risky"}).render(true);
     });
   }
   
