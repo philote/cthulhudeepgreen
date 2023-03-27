@@ -8,9 +8,13 @@
   background-image: url(../assets/ui/actor/actor-sheet-bg.webp);
   background-size: cover;
   background-repeat: no-repeat;
-  color: rgb(161, 161, 161);
+  color: $c-body;
   margin: 0;
   padding: 0;
+
+  .notes {
+    color: $c-body;
+  }
 
   input[type="text"].strike-input {
     text-decoration: line-through;
@@ -19,26 +23,43 @@
 
   input[type="text"], input[type="number"], input[type="password"], input[type="date"], input[type="time"], input[type="search"] {
     color: $c-title;
+    background-color: rgb(0 0 0 / 50%);
+    border: 1px solid #ffffff2e;
   }
 
   input:disabled {
     border: 1px solid rgba(137, 21, 0, 0.751);
-    color: var(--color-text-dark-secondary);
     background-color: rgba(0, 0, 0, 0.086);
   }
 
   textarea {
-    border: 1px solid var(--color-border-light-tertiary);
+    background-color: rgb(0 0 0 / 50%);
+    border: 1px solid #ffffff2e;
     color: $c-title;
   }
 
+  textarea::placeholder {
+    color: $c-placeholder;
+    font-family: $font-primary;
+  }
+
   img {
-    border: 1px solid white;
+    border: 1px solid rgba(255, 255, 255, 0.725);
+  }
+
+  select {
+    color:$c-title;
+  }
+
+  option {
+    background-color: rgb(0, 0, 0);
+    color: $c-title;
   }
 
   .editor-content {
-    background-color: #FFFFFF1A;
-    padding: 5px;
+    border: 1px solid rgb(255 255 255 / 9%);
+    background-color: rgb(0 0 0 / 5%);
+    padding: 0 10px;
   }
 
 }
@@ -71,7 +92,6 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  background-color: #ffffff14;
   margin: 0;
   padding: 5px 10px 10px 10px;
 
@@ -115,14 +135,6 @@
     top: 2px;
     margin: 5px 3px;
   }
-
-  input[type="text"], input[type="number"], input[type="password"], input[type="date"], input[type="time"], input[type="search"] {
-    background-color: rgba(0, 0, 0, 0.2);
-  }
-  
-  textarea {
-    background-color: rgba(0, 0, 0, 0.2);
-  }
 }
 
 .npc-sheet-header {
@@ -132,7 +144,8 @@
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: flex-start;
-  // margin-bottom: 10px;
+  margin: 0;
+  padding: 5px 10px 10px 10px;
 
   .insight {
     font-size: 20px;
@@ -251,14 +264,6 @@ nav.sheet-tabs {
 
 .sheet-body {
   padding: 5px 10px;
-
-  input[type="text"], input[type="number"], input[type="password"], input[type="date"], input[type="time"], input[type="search"] {
-    background-color: rgba(255, 255, 255, 0.05);
-  }
-
-  textarea {
-    background-color: rgba(255, 255, 255, 0.05);
-  }
 }
 
 .sheet-body,
@@ -281,7 +286,7 @@ nav.sheet-tabs {
 
 .tox {
   .tox-editor-container {
-    background: $c-white;
+    background: $c-body;
   }
 
   .tox-edit-area {
@@ -296,8 +301,8 @@ button {
   padding: 5px !important;
   margin: 0;
   height: fit-content;
-  color: brown;
-  background-color: rgba(255, 255, 255, 0.645);
+  color: $c-title;
+  background-color: rgb(255 255 255 / 13%);
   border: none;
 
   i{
@@ -312,9 +317,9 @@ button {
 .rollbox {
   margin: 10px 0;
   padding: 5px 10px;
-  border: 1px solid #FFFFFF1A;
-  background-color: #FFFFFF1A;
   border-radius: 5px;
+  background-color: rgb(0 0 0 / 50%);
+  border: 1px solid #ffffff2e;
 
   .rolltitle {
     display: flex;
@@ -328,5 +333,6 @@ button {
     flex: 1;
     font-size: 16px;
     margin: 0;
+    color: $c-placeholder;
   }
 }
