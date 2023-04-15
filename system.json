@@ -2,7 +2,7 @@
   "id": "cthulhudeepgreen",
   "title": "Cthulhu Deep Green",
   "description": "An Unofficial Cthulhu Deep Green system for Foundry VTT.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "compatibility": {
     "minimum": 10,
     "verified": "10.291",
@@ -11,7 +11,9 @@
   "authors": [{
     "name": "ephson",
     "url": "https://github.com/philote",
-    "discord": "ephson#3451"
+    "discord": "ephson#3451",
+    "mastodon": "@ephson@dice.camp",
+    "reddit": "u/ephson"
   }],
   "esmodules": ["module/cthulhudeepgreen.mjs"],
   "styles": ["css/cthulhudeepgreen.css"],
