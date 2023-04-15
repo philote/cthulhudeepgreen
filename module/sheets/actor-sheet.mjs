@@ -19,11 +19,8 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
 
   /** @override */
   static get defaultOptions() {
-
-
     return mergeObject(super.defaultOptions, {
       classes: ["cthulhudeepgreen", "sheet", "actor"],
-      template: "systems/cthulhudeepgreen/templates/actor/actor-sheet.html",
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "main" }]
     });
   }

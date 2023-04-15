@@ -29,64 +29,64 @@ export class CthulhuDeepGreenActor extends Actor {
    * is queried and has a roll executed directly from it).
    */
   prepareDerivedData() {
-    const actorData = this;
-    const systemData = actorData.system;
-    const flags = actorData.flags.cthulhudeepgreen || {};
+    // const actorData = this;
+    // const systemData = actorData.system;
+    // const flags = actorData.flags.cthulhudeepgreen || {};
 
     // Make separate methods for each Actor type (character, npc, etc.) to keep
     // things organized.
-    this._prepareCharacterData(actorData);
-    this._prepareNpcData(actorData);
+    // this._prepareCharacterData(actorData);
+    // this._prepareNpcData(actorData);
   }
 
   /**
    * Prepare Character type specific data
    */
-  _prepareCharacterData(actorData) {
-    if (actorData.type !== 'character') return;
+  // _prepareCharacterData(actorData) {
+  //   if (actorData.type !== 'character') return;
 
-    // Make modifications to data here. For example:
-    const systemData = actorData.system;
-  }
+  //   // Make modifications to data here. For example:
+  //   // const systemData = actorData.system;
+  // }
 
   /**
    * Prepare NPC type specific data.
    */
-  _prepareNpcData(actorData) {
-    if (actorData.type !== 'npc') return;
+  // _prepareNpcData(actorData) {
+  //   if (actorData.type !== 'npc') return;
 
-    // Make modifications to data here. For example:
-    const systemData = actorData.system;
-  }
+  //   // Make modifications to data here. For example:
+  //   // const systemData = actorData.system;
+  // }
 
-  /**
-   * Override getRollData() that's supplied to rolls.
-   */
-  getRollData() {
-    const data = super.getRollData();
+  // /**
+  //  * Override getRollData() that's supplied to rolls.
+  //  */
+  // getRollData() {
+  //   const data = super.getRollData();
 
-    // Prepare character roll data.
-    this._getCharacterRollData(data);
-    this._getNpcRollData(data);
+  //   // Prepare character roll data.
+  //   this._getCharacterRollData(data);
+  //   this._getNpcRollData(data);
 
-    return data;
-  }
+  //   return data;
+  // }
 
-  /**
-   * Prepare character roll data.
-   */
-  _getCharacterRollData(data) {
-    if (this.type !== 'character') return;
+  // /**
+  //  * Prepare character roll data.
+  //  */
+  // _getCharacterRollData(data) {
+  //   if (this.type !== 'character') return;
 
-  }
+  // }
 
-  /**
-   * Prepare NPC roll data.
-   */
-  _getNpcRollData(data) {
-    if (this.type !== 'npc') return;
+  // /**
+  //  * Prepare NPC roll data.
+  //  */
+  // _getNpcRollData(data) {
+  //   if (this.type !== 'npc') return;
 
-    // Process additional NPC data here.
-  }
+  //   // Process additional NPC data here.
+  // }
 
 }
