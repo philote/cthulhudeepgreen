@@ -10,7 +10,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
     let height = 650;
     if (this.actor.type == "npc") {
       width = 310;
-      height = 820;
+      height = 780;
     }
     this.position.width = width;
     this.position.height = height;

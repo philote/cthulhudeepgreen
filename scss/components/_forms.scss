@@ -96,7 +96,7 @@
   }
 
   .notes .editor .editor-content {
-    height: 330px;
+    height: 320px;
   }
 }
 
@@ -153,7 +153,7 @@
 
   .radio-list {
     background-color: #00000077;
-    padding: 0px 2px 4px 10px;
+    padding: 0px 2px 4px 5px;
   }
 
   .insight {
@@ -193,9 +193,10 @@
     }
 
     .profile-img {
-      // flex: 0 0 292px;
-      height: 292px;
-      margin-bottom: 5px;
+      height: 250px;
+      width: 250px;
+      margin-bottom: 10px;
+      align-self: center;
     }
 
     .header-fields {
@@ -230,7 +231,7 @@
   }
 
   .notes .editor .editor-content {
-    height: 175px;
+    height: 170px;
   }
 }
 
