@@ -1,16 +1,17 @@
-#cdg-dialog-risky, #cdg-dialog-darkdie {
-    .window-content {
-        background: none;
-        background-color: black;
-        background-image: url(../assets/ui/actor/actor-sheet-bg.webp);
-        background-size: cover;
-        background-repeat: no-repeat;
-        color: $c-title;
-    }
+#cdg-dialog-risky,
+#cdg-dialog-darkdie {
+  .window-content {
+    background: none;
+    background-color: black;
+    background-image: url(../assets/ui/actor/actor-sheet-bg.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: $c-title;
+  }
 
-    .dialog-buttons button {
-        background: rgba(255, 255, 240, 0.8);
-        border: none;
-        margin: 0 5px 0 0;
-    }
+  .dialog-buttons button {
+    background: rgba(255, 255, 240, 0.8);
+    border: none;
+    margin: 0 5px 0 0;
+  }
 }

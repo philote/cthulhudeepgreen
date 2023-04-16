@@ -3,22 +3,25 @@
  * @extends {ItemSheet}
  */
 export class CthulhuDeepGreenItemSheet extends ItemSheet {
-
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ["cthulhudeepgreen", "sheet", "item"],
       width: 310,
       height: 620,
-      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }]
+      tabs: [
+        {
+          navSelector: ".sheet-tabs",
+          contentSelector: ".sheet-body",
+          initial: "description",
+        },
+      ],
     });
   }
 
   /** @override */
   get template() {
-    const path = "systems/cthulhudeepgreen/templates/item";
-    // Return a single sheet for all item types.
-    return `${path}/item-sheet.html`;
+    return `systems/cthulhudeepgreen/templates/item/item-sheet.html`;
   }
 
   /* -------------------------------------------- */

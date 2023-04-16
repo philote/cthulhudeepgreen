@@ -3,7 +3,6 @@
  * @extends {Actor}
  */
 export class CthulhuDeepGreenActor extends Actor {
-
   /** @override */
   prepareData() {
     // Prepare data for the actor. Calling the super version of this executes
@@ -32,7 +31,6 @@ export class CthulhuDeepGreenActor extends Actor {
     // const actorData = this;
     // const systemData = actorData.system;
     // const flags = actorData.flags.cthulhudeepgreen || {};
-
     // Make separate methods for each Actor type (character, npc, etc.) to keep
     // things organized.
     // this._prepareCharacterData(actorData);
@@ -88,5 +86,4 @@ export class CthulhuDeepGreenActor extends Actor {
 
   //   // Process additional NPC data here.
   // }
-
 }

@@ -8,13 +8,15 @@
     "verified": "10.291",
     "maximum": 10
   },
-  "authors": [{
-    "name": "ephson",
-    "url": "https://github.com/philote",
-    "discord": "ephson#3451",
-    "mastodon": "@ephson@dice.camp",
-    "reddit": "u/ephson"
-  }],
+  "authors": [
+    {
+      "name": "ephson",
+      "url": "https://github.com/philote",
+      "discord": "ephson#3451",
+      "mastodon": "@ephson@dice.camp",
+      "reddit": "u/ephson"
+    }
+  ],
   "esmodules": ["module/cthulhudeepgreen.mjs"],
   "styles": ["css/cthulhudeepgreen.css"],
   "languages": [

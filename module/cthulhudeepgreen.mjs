@@ -11,13 +11,12 @@ import { CDG } from "./helpers/config.mjs";
 /*  Init Hook                                   */
 /* -------------------------------------------- */
 
-Hooks.once('init', async function() {
-
+Hooks.once("init", async function () {
   // Add utility classes to the global game object so that they're more easily
   // accessible in global contexts.
   game.cthulhudeepgreen = {
     CthulhuDeepGreenActor,
-    CthulhuDeepGreenItem
+    CthulhuDeepGreenItem,
   };
 
   // Add custom constants for configuration.
@@ -29,36 +28,41 @@ Hooks.once('init', async function() {
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("cthulhudeepgreen", CthulhuDeepGreenActorSheet, { makeDefault: true });
+  Actors.registerSheet("cthulhudeepgreen", CthulhuDeepGreenActorSheet, {
+    makeDefault: true,
+  });
   Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("cthulhudeepgreen", CthulhuDeepGreenItemSheet, { makeDefault: true });
+  Items.registerSheet("cthulhudeepgreen", CthulhuDeepGreenItemSheet, {
+    makeDefault: true,
+  });
 });
 
 /* -------------------------------------------- */
 /*  Handlebars Helpers                          */
 /* -------------------------------------------- */
 
-// Multiboxes from Blades in the Dark system module. 
+// Multiboxes from Blades in the Dark system module.
 // https://github.com/megastruktur/foundryvtt-blades-in-the-dark
-Handlebars.registerHelper('multiboxes', function(selected, options) {
-
+Handlebars.registerHelper("multiboxes", function (selected, options) {
   let html = options.fn(this);
 
   // Fix for single non-array values.
-  if ( !Array.isArray(selected) ) {
+  if (!Array.isArray(selected)) {
     selected = [selected];
   }
 
-  if (typeof selected !== 'undefined') {
-    selected.forEach(selected_value => {
+  if (typeof selected !== "undefined") {
+    selected.forEach((selected_value) => {
       if (selected_value !== false) {
-        let escapedValue = RegExp.escape(Handlebars.escapeExpression(selected_value));
-        let rgx = new RegExp(' value=\"' + escapedValue + '\"');
+        let escapedValue = RegExp.escape(
+          Handlebars.escapeExpression(selected_value)
+        );
+        let rgx = new RegExp(' value="' + escapedValue + '"');
         let oldHtml = html;
         html = html.replace(rgx, "$& checked");
-        while( ( oldHtml === html ) && ( escapedValue >= 0 ) ){
+        while (oldHtml === html && escapedValue >= 0) {
           escapedValue--;
-          rgx = new RegExp(' value=\"' + escapedValue + '\"');
+          rgx = new RegExp(' value="' + escapedValue + '"');
           html = html.replace(rgx, "$& checked");
         }
       }
@@ -74,9 +78,8 @@ Handlebars.registerHelper('multiboxes', function(selected, options) {
 // {{#times_from_1 10}}
 //   <span>{{this}}</span>
 // {{/times_from_1}}
-Handlebars.registerHelper('times_from_1', function(n, block) {
-
-  var accum = '';
+Handlebars.registerHelper("times_from_1", function (n, block) {
+  var accum = "";
   for (var i = 1; i <= n; ++i) {
     accum += block.fn(i);
   }
@@ -90,9 +93,8 @@ Handlebars.registerHelper('times_from_1', function(n, block) {
 // {{#times_from_0 10}}
 //   <span>{{this}}</span>
 // {{/times_from_0}}
-Handlebars.registerHelper('times_from_0', function(n, block) {
-
-  var accum = '';
+Handlebars.registerHelper("times_from_0", function (n, block) {
+  var accum = "";
   for (var i = 0; i <= n; ++i) {
     accum += block.fn(i);
   }
