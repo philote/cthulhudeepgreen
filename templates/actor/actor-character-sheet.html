@@ -15,8 +15,8 @@
           <input name="system.specialty" id="specialty" type="text" value="{{system.specialty}}" placeholder="{{localize "CDG.ActorSpecialty"}}"/>
         </div>
 
-        <div>
-          <b style="color: #2ba624">{{localize "CDG.ActorInsight"}}</b>
+        <div class="radio-list insight">
+          {{localize "CDG.ActorInsight"}}
           {{#multiboxes system.insight.value}}
             <input type="radio" id="character-{{../_id}}-insight-0" name="system.insight.value" value="0"> |
             {{#times_from_1 system.insight.max}}
@@ -25,8 +25,8 @@
           {{/multiboxes}}
         </div>
 
-        <div>
-          <b style="color: #A62424">{{localize "CDG.ActorStress"}}</b>
+        <div class="radio-list stress">
+          {{localize "CDG.ActorStress"}}
           {{#multiboxes system.stress.value}}
             <input type="radio" id="character-{{../_id}}-stress-0" name="system.stress.value" value="0"> |
             {{#times_from_1 system.stress.max}}
@@ -141,7 +141,9 @@
 
         <section class="full-height right-side grid-span-1">
           <h3>{{localize "CDG.ActorNotes"}}</h3>
-          {{editor system.notes target="system.notes" rollData=rollData button=true owner=owner editable=editable}}
+          <div class="notes">
+            {{editor system.notes target="system.notes" rollData=rollData button=true owner=owner editable=editable}}
+          </div>
         </section>
 
       </section>

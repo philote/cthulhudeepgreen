@@ -28,17 +28,17 @@
   input[type="time"],
   input[type="search"] {
     color: $c-title;
-    background-color: rgb(0 0 0 / 50%);
+    background-color: rgb(0 0 0 / 75%);
     border: 1px solid #ffffff2e;
   }
 
   input:disabled {
-    border: 1px solid rgba(137, 21, 0, 0.751);
-    background-color: rgba(0, 0, 0, 0.086);
+    border: 1px solid rgba(137, 21, 0, 0.75);
+    background-color: rgba(31 5 0 / 75%);
   }
 
   textarea {
-    background-color: rgb(0 0 0 / 50%);
+    background-color: rgb(0 0 0 / 75%);
     border: 1px solid #ffffff2e;
     color: $c-title;
   }
@@ -54,16 +54,17 @@
 
   select {
     color: $c-title;
+    background: rgb(0 0 0 / 75%);
   }
 
   option {
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(0 0 0);
     color: $c-title;
   }
 
   .editor-content {
     border: 1px solid rgb(255 255 255 / 9%);
-    background-color: rgb(0 0 0 / 5%);
+    background-color: rgb(0 0 0 / 75%);
     padding: 0 10px;
   }
 }
@@ -92,6 +93,10 @@
   ::-ms-input-placeholder {
     /* Microsoft Edge */
     color: $c-placeholder;
+  }
+
+  .notes .editor .editor-content {
+    height: 330px;
   }
 }
 
@@ -145,58 +150,87 @@
     top: 2px;
     margin: 5px 3px;
   }
-}
 
-.npc-sheet-header {
-  flex: 0 auto;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  margin: 0;
-  padding: 5px 10px 10px 10px;
+  .radio-list {
+    background-color: #00000077;
+    padding: 0px 2px 4px 10px;
+  }
 
   .insight {
-    font-size: 20px;
-    margin: 10px 0;
-    text-align: center;
+    color: #2ba624;
+    font-weight: bold;
+
+    input[type="radio"]:checked {
+      filter: hue-rotate(230deg) grayscale(70%) saturate(2);
+    }
   }
 
-  .profile-img {
-    // flex: 0 0 292px;
-    height: 292px;
-    margin-bottom: 5px;
+  .stress {
+    color: #ff2828;
+    font-weight: bold;
+
+    input[type="radio"]:checked {
+      filter: hue-rotate(136deg) grayscale(70%) saturate(2);
+    }
+  }
+}
+
+.npc {
+  .npc-sheet-header {
+    flex: 0 auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 5px 10px 10px 10px;
+
+    .insight {
+      font-size: 20px;
+      margin: 10px 0;
+      text-align: center;
+    }
+
+    .profile-img {
+      // flex: 0 0 292px;
+      height: 292px;
+      margin-bottom: 5px;
+    }
+
+    .header-fields {
+      height: 30px;
+      padding: 0px;
+      margin-bottom: 10px;
+      font-size: 20px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .sub-header-fields {
+      height: 20px;
+      padding: 2px;
+      margin-bottom: 5px;
+      font-size: 14px;
+      width: 100%;
+    }
+
+    .charname {
+      height: 40px;
+      padding: 0px;
+      margin: 0 0 10px 0;
+      font-size: 30px;
+      text-align: center;
+      width: 100%;
+    }
+
+    textarea {
+      resize: none;
+    }
   }
 
-  .header-fields {
-    height: 30px;
-    padding: 0px;
-    margin-bottom: 10px;
-    font-size: 20px;
-    text-align: center;
-    width: 100%;
-  }
-
-  .sub-header-fields {
-    height: 20px;
-    padding: 2px;
-    margin-bottom: 5px;
-    font-size: 14px;
-    width: 100%;
-  }
-
-  .charname {
-    height: 40px;
-    padding: 0px;
-    margin: 0 0 10px 0;
-    font-size: 30px;
-    text-align: center;
-    width: 100%;
-  }
-
-  textarea {
-    resize: none;
+  .notes .editor .editor-content {
+    height: 175px;
   }
 }
 
@@ -261,31 +295,30 @@
 
 .sheet-tabs {
   flex: 0;
-  background-color: #00000088;
+  background-color: rgb(0 0 0 / 50%);
   margin: 0;
   padding: 0;
 }
 
 nav.sheet-tabs {
   margin: 0px 0px;
-  // border-top: 1px solid var(--color-border-light-primary);
-  // border-bottom: 1px solid var(--color-border-light-primary);
+  border-top: 1px solid #ffffff80;
+  border-bottom: 1px solid #ffffff80;
 }
 
 .sheet-body {
   padding: 5px 10px;
 }
 
-.sheet-body,
-.sheet-body .tab,
-.sheet-body .tab .editor {
+.sheet-body {
   height: 100%;
 }
 
 .tabs .item.active {
-  background-color: #ffffff1f;
+  background-color: rgb(255 255 255 / 15%);
   color: white;
   text-shadow: none;
+  text-shadow: 2px 2px 2px rgb(0 0 0);
 }
 
 .full-height,
@@ -327,15 +360,20 @@ button:focus {
   border: none;
 }
 
+a:hover,
+a:focus {
+  color: rgb(255, 176, 176);
+}
+
 .rollsection {
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .rollbox {
   margin: 10px 0;
   padding: 5px 10px;
   border-radius: 5px;
-  background-color: rgb(0 0 0 / 50%);
+  background-color: rgb(0 0 0 / 75%);
   border: 1px solid #ffffff2e;
 
   .rolltitle {
