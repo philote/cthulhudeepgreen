@@ -30,7 +30,7 @@
   "secondaryTokenAttribute": "insight",
   "url": "https://github.com/philote/FoundryVTT-CthulhuDeepGreen",
   "manifest": "https://github.com/philote/FoundryVTT-CthulhuDeepGreen/releases/latest/download/system.json",
-  "download": "https://github.com/philote/FoundryVTT-CthulhuDeepGreen/releases/latest/download/system.zip",
+  "download": "https://github.com/philote/FoundryVTT-CthulhuDeepGreen/releases/download/0.2.1/system.zip",
   "license": "LICENSE",
   "bugs": "https://github.com/philote/FoundryVTT-CthulhuDeepGreen/issues",
   "media": [
@@ -45,6 +45,11 @@
       "url": "https://raw.githubusercontent.com/philote/FoundryVTT-CthulhuDeepGreen/main/cover.webp",
       "loop": false,
       "caption": "Cover Images for the Unofficial Cthulhu Deep Green package."
+    },
+    {
+      "type": "setup",
+      "url": "https://raw.githubusercontent.com/philote/FoundryVTT-CthulhuDeepGreen/main/package_image.webp",
+      "thumbnail": "https://raw.githubusercontent.com/philote/FoundryVTT-CthulhuDeepGreen/main/package_image_thumb.webp"
     }
   ]
 }
