@@ -4,8 +4,6 @@
 
 An unofficial, community-supported system for playing the Cthulhu Deep Green TTRPG (Created by Justin Ford) on Foundry VTT.
 
-![Foundry v10](https://img.shields.io/badge/foundry-v10-green)
-
 - The original rules from the author of Cthulhu Deep Green: https://www.mothlands.com/games/cdg
 
 Image of the Character Sheet and roll messages in Foundry's chat:
