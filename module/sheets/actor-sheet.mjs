@@ -20,7 +20,6 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ["cthulhudeepgreen", "sheet", "actor"],
-      template: "systems/cthulhudeepgreen/templates/actor/actor-sheet.html",
       tabs: [
         {
           navSelector: ".sheet-tabs",
@@ -162,30 +161,6 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
     }
   }
 
-  getWordInsightWithFormatting() {
-    return `<b style="color: ${
-      CONFIG.CDG.InsightColor
-    }"><i>${game.i18n.localize("CDG.Insight")}</i></b>`;
-  }
-
-  getWordDarkDieWithFormatting() {
-    return `<b style="color: ${
-      CONFIG.CDG.DarkDieColor
-    }"><i>${game.i18n.localize("CDG.DarkDie")}</i></b>`;
-  }
-
-  getWordStressWithFormatting() {
-    return `<b style="color: ${CONFIG.CDG.StressColor}"><i>${game.i18n.localize(
-      "CDG.Stress"
-    )}</i></b>`;
-  }
-
-  getWordDarkDieRollWithFormatting() {
-    return `<b style="color: ${
-      CONFIG.CDG.DarkDieColor
-    }"><i>${game.i18n.localize("CDG.DarkDieDialogRoll")}</i></b>`;
-  }
-
   getMaxDieMessage(maxDieNumber) {
     switch (maxDieNumber) {
       case "1":
@@ -228,7 +203,6 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
       this.actor.update({ "system.stress.value": newStress });
       darkDieMessage = darkDieMessage.concat(
         game.i18n.format("CDG.StressContent", {
-          stress: this.getWordStressWithFormatting(),
           previousstress: previousStress,
           newstress: newStress,
         })
@@ -245,7 +219,6 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
       this.actor.update({ "system.insight.value": newInsight });
       darkDieMessage = darkDieMessage.concat(
         game.i18n.format("CDG.InsightContent", {
-          insight: this.getWordInsightWithFormatting(),
           previousinsight: previousInsight,
           newinsight: newInsight,
         })
@@ -261,30 +234,22 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
 
   darkDieDialogContent() {
     return `
-            <p><b>Stress and/or Insight Check:</b></p>
-            <form class="flexcol">
-              <div class="form-group">
-                <input style="align-self: flex-start;" type="checkbox" id="stress" name="stress">
-                <label for="stress">${game.i18n.format(
-                  "CDG.DialogStressCheck",
-                  { stress: this.getWordStressWithFormatting() }
-                )}</label>
-                <input style="align-self: flex-start;" type="checkbox" id="insight" name="insight">
-                <label for="insight">${game.i18n.format(
-                  "CDG.DialogInsightCheck",
-                  { insight: this.getWordInsightWithFormatting() }
-                )}</label>
-              </div>
-            </form>
-        `;
+      <p><b>Stress and/or Insight Check:</b></p>
+      <p class="flexcol">
+        <div class="form-group">
+          <input style="align-self: flex-start;" type="checkbox" id="stress" name="stress">
+          <label for="stress">${game.i18n.format("CDG.DialogStressCheck")}</label>
+          <input style="align-self: flex-start;" type="checkbox" id="insight" name="insight">
+          <label for="insight">${game.i18n.format("CDG.DialogInsightCheck")}</label>
+        </div>
+      </p>
+    `;
   }
 
   darkDieRollChatContent(diceOutput, riskMessage) {
     return `
         <p>
-          <b style="font-size: 1.5em;">${game.i18n.localize(
-            "CDG.DarkDieDialogRoll"
-          )}: </b>
+          <b style="font-size: 1.5em;">${game.i18n.localize("CDG.DarkDieDialogTitle")}: </b>
           ${diceOutput}
         </p>
         ${riskMessage}
@@ -385,17 +350,11 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
                     <input style="align-self: flex-start;" type="checkbox" id="darkDie" name="darkDie">
                     <label for="darkDie"><i style="color: ${
                       CONFIG.CDG.DarkDieColor
-                    }" class="fa-solid fa-dice-five"></i>&#8194;${game.i18n.format(
-      "CDG.DialogRiskDie",
-      { darkdie: this.getWordDarkDieWithFormatting() }
-    )}</label>
+                    }" class="fa-solid fa-dice-five"></i>&#8194;${game.i18n.format("CDG.DialogRiskDie")}</label>
                 </div>
                 <div class="form-group" style="margin-left: 30px">
                   <input style="align-self: flex-start;" type="checkbox" id="insight" name="insight">
-                  <label for="insight">${game.i18n.format(
-                    "CDG.DialogRiskDieInsight",
-                    { insight: this.getWordInsightWithFormatting() }
-                  )}</label>
+                  <label for="insight">${game.i18n.format("CDG.DialogRiskDieInsight")}</label>
                 </div>
             </form>
             
@@ -406,9 +365,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
     return `
         <hr>
         <div style="font-size: 18px">
-          <b>${game.i18n.format("CDG.RiskMoveMessage", {
-            darkdieroll: this.getWordDarkDieRollWithFormatting(),
-          })}</b>
+          <b>${game.i18n.format("CDG.RiskMoveMessage")}</b>
         <div>
     `;
   }
@@ -569,10 +526,8 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
     )}</p><hr>`;
     return selfCareMessage.concat(
       game.i18n.format("CDG.SelfCareRollContent", {
-        stress1: this.getWordStressWithFormatting(),
         previousstress: previousStress,
-        newstress: newStress,
-        stress2: this.getWordStressWithFormatting(),
+        newstress: newStress
       })
     );
   }
