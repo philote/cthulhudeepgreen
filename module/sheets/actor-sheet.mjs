@@ -20,13 +20,11 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ["cthulhudeepgreen", "sheet", "actor"],
-      tabs: [
-        {
+      tabs: [{
           navSelector: ".sheet-tabs",
           contentSelector: ".sheet-body",
           initial: "main",
-        },
-      ],
+      }]
     });
   }
 
@@ -79,8 +77,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
    */
   async _onRoll(event) {
     event.preventDefault();
-    const element = event.currentTarget;
-    const dataset = element.dataset;
+    const dataset = event.currentTarget.dataset;
 
     // Handle rolls.
     if (dataset.rollType) {
@@ -227,25 +224,11 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
   // Dark Die Roll
   // -------------
 
-  async darkDieDialogContent() {
-    return await renderTemplate('systems/cthulhudeepgreen/templates/dialog/dark-die.hbs');
-  }
-
-  darkDieRollChatContent(diceOutput, riskMessage) {
-    return `
-        <p>
-          <b style="font-size: 1.5em;">${game.i18n.localize("CDG.DarkDieDialogTitle")}: </b>
-          ${diceOutput}
-        </p>
-        ${riskMessage}
-    `;
-  }
-
   async asyncCDGDarkDieRollDialog() {
     return await new Promise(async (resolve) => {
       new Dialog({
           title: game.i18n.localize("CDG.DarkDieDialogTitle"),
-          content: await this.darkDieDialogContent(),
+          content: await renderTemplate('systems/cthulhudeepgreen/templates/dialog/dark-die.hbs'),
           buttons: {
             button1: {
               icon: '<i class="fa-solid fa-dice"></i>',
@@ -256,9 +239,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
                 const darkDieEffectsStress =
                   document.getElementById("stress").checked;
 
-                if (!darkDieEffectsInsight && !darkDieEffectsStress) {
-                  return;
-                }
+                if (!darkDieEffectsInsight && !darkDieEffectsStress) {return;}
 
                 const darkDieRoll = await new Roll("1d6").evaluate({
                   async: true,
@@ -279,20 +260,20 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
                   );
                 }
 
-                // Initialize chat data.
-                const chatContentMessage = this.darkDieRollChatContent(
-                  diceOutput,
-                  riskMessage
-                );
-                const user = game.user.id;
-                const speaker = ChatMessage.getSpeaker({ actor: this.actor });
-                const rollMode = game.settings.get("core", "rollMode");
-
+                // ------
+                // chat message setup
+                const dialogData = {
+                  diceOutput: diceOutput,
+                  riskMessage: riskMessage
+                }
+                const template = 'systems/cthulhudeepgreen/templates/msg/dark-die-chat-content.hbs';
+                const rendered_html = await renderTemplate(template, dialogData);
+            
                 ChatMessage.create({
-                  user: user,
-                  speaker: speaker,
-                  rollMode: rollMode,
-                  content: chatContentMessage,
+                  user: game.user_id,
+                  speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+                  rollMode: game.settings.get("core", "rollMode"),
+                  content: rendered_html
                 });
 
                 // ----
@@ -319,29 +300,6 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
       DarkDieColor: CONFIG.CDG.DarkDieColor
     };
     return await renderTemplate('systems/cthulhudeepgreen/templates/dialog/risky-thing.hbs', dialogData);
-  }
-
-  getRiskMoveMessage() {
-    return `
-        <hr>
-        <div style="font-size: 18px">
-          <b>${game.i18n.format("CDG.RiskMoveMessage")}</b>
-        <div>
-    `;
-  }
-
-  riskyThingChatContent(diceOutput, maxDieNumber, riskMessage) {
-    return `
-        <p>
-          <b style="font-size: 1.5em;">${game.i18n.localize(
-            "CDG.RiskyDialogTitle"
-          )}: </b>
-          ${diceOutput}
-        </p>
-        <hr>
-        <p>${this.getMaxDieMessage(maxDieNumber)}</p>
-        ${riskMessage}
-    `;
   }
 
   async asyncCDGRiskyThingDialog() {
@@ -420,21 +378,21 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
                   );
                 });
 
-                // Initialize chat data.
-                const chatContentMessage = this.riskyThingChatContent(
-                  diceOutput,
-                  maxDie.rollVal,
-                  riskMessage
-                );
-                const user = game.user.id;
-                const speaker = ChatMessage.getSpeaker({ actor: this.actor });
-                const rollMode = game.settings.get("core", "rollMode");
-
+                // ------
+                // chat message setup
+                const dialogData = {
+                  diceOutput: diceOutput,
+                  maxDieNumber: this.getMaxDieMessage(maxDie.rollVal),
+                  riskMessage: riskMessage
+                }
+                const template = 'systems/cthulhudeepgreen/templates/msg/risky-thing-chat-content.hbs';
+                const rendered_html = await renderTemplate(template, dialogData);
+            
                 ChatMessage.create({
-                  user: user,
-                  speaker: speaker,
-                  rollMode: rollMode,
-                  content: chatContentMessage,
+                  user: game.user_id,
+                  speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+                  rollMode: game.settings.get("core", "rollMode"),
+                  content: rendered_html
                 });
 
                 // ----
@@ -455,41 +413,21 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
   // Simple Rolls
   // ------------
 
-  failureChatContent(diceOutput) {
-    return `
-        <p>
-          <span style="font-size: 1.5em;">
-            ${game.i18n.localize("CDG.FailureRoll")} 
-          </span> 
-          ${diceOutput}
-        </p>
-        <hr>
-        ${game.i18n.localize("CDG.FailureRollContent")}
-    `;
-  }
-
-  selfCareChatContent(diceNumber) {
+  async selfCareChatContent(diceNumber) {
     let previousStress = duplicate(this.actor.system.stress.value);
     const rollValue = +diceNumber;
     let newStress = previousStress - rollValue;
     newStress = newStress < 0 ? 0 : newStress;
 
     // update Stress
-    this.actor.system.stress.value = newStress;
     this.actor.update({ "system.stress.value": newStress });
 
-    let selfCareMessage = `<p><span style="font-size: 1.5em;">${game.i18n.localize(
-      "CDG.SelfCareRoll"
-    )} </span>${this.getDiceForOutput(
-      diceNumber,
-      CONFIG.CDG.BaseColor
-    )}</p><hr>`;
-    return selfCareMessage.concat(
-      game.i18n.format("CDG.SelfCareRollContent", {
-        previousstress: previousStress,
-        newstress: newStress
-      })
-    );
+    const dialogData = {
+      diceForOutput: this.getDiceForOutput(rollValue, CONFIG.CDG.BaseColor),
+      selfCareRollContent: game.i18n.format("CDG.SelfCareRollContent", {previousstress: previousStress, newstress: newStress})
+    }
+    const template = 'systems/cthulhudeepgreen/templates/msg/self-care-chat-content.hbs';
+    return await renderTemplate(template, dialogData);
   }
 
   async simpleRoll(rollType) {
@@ -498,13 +436,15 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
 
     switch (rollType) {
       case "selfcare": {
-        chatContentMessage = this.selfCareChatContent(simpleRoll.result);
+        chatContentMessage = await this.selfCareChatContent(simpleRoll.result);
         break;
       }
       case "failure": {
-        chatContentMessage = this.failureChatContent(
-          this.getDiceForOutput(simpleRoll.result, CONFIG.CDG.BaseColor)
-        );
+        const dialogData = {
+          diceOutput: this.getDiceForOutput(simpleRoll.result, CONFIG.CDG.BaseColor),
+        }
+        const template = 'systems/cthulhudeepgreen/templates/msg/failure-chat-content.hbs';
+        chatContentMessage = await renderTemplate(template, dialogData);
         break;
       }
       default: {
@@ -512,16 +452,13 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
         return;
       }
     }
-
-    const user = game.user.id;
-    const speaker = ChatMessage.getSpeaker({ actor: this.actor });
-    const rollMode = game.settings.get("core", "rollMode");
-
+    
+    // ------
     ChatMessage.create({
-      user: user,
-      speaker: speaker,
-      rollMode: rollMode,
-      content: chatContentMessage,
+      user: game.user_id,
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      rollMode: game.settings.get("core", "rollMode"),
+      content: chatContentMessage
     });
   }
 }

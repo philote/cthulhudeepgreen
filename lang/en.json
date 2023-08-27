@@ -57,8 +57,7 @@
   "CDG.DialogOccupDie": "<b>Occupation Die</b>: If the action falls under Agent's personal field of expertise.",
   "CDG.DialogRiskDie": "<span class=\"dark-die-format\">Dark Die:</span> If the action would risk the Agent's physical or emotional well-being to succeed <b>OR</b> if the player would add an element of the horrific to an otherwise mundane task.",
   "CDG.DialogRiskDieInsight": "If the action would expose the Agent to Mythos Knowledge also risk their <span class=\"insight-format\">Insight</span>.",
-  "CDG.RiskMoveMessage": "TBD - The situation reveals some horror behind the universe, make an <span class=\"dark-die-format\">Dark Die Roll!</span>",
-
+  
   "CDG.DarkDieDialogTitle": "Dark Die Roll",
 
   "CDG.StressContent": "Your <span class=\"stress-format\">Stress</span> increases! It was <b>{previousstress}</b>, now it is <b>{newstress}</b>.",
