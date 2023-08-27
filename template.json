@@ -15,12 +15,14 @@
       "insight": {
         "min": 0,
         "value": [0],
-        "max": 6
+        "max": 6,
+        "states": [false, false, false, false, false, false]
       },
       "stress": {
         "min": 0,
         "value": [0],
-        "max": 6
+        "max": 6,
+        "states": [false, false, false, false, false, false]
       },
       "disorders": {
         "first": {

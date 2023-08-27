@@ -15,7 +15,7 @@
           <input name="system.specialty" id="specialty" type="text" value="{{system.specialty}}" placeholder="{{localize "CDG.ActorSpecialty"}}"/>
         </div>
 
-        <div class="radio-list insight">
+        <!-- <div class="radio-list insight">
           {{localize "CDG.ActorInsight"}}
           {{#multiboxes system.insight.value}}
             <input type="radio" id="character-{{../_id}}-insight-0" name="system.insight.value" value="0"> |
@@ -23,9 +23,17 @@
               <input type="radio" id="character-{{../_id}}-insight-{{this}}" name="system.insight.value" value="{{this}}">
             {{/times_from_1}}
           {{/multiboxes}}
+        </div> -->
+
+        <div class="insight">
+          {{localize "CDG.ActorInsight"}}
+          <!-- <b class="rollable" data-roll-type="clear-insight" style="color: {{system.insight.color}}">{{localize "CTHULHUDARK.Insight"}}</b> -->
+          {{#each system.insight.states as |state count|}}
+            <input class="rollable" type="checkbox" data-pos="{{count}}" data-roll-type="toggle-insight" {{#if state}}checked{{/if}} >
+          {{/each}}
         </div>
 
-        <div class="radio-list stress">
+        <!-- <div class="radio-list stress">
           {{localize "CDG.ActorStress"}}
           {{#multiboxes system.stress.value}}
             <input type="radio" id="character-{{../_id}}-stress-0" name="system.stress.value" value="0"> |
@@ -33,6 +41,14 @@
               <input type="radio" id="character-{{../_id}}-stress-{{this}}" name="system.stress.value" value="{{this}}"> 
             {{/times_from_1}}
           {{/multiboxes}}
+        </div> -->
+
+        <div class="stress">
+          {{localize "CDG.ActorStress"}}
+          <!-- <b class="rollable" data-roll-type="clear-insight" style="color: {{system.insight.color}}">{{localize "CTHULHUDARK.Insight"}}</b> -->
+          {{#each system.stress.states as |state count|}}
+            <input class="rollable" type="checkbox" data-pos="{{count}}" data-roll-type="toggle-stress" {{#if state}}checked{{/if}} >
+          {{/each}}
         </div>
       </section>
     </div>

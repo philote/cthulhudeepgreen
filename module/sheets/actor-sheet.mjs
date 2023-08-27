@@ -99,6 +99,14 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
           this.clearHarm();
           return;
         }
+        case "toggle-insight": {
+          this._onToggleInsight(dataset.pos);
+          return;
+        }
+        case "toggle-stress": {
+          this._onToggleStress(dataset.pos);
+          return;
+        }
         default: {
           console.error("_onRoll, bad roll type.");
           return;
@@ -130,22 +138,102 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
     this.actor.update({ "system.harm.mortal_wound.name": "" });
   }
 
+  // Insight
+  _onToggleInsight(pos) {
+    let currentArray = this.actor.system.insight.states;
+    let currentState = currentArray[pos];
+    let newState = 0;
+
+    if (currentState === false) {
+      newState = true;
+    } else {
+      newState = false;
+    }
+
+    currentArray[pos] = newState;
+    this.actor.update({ ["system.insight.states"]: currentArray });
+  }
+
+  // _onClearInsight() {
+  //   let currentArray = this.actor.system.insight.states;
+  //   for (const i in currentArray) {
+  //     if (currentArray[i] === true) {
+  //       currentArray[i] = false;
+  //     }
+  //   }
+
+  //   this.actor.update({ ["system.insight.states"]: currentArray });
+  // }
+
+  // _increaseInsightByOne() {
+  //   let newInsight = duplicate(this.actor.system.insight.value);
+
+  //   if (newInsight < 6) {
+  //     let currentArray = this.actor.system.insight.states;
+  //     const firstPos = currentArray.indexOf(false);
+  //     if (firstPos != -1) {
+  //       currentArray[firstPos] = true;
+  //       this.actor.update({ ["system.insight.states"]: currentArray });
+  //     }
+  //   }
+
+  //   this.actor.update({ "system.insight.value": newInsight });
+  // }
+
+  // Stress
+  _onToggleStress(pos) {
+    let currentArray = this.actor.system.stress.states;
+    let currentState = currentArray[pos];
+    let newState = 0;
+
+    if (currentState === false) {
+      newState = true;
+    } else {
+      newState = false;
+    }
+
+    currentArray[pos] = newState;
+    this.actor.update({ ["system.stress.states"]: currentArray });
+  }
+
+  _reduceStressBy(reduction = 0) {
+    if (reduction <= 0) {return;}
+
+    let currentArray = this.actor.system.stress.states;
+    let reduced = reduction;
+    for (const i in currentArray) {
+      if (currentArray[i] === true) {
+        currentArray[i] = false;
+        --reduced;
+      }
+      if (reduced === 0) {break;}
+    }
+
+    this.actor.update({ ["system.stress.states"]: currentArray });
+  }
+
   // ----------------------
   // Dice rolling functions
   // ----------------------
 
   getDiceForOutput(dieNumber, colorHex) {
     switch (dieNumber) {
+      case 1:
       case "1":
         return `<i class="fas fa-dice-one" style="color:${colorHex}; font-size: 2em;"></i>`;
+      case 2:
       case "2":
         return `<i class="fas fa-dice-two" style="color:${colorHex}; font-size: 2em;"></i>`;
+      case 3:
       case "3":
         return `<i class="fas fa-dice-three" style="color:${colorHex}; font-size: 2em;"></i>`;
+      case 4:
       case "4":
         return `<i class="fas fa-dice-four" style="color:${colorHex}; font-size: 2em;"></i>`;
+      case 5:
       case "5":
         return `<i class="fas fa-dice-five" style="color:${colorHex}; font-size: 2em;"></i>`;
+      case 6:
       case "6":
         return `<i class="fas fa-dice-six" style="color:${colorHex}; font-size: 2em;"></i>`;
       default:
@@ -419,8 +507,11 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
     let newStress = previousStress - rollValue;
     newStress = newStress < 0 ? 0 : newStress;
 
-    // update Stress
-    this.actor.update({ "system.stress.value": newStress });
+    // reduce stress Stress
+    // TODO update check boxes
+    console.log("LOG rollValue: "+rollValue);
+    this._reduceStressBy(rollValue);
+    // this.actor.update({ "system.stress.value": newStress });
 
     const dialogData = {
       diceForOutput: this.getDiceForOutput(rollValue, CONFIG.CDG.BaseColor),

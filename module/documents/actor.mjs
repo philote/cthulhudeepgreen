@@ -3,19 +3,10 @@
  * @extends {Actor}
  */
 export class CthulhuDeepGreenActor extends Actor {
-  /** @override */
-  prepareData() {
-    // Prepare data for the actor. Calling the super version of this executes
-    // the following, in order: data reset (to clear active effects),
-    // prepareBaseData(), prepareEmbeddedDocuments() (including active effects),
-    // prepareDerivedData().
-    super.prepareData();
-  }
 
   /** @override */
-  prepareBaseData() {
-    // Data modifications in this step occur before processing embedded
-    // documents or derived data.
+  prepareData() {
+    super.prepareData();
   }
 
   /**
@@ -28,24 +19,27 @@ export class CthulhuDeepGreenActor extends Actor {
    * is queried and has a roll executed directly from it).
    */
   prepareDerivedData() {
-    // const actorData = this;
-    // const systemData = actorData.system;
-    // const flags = actorData.flags.cthulhudeepgreen || {};
+    const actorData = this;
+
     // Make separate methods for each Actor type (character, npc, etc.) to keep
     // things organized.
-    // this._prepareCharacterData(actorData);
+    this._prepareCharacterData(actorData);
     // this._prepareNpcData(actorData);
   }
 
   /**
    * Prepare Character type specific data
    */
-  // _prepareCharacterData(actorData) {
-  //   if (actorData.type !== 'character') return;
+  _prepareCharacterData(actorData) {
+    if (actorData.type !== 'character') return;
 
-  //   // Make modifications to data here. For example:
-  //   // const systemData = actorData.system;
-  // }
+    // Make modifications to data here. For example:
+    const systemData = actorData.system;
+
+    // update Insight so they can be used as token resources
+    systemData.insight.value = systemData.insight.states.filter(Boolean).length;
+    systemData.stress.value = systemData.stress.states.filter(Boolean).length;
+  }
 
   /**
    * Prepare NPC type specific data.
@@ -55,35 +49,5 @@ export class CthulhuDeepGreenActor extends Actor {
 
   //   // Make modifications to data here. For example:
   //   // const systemData = actorData.system;
-  // }
-
-  // /**
-  //  * Override getRollData() that's supplied to rolls.
-  //  */
-  // getRollData() {
-  //   const data = super.getRollData();
-
-  //   // Prepare character roll data.
-  //   this._getCharacterRollData(data);
-  //   this._getNpcRollData(data);
-
-  //   return data;
-  // }
-
-  // /**
-  //  * Prepare character roll data.
-  //  */
-  // _getCharacterRollData(data) {
-  //   if (this.type !== 'character') return;
-
-  // }
-
-  // /**
-  //  * Prepare NPC roll data.
-  //  */
-  // _getNpcRollData(data) {
-  //   if (this.type !== 'npc') return;
-
-  //   // Process additional NPC data here.
   // }
 }
