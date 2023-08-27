@@ -1,0 +1,22 @@
+<form>
+    <p><b>{{{localize "CDG.RiskyDialogDesc"}}}</b></p>
+    <hr>
+    <p class="flexcol">
+        <div class="form-group">
+            <input style="align-self: flex-start;" type="checkbox" id="humanDie" name="humanDie">
+            <label for="humanDie"><i class="fa-solid fa-dice-five"></i>&#8194;{{{localize "CDG.DialogHumanDie"}}}</label>
+        </div>
+        <div class="form-group">
+            <input style="align-self: flex-start;" type="checkbox" id="occupationalDie" name="occupationalDie">
+            <label for="occupationalDie"><i class="fa-solid fa-dice-five"></i>&#8194;{{{localize "CDG.DialogOccupDie"}}}</label>
+        </div>
+        <div class="form-group">
+            <input style="align-self: flex-start;" type="checkbox" id="darkDie" name="darkDie">
+            <label for="darkDie"><i style="color: {{DarkDieColor}}" class="fa-solid fa-dice-five"></i>&#8194;{{{localize "CDG.DialogRiskDie"}}}</label>
+        </div>
+        <div class="form-group" style="margin-left: 30px">
+            <input style="align-self: flex-start;" type="checkbox" id="insight" name="insight">
+            <label for="insight">{{{localize "CDG.DialogRiskDieInsight"}}}</label>
+        </div>
+    </p>
+</form>

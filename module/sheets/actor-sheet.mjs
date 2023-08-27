@@ -77,7 +77,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  _onRoll(event) {
+  async _onRoll(event) {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
@@ -91,16 +91,11 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
           return;
         }
         case "darkdie": {
-          // TODO Dialog to ask if you risk stress, insight or both
-          const title = game.i18n.localize("CDG.DarkDieDialogTitle");
-          const content = this.darkDieDialogContent(title);
-          this.asyncCDGDarkDieRollDialog({ title, content });
+          this.asyncCDGDarkDieRollDialog();
           return;
         }
         case "riskything": {
-          const title = game.i18n.localize("CDG.RiskyDialogTitle");
-          const content = this.riskyDialogContent();
-          this.asyncCDGRiskyThingDialog({ title, content });
+          this.asyncCDGRiskyThingDialog();
           return;
         }
         case "clearharm": {
@@ -232,18 +227,8 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
   // Dark Die Roll
   // -------------
 
-  darkDieDialogContent() {
-    return `
-      <p><b>Stress and/or Insight Check:</b></p>
-      <p class="flexcol">
-        <div class="form-group">
-          <input style="align-self: flex-start;" type="checkbox" id="stress" name="stress">
-          <label for="stress">${game.i18n.format("CDG.DialogStressCheck")}</label>
-          <input style="align-self: flex-start;" type="checkbox" id="insight" name="insight">
-          <label for="insight">${game.i18n.format("CDG.DialogInsightCheck")}</label>
-        </div>
-      </p>
-    `;
+  async darkDieDialogContent() {
+    return await renderTemplate('systems/cthulhudeepgreen/templates/dialog/dark-die.hbs');
   }
 
   darkDieRollChatContent(diceOutput, riskMessage) {
@@ -256,12 +241,11 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
     `;
   }
 
-  async asyncCDGDarkDieRollDialog({ title = "", content = "" } = {}) {
+  async asyncCDGDarkDieRollDialog() {
     return await new Promise(async (resolve) => {
-      new Dialog(
-        {
-          title: title,
-          content: content,
+      new Dialog({
+          title: game.i18n.localize("CDG.DarkDieDialogTitle"),
+          content: await this.darkDieDialogContent(),
           buttons: {
             button1: {
               icon: '<i class="fa-solid fa-dice"></i>',
@@ -320,8 +304,9 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
             resolve(null);
           },
         },
-        { id: "cdg-dialog-darkdie" }
-      ).render(true);
+        { 
+          id: "cdg-dialog-darkdie" 
+      }).render(true);
     });
   }
 
@@ -329,36 +314,11 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
   // Risky Thing Roll
   // ----------------
 
-  riskyDialogContent() {
-    return `
-            <p><b>${game.i18n.localize("CDG.RiskyDialogDesc")}</b></p>
-            <hr>
-            <form class="flexcol">
-                <div class="form-group">
-                    <input style="align-self: flex-start;" type="checkbox" id="humanDie" name="humanDie">
-                    <label for="humanDie"><i class="fa-solid fa-dice-five"></i>&#8194;${game.i18n.localize(
-                      "CDG.DialogHumanDie"
-                    )}</label>
-                </div>
-                <div class="form-group">
-                    <input style="align-self: flex-start;" type="checkbox" id="occupationalDie" name="occupationalDie">
-                    <label for="occupationalDie"><i class="fa-solid fa-dice-five"></i>&#8194;${game.i18n.localize(
-                      "CDG.DialogOccupDie"
-                    )}</label>
-                </div>
-                <div class="form-group">
-                    <input style="align-self: flex-start;" type="checkbox" id="darkDie" name="darkDie">
-                    <label for="darkDie"><i style="color: ${
-                      CONFIG.CDG.DarkDieColor
-                    }" class="fa-solid fa-dice-five"></i>&#8194;${game.i18n.format("CDG.DialogRiskDie")}</label>
-                </div>
-                <div class="form-group" style="margin-left: 30px">
-                  <input style="align-self: flex-start;" type="checkbox" id="insight" name="insight">
-                  <label for="insight">${game.i18n.format("CDG.DialogRiskDieInsight")}</label>
-                </div>
-            </form>
-            
-        `;
+  async riskyDialogContent() {
+    const dialogData = {
+      DarkDieColor: CONFIG.CDG.DarkDieColor
+    };
+    return await renderTemplate('systems/cthulhudeepgreen/templates/dialog/risky-thing.hbs', dialogData);
   }
 
   getRiskMoveMessage() {
@@ -384,12 +344,12 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
     `;
   }
 
-  async asyncCDGRiskyThingDialog({ title = "", content = "" } = {}) {
+  async asyncCDGRiskyThingDialog() {
     return await new Promise(async (resolve) => {
       new Dialog(
         {
-          title: title,
-          content: content,
+          title: game.i18n.localize("CDG.RiskyDialogTitle"),
+          content: await this.riskyDialogContent(),
           buttons: {
             button1: {
               icon: '<i class="fa-solid fa-dice"></i>',
