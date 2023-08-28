@@ -95,8 +95,8 @@
     color: $c-placeholder;
   }
 
-  .notes .editor .editor-content {
-    height: 320px;
+  .editor {
+    height: 315px;
   }
 }
 
@@ -152,9 +152,19 @@
     margin: 5px 3px;
   }
 
-  .radio-list {
+  .resource-list {
     background-color: #00000077;
-    padding: 0px 2px 4px 5px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin: 0;
+    }
   }
 
   .insight {
@@ -238,7 +248,7 @@
 }
 
 .bottomspace {
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .specialty {
@@ -314,7 +324,7 @@ nav.sheet-tabs {
 }
 
 .sheet-body {
-  height: 100%;
+  // height: 100%;
 }
 
 .tabs .item.active {
@@ -326,8 +336,8 @@ nav.sheet-tabs {
 
 .full-height,
 .editor {
-  height: 100%;
-  overflow: hidden;
+  // height: 100%;
+  // overflow: hidden;
 }
 
 .tox {
@@ -391,6 +401,6 @@ a:focus {
     flex: 1;
     font-size: 16px;
     margin: 0;
-    color: $c-placeholder;
+    color: $c-subtitle;
   }
 }

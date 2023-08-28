@@ -15,17 +15,7 @@
           <input name="system.specialty" id="specialty" type="text" value="{{system.specialty}}" placeholder="{{localize "CDG.ActorSpecialty"}}"/>
         </div>
 
-        <!-- <div class="radio-list insight">
-          {{localize "CDG.ActorInsight"}}
-          {{#multiboxes system.insight.value}}
-            <input type="radio" id="character-{{../_id}}-insight-0" name="system.insight.value" value="0"> |
-            {{#times_from_1 system.insight.max}}
-              <input type="radio" id="character-{{../_id}}-insight-{{this}}" name="system.insight.value" value="{{this}}">
-            {{/times_from_1}}
-          {{/multiboxes}}
-        </div> -->
-
-        <div class="insight">
+        <div class="insight resource-list">
           {{localize "CDG.ActorInsight"}}
           <!-- <b class="rollable" data-roll-type="clear-insight" style="color: {{system.insight.color}}">{{localize "CTHULHUDARK.Insight"}}</b> -->
           {{#each system.insight.states as |state count|}}
@@ -33,17 +23,7 @@
           {{/each}}
         </div>
 
-        <!-- <div class="radio-list stress">
-          {{localize "CDG.ActorStress"}}
-          {{#multiboxes system.stress.value}}
-            <input type="radio" id="character-{{../_id}}-stress-0" name="system.stress.value" value="0"> |
-            {{#times_from_1 system.stress.max}}
-              <input type="radio" id="character-{{../_id}}-stress-{{this}}" name="system.stress.value" value="{{this}}"> 
-            {{/times_from_1}}
-          {{/multiboxes}}
-        </div> -->
-
-        <div class="stress">
+        <div class="stress resource-list">
           {{localize "CDG.ActorStress"}}
           <!-- <b class="rollable" data-roll-type="clear-insight" style="color: {{system.insight.color}}">{{localize "CTHULHUDARK.Insight"}}</b> -->
           {{#each system.stress.states as |state count|}}
