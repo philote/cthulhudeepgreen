@@ -54,7 +54,7 @@
 .chat-message-exposure {
   background: none;
   background-color: #fff8e6;
-  border: 2px #e0a400 solid;
+  border: 2px #bd40c7 solid;
 }
 
 .exposure-panel {
@@ -75,7 +75,7 @@
 
     .name {
       padding: 0 10px 0 10px;
-      color: #eb7602;
+      color: #bd40c7;
       font-size: 2em;
       align-self: center;
       margin: 0;
@@ -83,7 +83,7 @@
 
     .name-with {
       padding: 0 10px 0 10px;
-      color: #eb7602;
+      color: #bd40c7;
       font-size: 1.75em;
       align-self: center;
       margin: 0;
@@ -107,13 +107,7 @@
       aspect-ratio: 1 / 1;
 
       --filled-ratio: calc(var(--filled) / var(--areas) * 1turn);
-      background: conic-gradient(
-        #eb7602 var(--filled-ratio),
-        rgb(191 191 191) var(--filled-ratio) 0.4turn,
-        rgb(175 175 175) var(--filled-ratio) 0.7turn,
-        rgb(144 144 144) var(--filled-ratio) 0.9turn,
-        rgb(128 128 128) var(--filled-ratio) 1turn
-      );
+      background: conic-gradient(#bd40c7 var(--filled-ratio), rgb(175 175 175) var(--filled-ratio) 1turn);
       border-radius: 50%;
       border: rgb(97, 97, 97) var(--spoke-width) solid;
 

@@ -10,10 +10,12 @@
         <h3 class="header-input"><input name="system.alias" type="text" value="{{system.alias}}" placeholder="{{localize "CDG.ActorAlias"}}"/></h3>
         <h3 class="header-input"><input name="system.occupation" type="text" value="{{system.occupation}}" placeholder="{{localize "CDG.ActorOccupation"}}"/></h3>
 
-        <div class="specialty grid-span-2">
-          <label for="specialty">{{localize "CDG.ActorSpecialty"}}</label>
-          <input name="system.specialty" id="specialty" type="text" value="{{system.specialty}}" placeholder="{{localize "CDG.ActorSpecialty"}}"/>
-        </div>
+        {{#if (getSetting "show_special")}}
+          <div class="specialty grid-span-2">
+            <label for="specialty">{{localize "CDG.ActorSpecialty"}}</label>
+            <input name="system.specialty" id="specialty" type="text" value="{{system.specialty}}" placeholder="{{localize "CDG.ActorSpecialty"}}"/>
+          </div>
+        {{/if}}
 
         <div class="insight resource-list">
           {{localize "CDG.ActorInsight"}}

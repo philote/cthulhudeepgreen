@@ -1,12 +1,14 @@
-<section class="exposure-panel {{#if isGM}}editable{{else}}disabled{{/if}}">
-    <div class="exposure">
-        <div class="clock on-click" style="--areas: {{max}}; --filled: {{currentExposure}}">
-            {{#each spokes}}
-                <div class="spoke" style="--index: {{ this }}"></div>
-            {{/each}}
+{{#if (getSetting "show_exposure")}}
+    <section class="exposure-panel {{#if isGM}}editable{{else}}disabled{{/if}}">
+        <div class="exposure">
+            <div class="clock on-click" style="--areas: {{max}}; --filled: {{currentExposure}}">
+                {{#each spokes}}
+                    <div class="spoke" style="--index: {{ this }}"></div>
+                {{/each}}
+            </div>
+            <div class="name flexcol">
+                <span class="on-click-clear">{{exposureTitle}}</span>
+            </div>
         </div>
-        <div class="name flexcol">
-            <span class="on-click-clear">{{exposureTitle}}</span>
-        </div>
-    </div>
-</section>
+    </section>
+{{/if}}

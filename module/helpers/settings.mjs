@@ -1,6 +1,6 @@
 export const registerSettings = function() {
 
-  game.settings.register('cthulhudeepgreen', 'show-special', {
+  game.settings.register('cthulhudeepgreen', 'show_special', {
       name: "CDG.settings.special.name",
       hint: "CDG.settings.special.hint",
       scope: "world",
@@ -10,7 +10,7 @@ export const registerSettings = function() {
       onChange: _ => window.location.reload()
   });
   
-  game.settings.register('cthulhudeepgreen', 'show-exposure', {
+  game.settings.register('cthulhudeepgreen', 'show_exposure', {
     name: "CDG.settings.exposure.name",
     hint: "CDG.settings.exposure.hint",
     scope: "world",

@@ -21,7 +21,7 @@ export class ExposurePanel extends Application {
         return {
             ...data,
             currentExposure: savedCurrentExposure,
-            exposureTitle: game.i18n.localize("CDG.dialog.exposure.title"), // TODO
+            exposureTitle: game.i18n.localize("CDG.dialog.exposure.title"),
             max: 10,
             spokes: Array(10).keys(),
             isGM: game.user.isGM
@@ -34,7 +34,7 @@ export class ExposurePanel extends Application {
 
         html.find('.on-click').click(this._onExposureIncrease.bind(this));
         html.find('.on-click').contextmenu(this._onExposureDecrease.bind(this));
-        html.find('.on-click-clear').click(this._onClearHeat.bind(this));
+        html.find('.on-click-clear').click(this._onClearExposure.bind(this));
     }
 
     async _onExposureIncrease(event) {
@@ -77,7 +77,9 @@ export class ExposurePanel extends Application {
               css: "chat-message-exposure",
               exposureUpdate: true,
               exposure: newExposure
-            } } }
+            },
+            chatID: "cthulhudeepgreen"   
+            }}
         });                 
     }
 }

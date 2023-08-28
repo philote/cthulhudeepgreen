@@ -30,7 +30,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
 
   /** @override */
   get template() {
-    return `systems/cthulhudeepgreen/templates/actor/actor-${this.actor.type}-sheet.html`;
+    return `systems/cthulhudeepgreen/templates/actor/actor-${this.actor.type}-sheet.hbs`;
   }
 
   /* -------------------------------------------- */
@@ -361,7 +361,8 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
                   user: game.user_id,
                   speaker: ChatMessage.getSpeaker({ actor: this.actor }),
                   rollMode: game.settings.get("core", "rollMode"),
-                  content: rendered_html
+                  content: rendered_html,
+                  flags: { cthulhudeepgreen: { chatID: "cthulhudeepgreen" }}
                 });
 
                 // ----
@@ -480,7 +481,8 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
                   user: game.user_id,
                   speaker: ChatMessage.getSpeaker({ actor: this.actor }),
                   rollMode: game.settings.get("core", "rollMode"),
-                  content: rendered_html
+                  content: rendered_html,
+                  flags: { cthulhudeepgreen: { chatID: "cthulhudeepgreen" }}
                 });
 
                 // ----
@@ -549,7 +551,8 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
       user: game.user_id,
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
       rollMode: game.settings.get("core", "rollMode"),
-      content: chatContentMessage
+      content: chatContentMessage,
+      flags: { cthulhudeepgreen: { chatID: "cthulhudeepgreen" }}
     });
   }
 }

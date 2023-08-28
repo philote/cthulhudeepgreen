@@ -21,7 +21,7 @@ export class CthulhuDeepGreenItemSheet extends ItemSheet {
 
   /** @override */
   get template() {
-    return `systems/cthulhudeepgreen/templates/item/item-sheet.html`;
+    return `systems/cthulhudeepgreen/templates/item/item-sheet.hbs`;
   }
 
   /* -------------------------------------------- */

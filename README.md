@@ -19,16 +19,20 @@ Image of the Character Sheet and roll messages in Foundry's chat:
   - Harm section
   - A place to track Anchors
   - A Notes section
+- Settings
+  - Show/Hide the "Special Skill" on character sheets
+  - Show/Hide the Exposure tracker
+- An Exposure Track that only the GM can update with right and left clicks
 - Clicking on the roll buttons on the character sheet creates dialogs (When appropriate) to choose which die to roll
 - The Dark Die roll automatically increases your Insight & or Stress when appropriate
 - All rolls print appropriate outputs into the chat
-- Tokens can be setup to show Insight & Stress state
+- Tokens can be setup to show Insight & Stress states
 - A simple NPC Sheet
 
 ## To Be Done
 
-- Add in a version of Lancer Clocks for the Exposure Track
 - Add roll tables to the module
+- UI for non-die roll "at home" actions
 
 ## How to Install
 
