@@ -1,0 +1,139 @@
+/* The switch - the box around the slider */
+// action boxes
+// .collapsable {
+//   .disabled {
+//     pointer-events: none;
+//   }
+
+//   div.disabled a {
+//     color: #828282;
+//   }
+
+//   a {
+//     i {
+//       margin-right: 5px;
+//     }
+//   }
+
+//   a.float {
+//     position: relative;
+//     top: 5px;
+//     right: -210px;
+//     height: 0;
+//     display: flex;
+//     width: fit-content;
+//   }
+
+//   details > summary {
+//     padding: 4px;
+//     width: 200px;
+//     border: none;
+//     cursor: pointer;
+//   }
+
+//   summary {
+//     font-size: 0.95em;
+//     font-weight: bold;
+//   }
+
+//   summary::marker {
+//     margin-right: 10px;
+//   }
+
+//   details > p {
+//     padding: 4px;
+//     margin: 0;
+//   }
+// }
+
+// Exposure
+.disabled {
+    pointer-events: none;
+}
+
+.chat-message-exposure {
+  background: none;
+  background-color: #fff8e6;
+  border: 2px #e0a400 solid;
+}
+
+.exposure-panel {
+  position: absolute;
+  top: 30px;
+  right: 325px;
+
+  
+
+  .exposure {
+    background: #363636;
+    border: rgb(97, 97, 97) 1px solid;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: row-reverse;
+    height: 50px;
+    border-radius: 5px 22px 22px 5px;
+
+    .name {
+      padding: 0 10px 0 10px;
+      color: #eb7602;
+      font-size: 2em;
+      align-self: center;
+      margin: 0;
+    }
+
+    .name-with {
+      padding: 0 10px 0 10px;
+      color: #eb7602;
+      font-size: 1.75em;
+      align-self: center;
+      margin: 0;
+      line-height: 70%;
+
+      .sub-header {
+        color: #ffffff;
+        font-size: 0.5em;
+      }
+    }
+
+    .clock {
+      cursor: pointer;
+      width: 54px;
+      height: 54px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+
+      --spoke-width: 1px;
+
+      align-self: center;
+      aspect-ratio: 1 / 1;
+
+      --filled-ratio: calc(var(--filled) / var(--areas) * 1turn);
+      background: conic-gradient(
+        #eb7602 var(--filled-ratio),
+        rgb(191 191 191) var(--filled-ratio) 0.4turn,
+        rgb(175 175 175) var(--filled-ratio) 0.7turn,
+        rgb(144 144 144) var(--filled-ratio) 0.9turn,
+        rgb(128 128 128) var(--filled-ratio) 1turn
+      );
+      border-radius: 50%;
+      border: rgb(97, 97, 97) var(--spoke-width) solid;
+
+      position: relative;
+
+      .spoke {
+        width: var(--spoke-width);
+
+        /* Make the spokes slightly larger than the inner radius so they overlay half the outer border, preventing subpixel gaps */
+        height: calc(50% + 0.5 * var(--spoke-width));
+
+        top: calc(-0.5 * var(--spoke-width));
+        right: calc(50% - var(--spoke-width) / 2);
+
+        background: rgb(97, 97, 97);
+        position: absolute;
+
+        transform-origin: center bottom;
+        transform: rotate(calc((var(--index) * 1turn) / var(--areas)));
+      }
+    }
+  }
+}

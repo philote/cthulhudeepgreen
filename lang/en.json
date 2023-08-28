@@ -4,7 +4,7 @@
   "CDG.ActorOccupation": "Occupation",
   "CDG.ActorNotes": "Notes",
   "CDG.ActorAnchors": "Anchors",
-  "CDG.ActorSpecialty": "Specialty",
+  "CDG.ActorSpecialty": "Special Skill",
   "CDG.ActorInsight": "Insight",
   "CDG.ActorStress": "Stress",
   "CDG.ActorDisorders": "Disorders",
@@ -69,5 +69,23 @@
   "CDG.MaxDieMessage6": "You succeed brilliantly and get something extra. Maybe more than bargained for. The Handler may confront you with a difficult truth.",
 
   "CDG.ItemName": "Name",
-  "CDG.ItemDescription": "Description"
+  "CDG.ItemDescription": "Description",
+  "CDG.settings": {
+    "special": {
+      "name": "Enable Special Skill",
+      "hint": "Occasionally Agents may wish to claim proficiency for actions not covered by their profession. This allows them to claim one option as their “Special Skill” in the course of a session."
+    },
+    "exposure": {
+      "name": "Enable The Exposure Track",
+      "hint": "Inevitably Agents will procure assets from questionable sources or go loud when discretion is called for. This option will create an Exposure Track to track how much they have been exposed."
+    }
+  }, 
+  "CDG.dialog": {
+    "exposure.title": "Exposure"
+  }, 
+  "CDG.chat": {
+    "exposureIncrease": {
+      "increaseMessage": "<b>Exposure</b> has increased from {oldExposure} to {newExposure}"
+    }
+  }
 }
