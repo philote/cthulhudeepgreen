@@ -6,7 +6,8 @@ export const registerSettings = function() {
       scope: "world",
       config: true,
       type: Boolean,
-      default: false
+      default: false,
+      onChange: _ => window.location.reload()
   });
   
   game.settings.register('cthulhudeepgreen', 'show-exposure', {
@@ -15,7 +16,8 @@ export const registerSettings = function() {
     scope: "world",
     config: true,
     type: Boolean,
-    default: false
+    default: false,
+    onChange: _ => window.location.reload()
   });
 
   game.settings.register("cthulhudeepgreen", "current-exposure", {
