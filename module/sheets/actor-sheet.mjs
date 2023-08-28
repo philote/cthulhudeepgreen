@@ -212,6 +212,32 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
     this.actor.update({ ["system.stress.states"]: currentArray });
   }
 
+  _increaseStressByOne() {
+    let newStress = duplicate(this.actor.system.stress.value);
+
+    if (newStress < 6) {
+      let currentArray = this.actor.system.stress.states;
+      const firstPos = currentArray.indexOf(false);
+      if (firstPos != -1) {
+        currentArray[firstPos] = true;
+        this.actor.update({ ["system.stress.states"]: currentArray });
+      }
+    }
+  }
+
+  _increaseInsightByOne() {
+    let newInsight = duplicate(this.actor.system.insight.value);
+
+    if (newInsight < 6) {
+      let currentArray = this.actor.system.insight.states;
+      const firstPos = currentArray.indexOf(false);
+      if (firstPos != -1) {
+        currentArray[firstPos] = true;
+        this.actor.update({ ["system.insight.states"]: currentArray });
+      }
+    }
+  }
+
   // ----------------------
   // Dice rolling functions
   // ----------------------
@@ -278,9 +304,9 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
 
     if (effectsStress && rollValue > previousStress) {
       // update Stress
+      this._increaseStressByOne();
+
       ++newStress;
-      this.actor.system.stress.value = newStress;
-      this.actor.update({ "system.stress.value": newStress });
       darkDieMessage = darkDieMessage.concat(
         game.i18n.format("CDG.StressContent", {
           previousstress: previousStress,
@@ -294,9 +320,9 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
         darkDieMessage = darkDieMessage.concat("<br>");
       }
       // update Insight
+      this._increaseInsightByOne();
+
       ++newInsight;
-      this.actor.system.insight.value = newInsight;
-      this.actor.update({ "system.insight.value": newInsight });
       darkDieMessage = darkDieMessage.concat(
         game.i18n.format("CDG.InsightContent", {
           previousinsight: previousInsight,
@@ -332,11 +358,13 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
                 const darkDieRoll = await new Roll("1d6").evaluate({
                   async: true,
                 });
+
                 let riskMessage = this.darkDieChatContent(
                   darkDieRoll.result,
                   darkDieEffectsInsight,
                   darkDieEffectsStress
                 );
+                
                 let diceOutput = this.getDiceForOutput(
                   darkDieRoll.result,
                   CONFIG.CDG.DarkDieColor
