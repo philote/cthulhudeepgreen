@@ -1,6 +1,6 @@
 # Cthulhu Deep Green (Unofficial) System
 
-![Cover](cover.webp)
+![Cover](assets/cover.webp)
 
 An unofficial, community-supported system for playing the Cthulhu Deep Green TTRPG (Created by Justin Ford) on Foundry VTT.
 
@@ -8,7 +8,7 @@ An unofficial, community-supported system for playing the Cthulhu Deep Green TTR
 
 Image of the Character Sheet and roll messages in Foundry's chat:
 
-![Screenshot](screenshot.webp)
+![Screenshot](assets/screenshot.webp)
 
 ## Features
 

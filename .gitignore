@@ -10,6 +10,7 @@ npm-debug.log
 *.lock
 jsconfig.json
 foundry
+packs/*
 
 # VS Code
 .vscode/*
@@ -30,3 +31,6 @@ foundry
 *.css.map
 *.sass.map
 *.scss.map
+
+#OS
+.DS_Store

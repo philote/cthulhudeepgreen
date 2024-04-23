@@ -2,18 +2,17 @@
   "id": "cthulhudeepgreen",
   "title": "Cthulhu Deep Green",
   "description": "An Unofficial Cthulhu Deep Green system for Foundry VTT.",
-  "version": "1.0.0",
+  "version": "#{VERSION}#",
   "compatibility": {
     "minimum": 10,
-    "verified": "11.308",
-    "maximum": 11
+    "verified": 11.315,
+    "maximum": 12
   },
   "authors": [
     {
       "name": "ephson",
       "url": "https://github.com/philote",
       "discord": "ephson",
-      "mastodon": "@ephson@dice.camp",
       "reddit": "u/ephson"
     }
   ],
@@ -28,28 +27,29 @@
   ],
   "primaryTokenAttribute": "stress",
   "secondaryTokenAttribute": "insight",
-  "url": "https://github.com/philote/FoundryVTT-CthulhuDeepGreen",
-  "manifest": "https://github.com/philote/FoundryVTT-CthulhuDeepGreen/releases/latest/download/system.json",
-  "download": "https://github.com/philote/FoundryVTT-CthulhuDeepGreen/releases/download/0.2.1/system.zip",
+  "url": "#{URL}#",
+  "manifest": "#{MANIFEST}#",
+  "download": "#{DOWNLOAD}#",
   "license": "LICENSE",
+  "readme": "README.md",
   "bugs": "https://github.com/philote/FoundryVTT-CthulhuDeepGreen/issues",
   "media": [
     {
       "type": "screenshot",
-      "url": "https://raw.githubusercontent.com/philote/FoundryVTT-CthulhuDeepGreen/main/screenshot.webp",
+      "url": "https://raw.githubusercontent.com/philote/FoundryVTT-CthulhuDeepGreen/main/assets/screenshot.webp",
       "loop": false,
       "caption": "Cthulhu Deep Green screenshot from Foundry VTT."
     },
     {
       "type": "cover",
-      "url": "https://raw.githubusercontent.com/philote/FoundryVTT-CthulhuDeepGreen/main/cover.webp",
+      "url": "https://raw.githubusercontent.com/philote/FoundryVTT-CthulhuDeepGreen/main/assets/cover.webp",
       "loop": false,
       "caption": "Cover Images for the Unofficial Cthulhu Deep Green package."
     },
     {
       "type": "setup",
-      "url": "https://raw.githubusercontent.com/philote/FoundryVTT-CthulhuDeepGreen/main/package_image.webp",
-      "thumbnail": "https://raw.githubusercontent.com/philote/FoundryVTT-CthulhuDeepGreen/main/package_image_thumb.webp"
+      "url": "https://raw.githubusercontent.com/philote/FoundryVTT-CthulhuDeepGreen/main/assets/package_image.webp",
+      "thumbnail": "https://raw.githubusercontent.com/philote/FoundryVTT-CthulhuDeepGreen/main/assets/package_image_thumb.webp"
     }
   ]
 }

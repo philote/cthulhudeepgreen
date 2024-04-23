@@ -44,9 +44,8 @@ Hooks.once("init", async function () {
 });
 
 Hooks.once("ready", () => {
-  // Heat
+  // Exposure
   ui.exposurePanel = new ExposurePanel();
-  ui.exposurePanel.render(true);
 
   Hooks.on('renderChatMessage', (chatMessage, html, messageData) => {
     const data = chatMessage.getFlag('cthulhudeepgreen', 'data');
@@ -56,8 +55,7 @@ Hooks.once("ready", () => {
       html.addClass(cssFlag);
     }
 
-    if (!game.user.isGM) return; 
-    // TODO create an error for no GM, so Heat did not update?
+    if (!game.user.isGM) return;
 
     const exposureUpdate = data.exposureUpdate;
     const exposure = data.exposure;
@@ -67,13 +65,18 @@ Hooks.once("ready", () => {
   });
 });
 
+Hooks.on("ready", () => {
+  if (game.settings.get("cthulhudeepgreen", "show_exposure")) {
+    ui.exposurePanel.render(true);
+  }
+});
+
 Hooks.on('renderChatMessage', (chatMessage, [html], messageData) => {
   const flag = chatMessage.getFlag('cthulhudeepgreen', 'chatID');
   if (flag && flag == "cthulhudeepgreen") {
     $(html).addClass("roll-chat");
   }
 });
-// flags: { cthulhudeepgreen: { chatID: "cthulhudeepgreen" }}
 
 /* -------------------------------------------- */
 /*  Handlebars Helpers                          */
