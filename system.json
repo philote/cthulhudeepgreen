@@ -32,24 +32,24 @@
   "download": "#{DOWNLOAD}#",
   "license": "LICENSE",
   "readme": "README.md",
-  "bugs": "https://github.com/philote/FoundryVTT-CthulhuDeepGreen/issues",
+  "bugs": "https://github.com/philote/cthulhudeepgreen/issues",
   "media": [
     {
       "type": "screenshot",
-      "url": "https://raw.githubusercontent.com/philote/FoundryVTT-CthulhuDeepGreen/main/assets/screenshot.webp",
+      "url": "https://raw.githubusercontent.com/philote/cthulhudeepgreen/main/assets/screenshot.webp",
       "loop": false,
       "caption": "Cthulhu Deep Green screenshot from Foundry VTT."
     },
     {
       "type": "cover",
-      "url": "https://raw.githubusercontent.com/philote/FoundryVTT-CthulhuDeepGreen/main/assets/cover.webp",
+      "url": "https://raw.githubusercontent.com/philote/cthulhudeepgreen/main/assets/cover.webp",
       "loop": false,
       "caption": "Cover Images for the Unofficial Cthulhu Deep Green package."
     },
     {
       "type": "setup",
-      "url": "https://raw.githubusercontent.com/philote/FoundryVTT-CthulhuDeepGreen/main/assets/package_image.webp",
-      "thumbnail": "https://raw.githubusercontent.com/philote/FoundryVTT-CthulhuDeepGreen/main/assets/package_image_thumb.webp"
+      "url": "https://raw.githubusercontent.com/philote/cthulhudeepgreen/main/assets/package_image.webp",
+      "thumbnail": "https://raw.githubusercontent.com/philote/cthulhudeepgreen/main/assets/package_image_thumb.webp"
     }
   ]
 }
