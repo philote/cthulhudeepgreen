@@ -4,18 +4,18 @@
 name: Release Creation
 
 env:
-  # The URL used for the module's "Project URL" link on FoundryVTT's website.
+  # The URL used for the system's "Project URL" link on FoundryVTT's website.
   project_url: "https://github.com/${{github.repository}}"
 
   # A URL that will always point to the latest manifest.
-  # FoundryVTT uses this URL to check whether the current module version that
+  # FoundryVTT uses this URL to check whether the current system version that
   # is installed is the latest version. This URL should NOT change,
   # otherwise FoundryVTT won't be able to perform this check.
-  latest_manifest_url: "https://github.com/${{github.repository}}/releases/latest/download/module.json"
+  latest_manifest_url: "https://github.com/${{github.repository}}/releases/latest/download/system.json"
 
-  # The URL to the module archive associated with the module release being
+  # The URL to the system archive associated with the system release being
   # processed by this workflow.
-  release_module_url: "https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/module.zip"
+  release_system_url: "https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/system.zip"
 
 
 on:
@@ -37,24 +37,30 @@ jobs:
       #   - "<major>.<minor>.<patch>"  (e.g., "1.2.3")
       #
       # The version will be used by later steps to fill in the value for the
-      # "version" key required for a valid module manifest.
+      # "version" key required for a valid system manifest.
       - name: Extract Version From Tag
         id: get_version
         uses: battila7/get-version-action@v2
 
-      #Substitute the Manifest and Download URLs in the system.json
-      - name: Substitute Manifest and Download Links For Versioned Ones
-        id: sub_release_manifest_version
-        uses: microsoft/variable-substitution@v1
+
+      # Modify "system.json" with values specific to the release.
+      # Since the values for the "version" and "url" keys aren't known ahead of
+      # time, the manifest file in the repository is updated with these values.
+      #
+      # While this does modify the manifest file in-place, the changes are not
+      # commited to the repository, and only exist in the action's filesystem.
+      - name: Modify system Manifest With Release-Specific Values
+        id: sub_manifest_link_version
+        uses: cschleiden/replace-tokens@v1
         with:
-          files: "system.json"
+          files: 'system.json'
         env:
           VERSION: ${{steps.get_version.outputs.version-without-v}}
           URL: ${{ env.project_url }}
           MANIFEST: ${{ env.latest_manifest_url }}
-          DOWNLOAD: ${{ env.release_module_url }}
+          DOWNLOAD: ${{ env.release_system_url }}
 
-      # create a zip file with all files required by the module to add to the release
+      # create a zip file with all files required by the system to add to the release
       - run: zip -r ./system.zip system.json template.json README.md LICENSE templates/ module/ lang/ css/ assets/
 
       # Create a release for this specific version
