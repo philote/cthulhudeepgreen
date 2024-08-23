@@ -1,91 +1,93 @@
 {
-  "CDG.ActorName": "Name",
-  "CDG.ActorAlias": "Alias",
-  "CDG.ActorOccupation": "Occupation",
-  "CDG.ActorNotes": "Notes",
-  "CDG.ActorAnchors": "Anchors",
-  "CDG.ActorSpecialty": "Special Skill",
-  "CDG.ActorInsight": "Insight",
-  "CDG.ActorStress": "Stress",
-  "CDG.ActorDisorders": "Disorders",
-  "CDG.ActorFirstDisorder": "First Disorder",
-  "CDG.ActorSecondDisorder": "Second Disorder",
-  "CDG.ActorThirdDisorder": "Third Disorder",
-  "CDG.ActorAnchorName": "Anchor Name",
-  "CDG.ActorAnchorDescription": "Anchor Description",
-  "CDG.ActorAnchorMarked": "This Anchor is marked!",
-  "CDG.ActorHarm": "Harm",
-  "CDG.ClearHarm": "Clear Harm",
-  "CDG.ActorHarmInjury": "Injury",
-  "CDG.ActorHarmDebility": "Debility",
-  "CDG.ActorHarmMortalWound": "Mortal Wound",
-  "CDG.ActorHarmInjuryLabel": "Tier 1",
-  "CDG.ActorHarmDebilityLabel": "Tier 2",
-  "CDG.ActorHarmMortalWoundLabel": "Tier 3",
-  "CDG.ActorTabMain": "Main",
-  "CDG.ActorTabBiography": "Biography",
+  "CDG": {
+    "ActorName": "Name",
+    "ActorAlias": "Alias",
+    "ActorOccupation": "Occupation",
+    "ActorNotes": "Notes",
+    "ActorAnchors": "Anchors",
+    "ActorSpecialty": "Special Skill",
+    "ActorInsight": "Insight",
+    "ActorStress": "Stress",
+    "ActorDisorders": "Disorders",
+    "ActorFirstDisorder": "First Disorder",
+    "ActorSecondDisorder": "Second Disorder",
+    "ActorThirdDisorder": "Third Disorder",
+    "ActorAnchorName": "Anchor Name",
+    "ActorAnchorDescription": "Anchor Description",
+    "ActorAnchorMarked": "This Anchor is marked!",
+    "ActorHarm": "Harm",
+    "ClearHarm": "Clear Harm",
+    "ActorHarmInjury": "Injury",
+    "ActorHarmDebility": "Debility",
+    "ActorHarmMortalWound": "Mortal Wound",
+    "ActorHarmInjuryLabel": "Tier 1",
+    "ActorHarmDebilityLabel": "Tier 2",
+    "ActorHarmMortalWoundLabel": "Tier 3",
+    "ActorTabMain": "Main",
+    "ActorTabBiography": "Biography",
 
-  "CDG.LooksNpcInput": "Looks",
-  "CDG.BehaviorsNpcInput": "Behaviors",
-  "CDG.MotivationsNpcInput": "Motivations",
-  "CDG.InnocentNpcLabel": "Innocent Bystander",
-  "CDG.OppositionNpcLabel": "Agent of The Opposition",
+    "LooksNpcInput": "Looks",
+    "BehaviorsNpcInput": "Behaviors",
+    "MotivationsNpcInput": "Motivations",
+    "InnocentNpcLabel": "Innocent Bystander",
+    "OppositionNpcLabel": "Agent of The Opposition",
 
-  "CDG.ActionRoll": "Roll!",
-  "CDG.ActionRiskyThingTitle": "Do A Risky Thing",
-  "CDG.ActionRiskyThingDesc": "Whenever an Agent does something that risks their life or their emotional stability.",
-  "CDG.ActionDarkDieTitle": "Dark Die Roll",
-  "CDG.ActionDarkDieDesc": "When an Agent willingly exposes themselves to supernatural forces, disturbing imagery, or moral quandaries.",
-  "CDG.ActionFailureTitle": "Failure Roll",
-  "CDG.ActionFailureDesc": "Describe a worse outcome for another Agent's action. If the result is higher than their highest die, their action fails in the way described.",
-  "CDG.ActionSelfCareTitle": "Engage in Self Care",
-  "CDG.ActionSelfCareDesc": "When an Agent engages in a stress relieving activity, roll and reduce Stress by the result.",
+    "ActionRoll": "Roll!",
+    "ActionRiskyThingTitle": "Do A Risky Thing",
+    "ActionRiskyThingDesc": "Whenever an Agent does something that risks their life or their emotional stability.",
+    "ActionDarkDieTitle": "Dark Die Roll",
+    "ActionDarkDieDesc": "When an Agent willingly exposes themselves to supernatural forces, disturbing imagery, or moral quandaries.",
+    "ActionFailureTitle": "Failure Roll",
+    "ActionFailureDesc": "Describe a worse outcome for another Agent's action. If the result is higher than their highest die, their action fails in the way described.",
+    "ActionSelfCareTitle": "Engage in Self Care",
+    "ActionSelfCareDesc": "When an Agent engages in a stress relieving activity, roll and reduce Stress by the result.",
 
-  "CDG.FailureRollContent": "If your roll is higher than the other <b><i>Agent's</i></b> highest die, they fail, just as you described. If not, they succeed as before.",
-  "CDG.FailureRoll": "<b>Failure Roll</b>:",
+    "FailureRollContent": "If your roll is higher than the other <b><i>Agent's</i></b> highest die, they fail, just as you described. If not, they succeed as before.",
+    "FailureRoll": "<b>Failure Roll</b>:",
 
-  "CDG.SelfCareRollContent": "You engaged in Self Care. Your <span class=\"stress-format\">Stress</span> was <b>{previousstress}</b>, your <span class=\"stress-format\">Stress</span> has been reduced to <b>{newstress}</b>.",
-  "CDG.SelfCareRoll": "<b>Self Care Roll</b>:",
+    "SelfCareRollContent": "You engaged in Self Care. Your <span class=\"stress-format\">Stress</span> was <b>{previousstress}</b>, your <span class=\"stress-format\">Stress</span> has been reduced to <b>{newstress}</b>.",
+    "SelfCareRoll": "<b>Self Care Roll</b>:",
 
-  "CDG.DialogStressCheck": "Test for <span class=\"stress-format\">Stress</span>.",
-  "CDG.DialogInsightCheck": "Test for <span class=\"insight-format\">Insight</span>.",
-  "CDG.DialogDarkDieRollPositive": "Your resolve is tested and holds up, for now...",
+    "DialogStressCheck": "Test for <span class=\"stress-format\">Stress</span>.",
+    "DialogInsightCheck": "Test for <span class=\"insight-format\">Insight</span>.",
+    "DialogDarkDieRollPositive": "Your resolve is tested and holds up, for now...",
 
-  "CDG.RiskyDialogTitle": "Do Something Risky",
-  "CDG.RiskyDialogDesc": "Do something that risks your life or emotional stability, choose all that apply:",
-  "CDG.DialogHumanDie": "<b>Human Die</b>: If the action is humanly possible.",
-  "CDG.DialogOccupDie": "<b>Occupation Die</b>: If the action falls under Agent's personal field of expertise.",
-  "CDG.DialogRiskDie": "<span class=\"dark-die-format\">Dark Die:</span> If the action would risk the Agent's physical or emotional well-being to succeed <b>OR</b> if the player would add an element of the horrific to an otherwise mundane task.",
-  "CDG.DialogRiskDieInsight": "If the action would expose the Agent to Mythos Knowledge also risk their <span class=\"insight-format\">Insight</span>.",
-  
-  "CDG.DarkDieDialogTitle": "Dark Die Roll",
+    "RiskyDialogTitle": "Do Something Risky",
+    "RiskyDialogDesc": "Do something that risks your life or emotional stability, choose all that apply:",
+    "DialogHumanDie": "<b>Human Die</b>: If the action is humanly possible.",
+    "DialogOccupDie": "<b>Occupation Die</b>: If the action falls under Agent's personal field of expertise.",
+    "DialogRiskDie": "<span class=\"dark-die-format\">Dark Die:</span> If the action would risk the Agent's physical or emotional well-being to succeed <b>OR</b> if the player would add an element of the horrific to an otherwise mundane task.",
+    "DialogRiskDieInsight": "If the action would expose the Agent to Mythos Knowledge also risk their <span class=\"insight-format\">Insight</span>.",
+    
+    "DarkDieDialogTitle": "Dark Die Roll",
 
-  "CDG.StressContent": "Your <span class=\"stress-format\">Stress</span> increases! It was <b>{previousstress}</b>, now it is <b>{newstress}</b>.",
-  "CDG.InsightContent": "Your <span class=\"insight-format\">Insight</span> increases! It was <b>{previousinsight}</b>, now it is <b>{newinsight}</b>.",
+    "StressContent": "Your <span class=\"stress-format\">Stress</span> increases! It was <b>{previousstress}</b>, now it is <b>{newstress}</b>.",
+    "InsightContent": "Your <span class=\"insight-format\">Insight</span> increases! It was <b>{previousinsight}</b>, now it is <b>{newinsight}</b>.",
 
-  "CDG.MaxDieMessage123": "You barely succeed, but maybe not in the way they intended. The Handler determines how.",
-  "CDG.MaxDieMessage4": "You succeed competently. Describe how.",
-  "CDG.MaxDieMessage5": "You succeed and may get an advantage. The Handler decides what it is.",
-  "CDG.MaxDieMessage6": "You succeed brilliantly and get something extra. Maybe more than bargained for. The Handler may confront you with a difficult truth.",
+    "MaxDieMessage123": "You barely succeed, but maybe not in the way they intended. The Handler determines how.",
+    "MaxDieMessage4": "You succeed competently. Describe how.",
+    "MaxDieMessage5": "You succeed and may get an advantage. The Handler decides what it is.",
+    "MaxDieMessage6": "You succeed brilliantly and get something extra. Maybe more than bargained for. The Handler may confront you with a difficult truth.",
 
-  "CDG.ItemName": "Name",
-  "CDG.ItemDescription": "Description",
-  "CDG.settings": {
-    "special": {
-      "name": "Enable Special Skill",
-      "hint": "Occasionally Agents may wish to claim proficiency for actions not covered by their profession. This allows them to claim one option as their “Special Skill” in the course of a session."
-    },
-    "exposure": {
-      "name": "Enable The Exposure Track",
-      "hint": "Inevitably Agents will procure assets from questionable sources or go loud when discretion is called for. This option will create an Exposure Track to track how much they have been exposed."
-    }
-  }, 
-  "CDG.dialog": {
-    "exposure.title": "Exposure"
-  }, 
-  "CDG.chat": {
-    "exposureIncrease": {
-      "increaseMessage": "<b>Exposure</b> has increased from {oldExposure} to {newExposure}"
+    "ItemName": "Name",
+    "ItemDescription": "Description",
+    "settings": {
+      "special": {
+        "name": "Enable Special Skill",
+        "hint": "Occasionally Agents may wish to claim proficiency for actions not covered by their profession. This allows them to claim one option as their “Special Skill” in the course of a session."
+      },
+      "exposure": {
+        "name": "Enable The Exposure Track",
+        "hint": "Inevitably Agents will procure assets from questionable sources or go loud when discretion is called for. This option will create an Exposure Track to track how much they have been exposed."
+      }
+    }, 
+    "dialog": {
+      "exposure.title": "Exposure"
+    }, 
+    "chat": {
+      "exposureIncrease": {
+        "increaseMessage": "<b>Exposure</b> has increased from {oldExposure} to {newExposure}"
+      }
     }
   }
 }

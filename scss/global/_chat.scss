@@ -5,12 +5,12 @@
   background-repeat: no-repeat;
   background-position: right;
   color: $c-title;
-  border: 1px solid #FFFFFF4D;
+  border: 1px solid $c-white-30;
   border-radius: 5px;
 
   .message-header {
     line-height: 20px;
-    color: rgb(190, 190, 190);
+    color: $c-lt-grey;
   }
 
   hr {
@@ -18,7 +18,7 @@
     width: -webkit-fill-available;
     padding: 0;
     border: none;
-    border-top: 1px solid rgb(126, 126, 126);;
+    border-top: 1px solid $c-grey;
     margin: 10px 0 10px 0;
   }
 }

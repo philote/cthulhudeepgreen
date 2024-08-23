@@ -2,7 +2,7 @@
 #cdg-dialog-darkdie {
   .window-content {
     background: none;
-    background-color: black;
+    background-color: $c-black;
     background-image: url(../assets/ui/actor/actor-sheet-bg.webp);
     background-size: cover;
     background-repeat: no-repeat;
@@ -10,7 +10,7 @@
   }
 
   .dialog-buttons button {
-    background: rgba(255, 255, 240, 0.8);
+    background: $c-light-yellow-80;
     border: none;
     margin: 0 5px 0 0;
   }

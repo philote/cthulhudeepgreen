@@ -4,7 +4,7 @@
 
 .window-content {
   background: none;
-  background-color: black;
+  background-color: $c-black;
   background-image: url(../assets/ui/actor/actor-sheet-bg.webp);
   background-size: cover;
   background-repeat: no-repeat;
@@ -18,7 +18,7 @@
 
   input[type="text"].strike-input {
     text-decoration: line-through;
-    color: rgba(205, 92, 92, 0.645);
+    color: $c-dark-salmon;
   }
 
   input[type="text"],
@@ -28,19 +28,19 @@
   input[type="time"],
   input[type="search"] {
     color: $c-title;
-    background-color: rgb(0 0 0 / 75%);
-    border: 1px solid #ffffff2e;
+    background-color: $c-black-75;
+    border: 1px solid $c-white-18;
     padding: 0px 10px;
   }
 
   input:disabled {
-    border: 1px solid rgba(137, 21, 0, 0.75);
-    background-color: rgba(31 5 0 / 75%);
+    border: 1px solid $c-red-75;
+    background-color: $c-dark-red-75;
   }
 
   textarea {
-    background-color: rgb(0 0 0 / 75%);
-    border: 1px solid #ffffff2e;
+    background-color: $c-black-75;
+    border: 1px solid $c-white-18;
     color: $c-title;
     padding: 5px 10px;
   }
@@ -51,23 +51,22 @@
   }
 
   img {
-    // border: 1px solid rgba(255, 255, 255, 0.725);
-    border: 1px solid #ffffff2e;
+    border: 1px solid $c-white-18;
   }
 
   select {
     color: $c-title;
-    background: rgb(0 0 0 / 75%);
+    background: $c-black-75;
   }
 
   option {
-    background-color: rgb(0 0 0);
+    background-color: $c-black;
     color: $c-title;
   }
 
   .editor-content {
-    border: 1px solid rgb(255 255 255 / 9%);
-    background-color: rgb(0 0 0 / 75%);
+    border: 1px solid $c-white-18;
+    background-color: $c-black-75;
     padding: 0 10px;
   }
 }
@@ -118,7 +117,6 @@
     height: 180px;
     margin-right: 10px;
     object-fit: contain;
-    
   }
 
   .header-fields {
@@ -157,12 +155,12 @@
   }
 
   .resource-list {
-    background-color: #00000077;
+    background-color: $c-black-50;
     padding: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: 1px solid $c-white-18;
 
     input[type="checkbox"] {
       width: 18px;
@@ -172,7 +170,7 @@
   }
 
   .insight {
-    color: #3b9637;
+    color: $c-insight-green;
     font-weight: bold;
 
     input[type="radio"]:checked {
@@ -181,7 +179,7 @@
   }
 
   .stress {
-    color: #d33737;
+    color: $c-stress-red;
     font-weight: bold;
 
     input[type="radio"]:checked {
@@ -312,41 +310,31 @@
 
 .sheet-tabs {
   flex: 0;
-  background-color: rgb(0 0 0 / 50%);
+  background-color: $c-black-50;
   margin: 0;
   padding: 0;
 }
 
 nav.sheet-tabs {
   margin: 0px 0px;
-  border-top: 1px solid #ffffff4f;
-  border-bottom: 1px solid #ffffff4f;
+  border-top: 1px solid $c-white-30;
+  border-bottom: 1px solid $c-white-30;
 }
 
 .tabs .item {
-  color: #616161;
+  color: $c-grey;
   text-shadow: none;
 
   &.active {
     text-shadow: none;
-    color: white;
-    border-bottom: 2px solid #c0dfce;
+    color: $c-white;
+    border-bottom: 2px solid $c-mint-green;
     background: none;
   }
 }
 
 .sheet-body {
   padding: 5px 10px;
-}
-
-.sheet-body {
-  // height: 100%;
-}
-
-.full-height,
-.editor {
-  // height: 100%;
-  // overflow: hidden;
 }
 
 .tox {
@@ -367,24 +355,24 @@ button {
   margin: 0;
   height: fit-content;
   color: $c-title;
-  background-color: rgb(255 255 255 / 13%);
+  background-color: $c-white-18;
   border: none;
 
   i {
-    color: brown;
+    color: $c-red;
   }
 }
 
 button:hover,
 button:focus {
   color: $c-title;
-  background-color: rgb(255 255 255 / 13%);
+  background-color: $c-black-13;
   border: none;
 }
 
 a:hover,
 a:focus {
-  color: rgb(255, 176, 176);
+  color: $c-pink;
 }
 
 .rollsection {
@@ -395,8 +383,8 @@ a:focus {
   margin: 10px 0;
   padding: 5px 10px;
   border-radius: 5px;
-  background-color: rgb(0 0 0 / 75%);
-  border: 1px solid #ffffff2e;
+  background-color: $c-black-75;
+  border: 1px solid $c-white-18;
 
   .rolltitle {
     display: flex;

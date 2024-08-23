@@ -4,7 +4,7 @@
   margin: 2px 0;
   padding: 0;
   align-items: center;
-  background: rgba(0, 0, 0, 0.05);
+  background: $c-black-1;
   border: $border-groove;
   font-weight: bold;
   > * {
@@ -16,7 +16,6 @@
     padding-left: 5px;
     text-align: left;
     display: flex;
-    // font-size: 16px;
   }
 }
 
@@ -90,8 +89,8 @@
 
   .item-prop {
     text-align: center;
-    border-left: 1px solid #c9c7b8;
-    border-right: 1px solid #c9c7b8;
+    border-left: 1px solid $c-faint;
+    border-right: 1px solid $c-faint;
     font-size: 12px;
   }
 
@@ -101,7 +100,7 @@
     margin: 2px 0;
     padding: 0;
     align-items: center;
-    background: rgba(0, 0, 0, 0.05);
+    background: $c-black-1;
     border: $border-groove;
     font-weight: bold;
     > * {
@@ -111,7 +110,6 @@
     .item-name {
       padding-left: 5px;
       text-align: left;
-      // font-size: 16px;
     }
   }
 }

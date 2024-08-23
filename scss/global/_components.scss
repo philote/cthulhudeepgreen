@@ -1,51 +1,3 @@
-/* The switch - the box around the slider */
-// action boxes
-// .collapsable {
-//   .disabled {
-//     pointer-events: none;
-//   }
-
-//   div.disabled a {
-//     color: #828282;
-//   }
-
-//   a {
-//     i {
-//       margin-right: 5px;
-//     }
-//   }
-
-//   a.float {
-//     position: relative;
-//     top: 5px;
-//     right: -210px;
-//     height: 0;
-//     display: flex;
-//     width: fit-content;
-//   }
-
-//   details > summary {
-//     padding: 4px;
-//     width: 200px;
-//     border: none;
-//     cursor: pointer;
-//   }
-
-//   summary {
-//     font-size: 0.95em;
-//     font-weight: bold;
-//   }
-
-//   summary::marker {
-//     margin-right: 10px;
-//   }
-
-//   details > p {
-//     padding: 4px;
-//     margin: 0;
-//   }
-// }
-
 // Exposure
 .disabled {
     pointer-events: none;
@@ -53,8 +5,8 @@
 
 .chat-message-exposure {
   background: none;
-  background-color: #fff8e6;
-  border: 2px #bd40c7 solid;
+  background-color: $c-faint;
+  border: 2px $c-dark-die-purple solid;
 }
 
 .exposure-panel {
@@ -65,9 +17,9 @@
   
 
   .exposure {
-    background: #363636;
-    border: rgb(97, 97, 97) 1px solid;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+    background: $c-dark-grey;
+    border: $c-grey 1px solid;
+    box-shadow: 0 0 4px $c-black-13;
     display: flex;
     flex-direction: row-reverse;
     height: 50px;
@@ -75,7 +27,7 @@
 
     .name {
       padding: 0 10px 0 10px;
-      color: #bd40c7;
+      color: $c-dark-die-purple;
       font-size: 2em;
       align-self: center;
       margin: 0;
@@ -83,14 +35,14 @@
 
     .name-with {
       padding: 0 10px 0 10px;
-      color: #bd40c7;
+      color: $c-dark-die-purple;
       font-size: 1.75em;
       align-self: center;
       margin: 0;
       line-height: 70%;
 
       .sub-header {
-        color: #ffffff;
+        color: $c-white;
         font-size: 0.5em;
       }
     }
@@ -99,7 +51,7 @@
       cursor: pointer;
       width: 54px;
       height: 54px;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 8px $c-black-13;
 
       --spoke-width: 1px;
 
@@ -107,9 +59,9 @@
       aspect-ratio: 1 / 1;
 
       --filled-ratio: calc(var(--filled) / var(--areas) * 1turn);
-      background: conic-gradient(#bd40c7 var(--filled-ratio), rgb(175 175 175) var(--filled-ratio) 1turn);
+      background: conic-gradient($c-dark-die-purple2 var(--filled-ratio), $c-lt-grey var(--filled-ratio) 1turn);
       border-radius: 50%;
-      border: rgb(97, 97, 97) var(--spoke-width) solid;
+      border: $c-grey var(--spoke-width) solid;
 
       position: relative;
 
@@ -122,7 +74,7 @@
         top: calc(-0.5 * var(--spoke-width));
         right: calc(50% - var(--spoke-width) / 2);
 
-        background: rgb(97, 97, 97);
+        background: $c-grey;
         position: absolute;
 
         transform-origin: center bottom;

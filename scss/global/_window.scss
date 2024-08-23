@@ -5,8 +5,8 @@
 .rollable {
   &:hover,
   &:focus {
-    color: #000;
-    text-shadow: 0 0 10px #d33737;
+    color: $c-black;
+    text-shadow: 0 0 10px $c-stress-red;
     cursor: pointer;
   }
 }
@@ -14,17 +14,17 @@
 .stress-format {
   font-weight: bold;
   font-style: italic;
-  color: #d33737;
+  color: $c-stress-red;
 }
 
 .dark-die-format {
   font-weight: bold;
   font-style: italic;
-  color: #ad25b9;
+  color: $c-dark-die-purple;
 }
 
 .insight-format {
   font-weight: bold;
   font-style: italic;
-  color: #3b9637;
+  color: $c-insight-green;
 }
