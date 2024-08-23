@@ -4,6 +4,14 @@
 
 An unofficial, community-supported system for playing the Cthulhu Deep Green TTRPG (Created by Justin Ford) on Foundry VTT.
 
+![](https://img.shields.io/badge/Foundry-v10-informational)
+![](https://img.shields.io/badge/Foundry-v11-informational)
+![](https://img.shields.io/badge/Foundry-v12-informational)
+<!--- Downloads @ Latest Badge -->
+![Latest Release Download Count](https://img.shields.io/github/downloads/philote/cthulhudeepgreen/latest/system.zip)
+<!--- Forge Bazaar Install % Badge -->
+![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Fcthulhudeepgreen&colorB=4aa94a)
+
 - The original rules from the author of Cthulhu Deep Green: https://www.mothlands.com/games/cdg
 
 Image of the Character Sheet and roll messages in Foundry's chat:
