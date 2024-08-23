@@ -6,7 +6,7 @@
   &:hover,
   &:focus {
     color: #000;
-    text-shadow: 0 0 10px red;
+    text-shadow: 0 0 10px #d33737;
     cursor: pointer;
   }
 }
@@ -14,7 +14,7 @@
 .stress-format {
   font-weight: bold;
   font-style: italic;
-  color: #ff2828;
+  color: #d33737;
 }
 
 .dark-die-format {
@@ -26,5 +26,5 @@
 .insight-format {
   font-weight: bold;
   font-style: italic;
-  color: #3ec337;
+  color: #3b9637;
 }
