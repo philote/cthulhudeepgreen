@@ -3,16 +3,34 @@
 ![Cover](assets/cover.webp)
 
 An unofficial, community-supported system for playing the Cthulhu Deep Green TTRPG (Created by Justin Ford) on Foundry VTT.
+<p align="center">
+    <img alt="Foundry Version 12 support" src="https://img.shields.io/badge/Foundry-v12-informational">
+    <img alt="Latest Release Download Count" src="https://img.shields.io/github/downloads/philote/cthulhudeepgreen/latest/total"> 
+    <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/philote/cthulhudeepgreen"> 
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/philote/cthulhudeepgreen">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/philote/cthulhudeepgreen">
+</p>
+<p align="center">
+    <img alt="GitHub" src="https://img.shields.io/github/license/philote/cthulhudeepgreen"> 
+    <a href="https://github.com/philote/cthulhudeepgreen/issues">
+        <img alt="GitHub issues" src="https://img.shields.io/github/issues/philote/cthulhudeepgreen">
+    </a> 
+    <a href="https://github.com/philote/cthulhudeepgreen/network">
+        <img alt="GitHub forks" src="https://img.shields.io/github/forks/philote/cthulhudeepgreen">
+    </a> 
+    <a href="https://github.com/philote/cthulhudeepgreen/stargazers">
+        <img alt="GitHub stars" src="https://img.shields.io/github/stars/philote/cthulhudeepgreen">
+    </a>
+</p>
+<p align="center">
+   	<a href='https://ko-fi.com/G2G3I91JQ' target='_blank'>
+					<img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi3.png?v=6' border='0' alt='Buy Me a Coffee at ko-fi.com' />
+				</a>
+</p>
 
-![](https://img.shields.io/badge/Foundry-v10-informational)
-![](https://img.shields.io/badge/Foundry-v11-informational)
-![](https://img.shields.io/badge/Foundry-v12-informational)
-<!--- Downloads @ Latest Badge -->
-![Latest Release Download Count](https://img.shields.io/github/downloads/philote/cthulhudeepgreen/latest/system.zip)
-<!--- Forge Bazaar Install % Badge -->
-![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Fcthulhudeepgreen&colorB=4aa94a)
+The original rules from the author of Cthulhu Deep Green: https://www.mothlands.com/games/cdg
 
-- The original rules from the author of Cthulhu Deep Green: https://www.mothlands.com/games/cdg
+If you’ve enjoyed my work and find value in what I create, please consider supporting me with a small donation on [Ko-fi](https://ko-fi.com/G2G3I91JQ). I truly love what I do, and your support helps me dedicate time and resources to ongoing development. Every contribution, no matter the size, makes a difference and allows me to continue doing what I’m passionate about. Thank you for considering—it means the world to me.
 
 Image of the Character Sheet and roll messages in Foundry's chat:
 
