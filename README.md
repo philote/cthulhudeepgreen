@@ -4,6 +4,8 @@
 
 An unofficial, community-supported system for playing the Cthulhu Deep Green TTRPG (Created by Justin Ford) on Foundry VTT.
 <p align="center">
+	<img alt="Foundry Version 10 support" src="https://img.shields.io/badge/Foundry-v10-informational">
+	<img alt="Foundry Version 11 support" src="https://img.shields.io/badge/Foundry-v11-informational">
     <img alt="Foundry Version 12 support" src="https://img.shields.io/badge/Foundry-v12-informational">
     <img alt="Latest Release Download Count" src="https://img.shields.io/github/downloads/philote/cthulhudeepgreen/latest/total"> 
     <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/philote/cthulhudeepgreen"> 
