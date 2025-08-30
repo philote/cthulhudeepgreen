@@ -6,7 +6,7 @@
   "compatibility": {
     "minimum": 10,
     "verified": 12.331,
-    "maximum": 12
+    "maximum": 13
   },
   "authors": [
     {
@@ -25,6 +25,12 @@
       "path": "lang/en.json"
     }
   ],
+  "flags": {
+		"hotReload": {
+			"extensions": ["css", "html", "hbs", "json"],
+			"paths": ["css", "lang", "templates"]
+		}
+	},
   "primaryTokenAttribute": "stress",
   "secondaryTokenAttribute": "insight",
   "url": "#{URL}#",

@@ -34,3 +34,7 @@ packs/*
 
 #OS
 .DS_Store
+
+# Other
+CLAUDE.md
+.claude/

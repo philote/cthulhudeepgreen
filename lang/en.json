@@ -88,6 +88,20 @@
       "exposureIncrease": {
         "increaseMessage": "<b>Exposure</b> has increased from {oldExposure} to {newExposure}"
       }
-    }
+    },
+    "Settings": {
+			"game": {
+				"heading": "Cthulhu Deep Green",
+				"publisher": {
+					"title": "Justin Ford"
+				},
+				"github": {
+					"title": "Module Repository"
+				},
+				"kofi": {
+					"title": "Support me on Ko-fi"
+				}
+			}
+		}
   }
 }

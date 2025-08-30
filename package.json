@@ -1,24 +1,19 @@
 {
   "name": "cthulhudeepgreen",
-  "version": "1.0.0",
-  "description": "CSS compiler for the CthulhuDeepGreen system",
-  "scripts": {
-    "build": "gulp build",
-    "compile": "gulp css",
-    "watch": "gulp",
-    "gulp": "gulp"
-  },
-  "browserslist": [
-    "last 3 versions"
-  ],
-  "author": "Joseph Hopson",
-  "license": "MIT",
-  "private": true,
-  "devDependencies": {
-    "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^8.0.0",
-    "gulp-sass": "^5.1.0",
-    "gulp-sourcemaps": "^3.0.0",
-    "sass": "^1.53.0"
-  }
+  "description": "CSS compiler for the Cthulhu Deep Green system",
+	"version": "2.0.0",
+	"author": "Joseph Hopson",
+	"license": "MIT",
+	"browserslist": [
+		"last 3 versions"
+	],
+	"private": true,
+	"scripts": {
+		"build": "sass scss/cthulhudeepgreen.scss css/cthulhudeepgreen.css --style=expanded --no-source-map",
+		"watch": "sass scss/cthulhudeepgreen.scss css/cthulhudeepgreen.css --style=expanded --source-map --watch",
+		"createSymlinks": "node ./tools/create-symlinks.mjs"
+	},
+	"devDependencies": {
+		"sass": "^1.53.0"
+	}
 }

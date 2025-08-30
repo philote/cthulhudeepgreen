@@ -6,8 +6,8 @@ import { CthulhuDeepGreenActorSheet } from "./sheets/actor-sheet.mjs";
 import { CthulhuDeepGreenItemSheet } from "./sheets/item-sheet.mjs";
 // Import helper/utility classes and constants.
 import { CDG } from "./helpers/config.mjs";
+import * as utils from "./helpers/utils.mjs";
 import { ExposurePanel } from "./helpers/exposure-panel.mjs";
-import { registerSettings } from "./helpers/settings.mjs";
 
 /* -------------------------------------------- */
 /*  Init Hook                                   */
@@ -18,8 +18,7 @@ Hooks.once("init", async function () {
   // accessible in global contexts.
   game.cthulhudeepgreen = {
     CthulhuDeepGreenActor,
-    CthulhuDeepGreenItem,
-    registerSettings
+    CthulhuDeepGreenItem
   };
 
   // Add custom constants for configuration.
@@ -40,19 +39,20 @@ Hooks.once("init", async function () {
   });
 
   // Register system settings
-  registerSettings();
+  utils.registerSettings();
+  utils.registerHandlebarsHelpers();
 });
 
 Hooks.once("ready", () => {
   // Exposure
   ui.exposurePanel = new ExposurePanel();
 
-  Hooks.on('renderChatMessage', (chatMessage, html, messageData) => {
+  Hooks.on('renderChatMessage', (chatMessage, [html], messageData) => {
     const data = chatMessage.getFlag('cthulhudeepgreen', 'data');
     if (data == undefined) return;
     const cssFlag = data.css;
     if (cssFlag) {
-      html.addClass(cssFlag);
+      $(html).addClass(cssFlag);
     }
 
     if (!game.user.isGM) return;
@@ -78,12 +78,105 @@ Hooks.on('renderChatMessage', (chatMessage, [html], messageData) => {
   }
 });
 
-/* -------------------------------------------- */
-/*  Handlebars Helpers                          */
-/* -------------------------------------------- */
+Hooks.on("renderSettings", (app, html) => {
+	// --- Setting Module Configuration
+	const MODULE_CONFIG = {
+		headingKey: "CDG.Settings.game.heading",
+		sectionClass: "us2e-doc",
+		buttonsData: [
+			{
+				action: (ev) => {
+					ev.preventDefault();
+					window.open(
+						"https://moth-lands.itch.io/cthulhu-deep-green",
+						"_blank"
+					);
+				},
+				iconClasses: ["fa-solid", "fa-book"],
+				labelKey: "CDG.Settings.game.publisher.title",
+			},
+			{
+				action: (ev) => {
+					ev.preventDefault();
+					window.open("https://github.com/philote/cthulhudeepgreen", "_blank");
+				},
+				iconClasses: ["fab", "fa-github"],
+				labelKey: "CDG.Settings.game.github.title",
+			},
+			{
+				action: (ev) => {
+					ev.preventDefault();
+					window.open("https://ko-fi.com/ephson", "_blank");
+				},
+				iconClasses: ["fa-solid", "fa-mug-hot"],
+				labelKey: "CDG.Settings.game.kofi.title",
+			},
+		],
+	};
 
-// Checks whether a game setting is active
-Handlebars.registerHelper("getSetting", function(arg){
-  if (arg == "" || arg == "non" || arg == undefined) { return ; }
-  return game.settings.get('cthulhudeepgreen', arg);
+	// --- Button Creation Logic
+	const buttons = MODULE_CONFIG.buttonsData.map(
+		({ action, iconClasses, labelKey }) => {
+			const button = document.createElement("button");
+			button.type = "button";
+
+			const icon = document.createElement("i");
+			icon.classList.add(...iconClasses);
+
+			// Append icon and localized text node
+			button.append(
+				icon,
+				document.createTextNode(` ${game.i18n.localize(labelKey)}`)
+			);
+
+			button.addEventListener("click", action);
+			return button;
+		}
+	);
+
+	// --- Version Specific Logic (Reusable) ---
+	if (game.release.generation >= 13) {
+		// V13+ Logic: Insert after the "Documentation" section
+		const documentationSection = html.querySelector("section.documentation");
+		if (documentationSection) {
+			// Create section wrapper
+			const section = document.createElement("section");
+			section.classList.add(MODULE_CONFIG.sectionClass, "flexcol");
+
+			const divider = document.createElement("h4");
+			divider.classList.add("divider");
+			divider.textContent = game.i18n.localize(MODULE_CONFIG.headingKey);
+
+			// Append divider and buttons to section
+			section.append(divider, ...buttons);
+
+			// Insert section before documentation
+			documentationSection.before(section);
+		} else {
+			console.warn(
+				`${game.i18n.localize(
+					MODULE_CONFIG.headingKey
+				)} | Could not find 'section.documentation' in V13 settings panel.`
+			);
+		}
+	} else {
+		// V12 Logic: Insert after the "Game Settings" section
+		const gameSettingsSection = html[0].querySelector("#settings-game");
+		if (gameSettingsSection) {
+			const header = document.createElement("h2");
+			header.innerText = game.i18n.localize(MODULE_CONFIG.headingKey);
+
+			const settingsDiv = document.createElement("div");
+			settingsDiv.append(...buttons);
+
+			// Insert the header and the div containing buttons after the game settings section
+			gameSettingsSection.after(header, settingsDiv);
+		} else {
+			console.warn(
+				`${game.i18n.localize(
+					MODULE_CONFIG.headingKey
+				)} | Could not find '#settings-game' section in V12 settings panel.`
+			);
+		}
+	}
 });
