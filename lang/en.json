@@ -25,6 +25,8 @@
     "ActorHarmMortalWoundLabel": "Tier 3",
     "ActorTabMain": "Main",
     "ActorTabBiography": "Biography",
+    
+    "SelectOption.default": "-- Select --",
 
     "LooksNpcInput": "Looks",
     "BehaviorsNpcInput": "Behaviors",
@@ -79,18 +81,8 @@
       "exposure": {
         "name": "Enable The Exposure Track",
         "hint": "Inevitably Agents will procure assets from questionable sources or go loud when discretion is called for. This option will create an Exposure Track to track how much they have been exposed."
-      }
-    }, 
-    "dialog": {
-      "exposure.title": "Exposure"
-    }, 
-    "chat": {
-      "exposureIncrease": {
-        "increaseMessage": "<b>Exposure</b> has increased from {oldExposure} to {newExposure}"
-      }
-    },
-    "Settings": {
-			"game": {
+      },
+      "game": {
 				"heading": "Cthulhu Deep Green",
 				"publisher": {
 					"title": "Justin Ford"
@@ -102,6 +94,14 @@
 					"title": "Support me on Ko-fi"
 				}
 			}
-		}
+    }, 
+    "dialog": {
+      "exposure.title": "Exposure"
+    }, 
+    "chat": {
+      "exposureIncrease": {
+        "increaseMessage": "<b>Exposure</b> has increased from {oldExposure} to {newExposure}"
+      }
+    }
   }
 }

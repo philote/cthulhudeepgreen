@@ -18,7 +18,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
 
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["cthulhudeepgreen", "sheet", "actor"],
       tabs: [{
           navSelector: ".sheet-tabs",

@@ -5,7 +5,7 @@
 export class CthulhuDeepGreenItemSheet extends ItemSheet {
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["cthulhudeepgreen", "sheet", "item"],
       width: 310,
       height: 620,

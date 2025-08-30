@@ -81,7 +81,7 @@ Hooks.on('renderChatMessage', (chatMessage, [html], messageData) => {
 Hooks.on("renderSettings", (app, html) => {
 	// --- Setting Module Configuration
 	const MODULE_CONFIG = {
-		headingKey: "CDG.Settings.game.heading",
+		headingKey: "CDG.settings.game.heading",
 		sectionClass: "us2e-doc",
 		buttonsData: [
 			{
@@ -93,7 +93,7 @@ Hooks.on("renderSettings", (app, html) => {
 					);
 				},
 				iconClasses: ["fa-solid", "fa-book"],
-				labelKey: "CDG.Settings.game.publisher.title",
+				labelKey: "CDG.settings.game.publisher.title",
 			},
 			{
 				action: (ev) => {
@@ -101,7 +101,7 @@ Hooks.on("renderSettings", (app, html) => {
 					window.open("https://github.com/philote/cthulhudeepgreen", "_blank");
 				},
 				iconClasses: ["fab", "fa-github"],
-				labelKey: "CDG.Settings.game.github.title",
+				labelKey: "CDG.settings.game.github.title",
 			},
 			{
 				action: (ev) => {
@@ -109,7 +109,7 @@ Hooks.on("renderSettings", (app, html) => {
 					window.open("https://ko-fi.com/ephson", "_blank");
 				},
 				iconClasses: ["fa-solid", "fa-mug-hot"],
-				labelKey: "CDG.Settings.game.kofi.title",
+				labelKey: "CDG.settings.game.kofi.title",
 			},
 		],
 	};
