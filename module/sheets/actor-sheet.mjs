@@ -213,7 +213,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
   }
 
   _increaseStressByOne() {
-    let newStress = duplicate(this.actor.system.stress.value);
+    let newStress = foundry.utils.duplicate(this.actor.system.stress.value);
 
     if (newStress < 6) {
       let currentArray = this.actor.system.stress.states;
@@ -226,7 +226,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
   }
 
   _increaseInsightByOne() {
-    let newInsight = duplicate(this.actor.system.insight.value);
+    let newInsight = foundry.utils.duplicate(this.actor.system.insight.value);
 
     if (newInsight < 6) {
       let currentArray = this.actor.system.insight.states;
@@ -297,8 +297,8 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
   }
 
   darkDieChatContent(diceNumber, effectsInsight, effectsStress) {
-    const previousStress = duplicate(this.actor.system.stress.value);
-    const previousInsight = duplicate(this.actor.system.insight.value);
+    const previousStress = foundry.utils.duplicate(this.actor.system.stress.value);
+    const previousInsight = foundry.utils.duplicate(this.actor.system.insight.value);
     const rollValue = +diceNumber;
     let newStress = previousStress;
     let newInsight = previousInsight;
@@ -551,7 +551,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
   // ------------
 
   async selfCareChatContent(diceNumber) {
-    let previousStress = duplicate(this.actor.system.stress.value);
+    let previousStress = foundry.utils.duplicate(this.actor.system.stress.value);
     const rollValue = +diceNumber;
     let newStress = previousStress - rollValue;
     newStress = newStress < 0 ? 0 : newStress;
