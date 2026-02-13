@@ -22,8 +22,8 @@ export class ExposurePanel extends Application {
             ...data,
             currentExposure: savedCurrentExposure,
             exposureTitle: game.i18n.localize("CDG.dialog.exposure.title"),
-            max: 10,
-            spokes: Array(10).keys(),
+            max: 6,
+            spokes: Array(6).keys(),
             isGM: game.user.isGM
         };
     }

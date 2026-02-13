@@ -4,9 +4,14 @@
 }
 
 .chat-message-exposure {
-  background: none;
-  background-color: $c-faint;
-  border: 2px $c-dark-die-purple solid;
+  .message-content{
+    .heat {
+      h3 {
+        color: $c-lt-grey;
+        font-size: large;
+      }
+    }
+  }
 }
 
 .exposure-panel {

@@ -225,10 +225,9 @@
   pointer-events: none;
 }
 
-.chat-message-exposure {
-  background: none;
-  background-color: #c9c7b8;
-  border: 2px #ad25b9 solid;
+.chat-message-exposure .message-content .heat h3 {
+  color: #bebebe;
+  font-size: large;
 }
 
 .exposure-panel {
