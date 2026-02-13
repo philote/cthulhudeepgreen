@@ -29,12 +29,12 @@ Hooks.once("init", async function () {
   CONFIG.Item.documentClass = CthulhuDeepGreenItem;
 
   // Register sheet application classes
-  Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("cthulhudeepgreen", CthulhuDeepGreenActorSheet, {
+  foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
+  foundry.documents.collections.Actors.registerSheet("cthulhudeepgreen", CthulhuDeepGreenActorSheet, {
     makeDefault: true,
   });
-  Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("cthulhudeepgreen", CthulhuDeepGreenItemSheet, {
+  foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
+  foundry.documents.collections.Items.registerSheet("cthulhudeepgreen", CthulhuDeepGreenItemSheet, {
     makeDefault: true,
   });
 

@@ -69,7 +69,7 @@ export class ExposurePanel extends Application {
         };
         
         const template = 'systems/cthulhudeepgreen/templates/msg/exposure-increased-chat-msg.hbs';
-        const rendered_html = await renderTemplate(template, dialogData);
+        const rendered_html = await foundry.applications.handlebars.renderTemplate(template, dialogData);
       
         ChatMessage.create({
             content: rendered_html,

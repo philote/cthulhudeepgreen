@@ -2,7 +2,7 @@
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-export class CthulhuDeepGreenActorSheet extends ActorSheet {
+export class CthulhuDeepGreenActorSheet extends foundry.appv1.sheets.ActorSheet {
   constructor(...args) {
     super(...args);
 
@@ -352,7 +352,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
     return await new Promise(async (resolve) => {
       new Dialog({
           title: game.i18n.localize("CDG.DarkDieDialogTitle"),
-          content: await renderTemplate('systems/cthulhudeepgreen/templates/dialog/dark-die.hbs'),
+          content: await foundry.applications.handlebars.renderTemplate('systems/cthulhudeepgreen/templates/dialog/dark-die.hbs'),
           buttons: {
             button1: {
               icon: '<i class="fa-solid fa-dice"></i>',
@@ -392,7 +392,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
                   riskMessage: riskMessage
                 }
                 const template = 'systems/cthulhudeepgreen/templates/msg/dark-die-chat-content.hbs';
-                const rendered_html = await renderTemplate(template, dialogData);
+                const rendered_html = await foundry.applications.handlebars.renderTemplate(template, dialogData);
             
                 ChatMessage.create({
                   user: game.user_id,
@@ -426,7 +426,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
     const dialogData = {
       DarkDieColor: CONFIG.CDG.DarkDieColor
     };
-    return await renderTemplate('systems/cthulhudeepgreen/templates/dialog/risky-thing.hbs', dialogData);
+    return await foundry.applications.handlebars.renderTemplate('systems/cthulhudeepgreen/templates/dialog/risky-thing.hbs', dialogData);
   }
 
   async asyncCDGRiskyThingDialog() {
@@ -516,7 +516,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
                   riskMessage: riskMessage
                 }
                 const template = 'systems/cthulhudeepgreen/templates/msg/risky-thing-chat-content.hbs';
-                const rendered_html = await renderTemplate(template, dialogData);
+                const rendered_html = await foundry.applications.handlebars.renderTemplate(template, dialogData);
             
                 ChatMessage.create({
                   user: game.user_id,
@@ -565,7 +565,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
       selfCareRollContent: game.i18n.format("CDG.SelfCareRollContent", {previousstress: previousStress, newstress: newStress})
     }
     const template = 'systems/cthulhudeepgreen/templates/msg/self-care-chat-content.hbs';
-    return await renderTemplate(template, dialogData);
+    return await foundry.applications.handlebars.renderTemplate(template, dialogData);
   }
 
   async simpleRoll(rollType) {
@@ -583,7 +583,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
           diceOutput: this.getDiceForOutput(simpleRoll.result, CONFIG.CDG.BaseColor),
         }
         const template = 'systems/cthulhudeepgreen/templates/msg/failure-chat-content.hbs';
-        chatContentMessage = await renderTemplate(template, dialogData);
+        chatContentMessage = await foundry.applications.handlebars.renderTemplate(template, dialogData);
         break;
       }
       default: {
