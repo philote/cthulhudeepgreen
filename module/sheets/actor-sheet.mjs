@@ -242,6 +242,16 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
   // Dice rolling functions
   // ----------------------
 
+  _configureDiceSoNiceAppearance(roll, backgroundColor) {
+    if (game.dice3d) {
+      roll.dice[0].options.appearance = {
+        colorset: "custom",
+        foreground: "#000000",
+        background: backgroundColor,
+      };
+    }
+  }
+
   getDiceForOutput(dieNumber, colorHex) {
     switch (dieNumber) {
       case 1:
@@ -358,6 +368,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
                 const darkDieRoll = await new Roll("1d6").evaluate({
                   async: true,
                 });
+                this._configureDiceSoNiceAppearance(darkDieRoll, CONFIG.CDG.DarkDieColor);
 
                 let riskMessage = this.darkDieChatContent(
                   darkDieRoll.result,
@@ -390,6 +401,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
                   speaker: ChatMessage.getSpeaker({ actor: this.actor }),
                   rollMode: game.settings.get("core", "rollMode"),
                   content: rendered_html,
+                  rolls: [darkDieRoll],
                   flags: { cthulhudeepgreen: { chatID: "cthulhudeepgreen" }}
                 });
 
@@ -402,8 +414,8 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
             resolve(null);
           },
         },
-        { 
-          id: "cdg-dialog-darkdie" 
+        {
+          id: "cdg-dialog-darkdie"
       }).render(true);
     });
   }
@@ -438,6 +450,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
                     dieColor: CONFIG.CDG.BaseColor,
                     isRisk: false,
                     rollVal: hdRoll.result,
+                    roll: hdRoll,
                   });
                 }
 
@@ -447,6 +460,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
                     dieColor: CONFIG.CDG.BaseColor,
                     isRisk: false,
                     rollVal: odRoll.result,
+                    roll: odRoll,
                   });
                 }
 
@@ -456,6 +470,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
                     dieColor: CONFIG.CDG.DarkDieColor,
                     isRisk: true,
                     rollVal: idRoll.result,
+                    roll: idRoll,
                   });
                 }
 
@@ -510,6 +525,10 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
                   speaker: ChatMessage.getSpeaker({ actor: this.actor }),
                   rollMode: game.settings.get("core", "rollMode"),
                   content: rendered_html,
+                  rolls: dice.map((die) => {
+                    this._configureDiceSoNiceAppearance(die.roll, die.dieColor);
+                    return die.roll;
+                  }),
                   flags: { cthulhudeepgreen: { chatID: "cthulhudeepgreen" }}
                 });
 
@@ -553,6 +572,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
 
   async simpleRoll(rollType) {
     let simpleRoll = await new Roll("1d6").evaluate({ async: true });
+    this._configureDiceSoNiceAppearance(simpleRoll, CONFIG.CDG.BaseColor);
     let chatContentMessage = "";
 
     switch (rollType) {
@@ -580,6 +600,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
       rollMode: game.settings.get("core", "rollMode"),
       content: chatContentMessage,
+      rolls: [simpleRoll],
       flags: { cthulhudeepgreen: { chatID: "cthulhudeepgreen" }}
     });
   }
