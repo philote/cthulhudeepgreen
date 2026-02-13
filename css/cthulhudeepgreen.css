@@ -234,7 +234,7 @@
 .exposure-panel {
   position: absolute;
   top: 30px;
-  right: 325px;
+  right: 365px;
 }
 .exposure-panel .exposure {
   background: #363636;
@@ -314,12 +314,6 @@
 }
 
 /* Styles limited to cthulhudeepgreen sheets */
-.cthulhudeepgreen {
-  /* ----------------------------------------- */
-  /*  Items Lists                              */
-  /* ----------------------------------------- */
-  /* Example style for CthulhuDeepGreen (can be removed if not needed) */
-}
 .cthulhudeepgreen .item-form {
   font-family: "Roboto", sans-serif;
 }
@@ -672,6 +666,11 @@
   text-align: left;
   display: flex;
 }
+.cthulhudeepgreen {
+  /* ----------------------------------------- */
+  /*  Items Lists                              */
+  /* ----------------------------------------- */
+}
 .cthulhudeepgreen .items-list {
   list-style: none;
   margin: 0;
@@ -750,6 +749,9 @@
 .cthulhudeepgreen .items-list .items-header .item-name {
   padding-left: 5px;
   text-align: left;
+}
+.cthulhudeepgreen {
+  /* Example style for CthulhuDeepGreen (can be removed if not needed) */
 }
 .cthulhudeepgreen .item-formula {
   flex: 0 0 200px;
