@@ -365,9 +365,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
 
                 if (!darkDieEffectsInsight && !darkDieEffectsStress) {return;}
 
-                const darkDieRoll = await new Roll("1d6").evaluate({
-                  async: true,
-                });
+                const darkDieRoll = await new Roll("1d6").evaluate();
                 this._configureDiceSoNiceAppearance(darkDieRoll, CONFIG.CDG.DarkDieColor);
 
                 let riskMessage = this.darkDieChatContent(
@@ -445,7 +443,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
                 // get and roll selected dice
                 const dice = [];
                 if (document.getElementById("humanDie").checked) {
-                  let hdRoll = await new Roll("1d6").evaluate({ async: true });
+                  let hdRoll = await new Roll("1d6").evaluate();
                   dice.push({
                     dieColor: CONFIG.CDG.BaseColor,
                     isRisk: false,
@@ -455,7 +453,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
                 }
 
                 if (document.getElementById("occupationalDie").checked) {
-                  let odRoll = await new Roll("1d6").evaluate({ async: true });
+                  let odRoll = await new Roll("1d6").evaluate();
                   dice.push({
                     dieColor: CONFIG.CDG.BaseColor,
                     isRisk: false,
@@ -465,7 +463,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
                 }
 
                 if (document.getElementById("darkDie").checked) {
-                  let idRoll = await new Roll("1d6").evaluate({ async: true });
+                  let idRoll = await new Roll("1d6").evaluate();
                   dice.push({
                     dieColor: CONFIG.CDG.DarkDieColor,
                     isRisk: true,
@@ -571,7 +569,7 @@ export class CthulhuDeepGreenActorSheet extends ActorSheet {
   }
 
   async simpleRoll(rollType) {
-    let simpleRoll = await new Roll("1d6").evaluate({ async: true });
+    let simpleRoll = await new Roll("1d6").evaluate();
     this._configureDiceSoNiceAppearance(simpleRoll, CONFIG.CDG.BaseColor);
     let chatContentMessage = "";
 

@@ -47,12 +47,12 @@ Hooks.once("ready", () => {
   // Exposure
   ui.exposurePanel = new ExposurePanel();
 
-  Hooks.on('renderChatMessage', (chatMessage, [html], messageData) => {
+  Hooks.on('renderChatMessageHTML', (chatMessage, html) => {
     const data = chatMessage.getFlag('cthulhudeepgreen', 'data');
     if (data == undefined) return;
     const cssFlag = data.css;
     if (cssFlag) {
-      $(html).addClass(cssFlag);
+      html.classList.add(cssFlag);
     }
 
     if (!game.user.isGM) return;
@@ -71,10 +71,10 @@ Hooks.on("ready", () => {
   }
 });
 
-Hooks.on('renderChatMessage', (chatMessage, [html], messageData) => {
+Hooks.on('renderChatMessageHTML', (chatMessage, html) => {
   const flag = chatMessage.getFlag('cthulhudeepgreen', 'chatID');
   if (flag && flag == "cthulhudeepgreen") {
-    $(html).addClass("roll-chat");
+    html.classList.add("roll-chat");
   }
 });
 
