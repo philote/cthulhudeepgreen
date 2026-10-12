@@ -22,8 +22,8 @@ export class ExposurePanel extends Application {
             ...data,
             currentExposure: savedCurrentExposure,
             exposureTitle: game.i18n.localize("CDG.dialog.exposure.title"),
-            max: 6,
-            spokes: Array(6).keys(),
+            max: CONFIG.CDG.ExposureMax,
+            spokes: Array(CONFIG.CDG.ExposureMax).keys(),
             isGM: game.user.isGM
         };
     }
@@ -57,6 +57,7 @@ export class ExposurePanel extends Application {
 
     async _createExposureChatMessage() {
         const oldExposure = game.settings.get("cthulhudeepgreen", "current-exposure");
+        if (oldExposure >= CONFIG.CDG.ExposureMax) return;
         const newExposure = oldExposure + 1;
       
         const increaseMessage = game.i18n.format("CDG.chat.exposureIncrease.increaseMessage", {

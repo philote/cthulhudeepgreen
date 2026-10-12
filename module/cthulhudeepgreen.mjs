@@ -64,7 +64,7 @@ Hooks.once("ready", () => {
 
     const exposureUpdate = data.exposureUpdate;
     const exposure = data.exposure;
-    if (exposureUpdate && (exposure >= 0 && exposure <= 10)) {
+    if (exposureUpdate && (exposure >= 0 && exposure <= CONFIG.CDG.ExposureMax)) {
       game.settings.set("cthulhudeepgreen", "current-exposure", exposure);
     }
   });
