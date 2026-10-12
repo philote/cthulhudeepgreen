@@ -54,8 +54,13 @@ Hooks.once("ready", () => {
     if (cssFlag) {
       html.classList.add(cssFlag);
     }
+  });
 
-    if (!game.user.isGM) return;
+  // Apply Exposure changes once, when the message is created, not every time it renders
+  Hooks.on('createChatMessage', (chatMessage) => {
+    if (!game.user.isActiveGM) return;
+    const data = chatMessage.getFlag('cthulhudeepgreen', 'data');
+    if (data == undefined) return;
 
     const exposureUpdate = data.exposureUpdate;
     const exposure = data.exposure;

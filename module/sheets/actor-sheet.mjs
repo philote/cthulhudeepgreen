@@ -121,7 +121,6 @@ export class CthulhuDeepGreenActorSheet extends foundry.appv1.sheets.ActorSheet 
       roll.toMessage({
         speaker: ChatMessage.getSpeaker({ actor: this.actor }),
         flavor: label,
-        rollMode: game.settings.get("core", "rollMode"),
       });
       return roll;
     }
@@ -395,13 +394,11 @@ export class CthulhuDeepGreenActorSheet extends foundry.appv1.sheets.ActorSheet 
                 const rendered_html = await foundry.applications.handlebars.renderTemplate(template, dialogData);
             
                 ChatMessage.create({
-                  user: game.user_id,
                   speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-                  rollMode: game.settings.get("core", "rollMode"),
                   content: rendered_html,
                   rolls: [darkDieRoll],
                   flags: { cthulhudeepgreen: { chatID: "cthulhudeepgreen" }}
-                });
+                }, { messageMode: game.settings.get("core", "messageMode") });
 
                 // ----
                 resolve(null);
@@ -476,6 +473,8 @@ export class CthulhuDeepGreenActorSheet extends foundry.appv1.sheets.ActorSheet 
                   document.getElementById("insight").checked &&
                   document.getElementById("darkDie").checked;
 
+                if (dice.length === 0) {return;}
+
                 const maxDie = dice.reduce((a, b) =>
                   a.rollVal > b.rollVal ? a : b
                 );
@@ -519,16 +518,14 @@ export class CthulhuDeepGreenActorSheet extends foundry.appv1.sheets.ActorSheet 
                 const rendered_html = await foundry.applications.handlebars.renderTemplate(template, dialogData);
             
                 ChatMessage.create({
-                  user: game.user_id,
                   speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-                  rollMode: game.settings.get("core", "rollMode"),
                   content: rendered_html,
                   rolls: dice.map((die) => {
-                    this._configureDiceSoNiceAppearance(die.roll, die.dieColor);
+                    if (die.isRisk) this._configureDiceSoNiceAppearance(die.roll, die.dieColor);
                     return die.roll;
                   }),
                   flags: { cthulhudeepgreen: { chatID: "cthulhudeepgreen" }}
-                });
+                }, { messageMode: game.settings.get("core", "messageMode") });
 
                 // ----
                 resolve(null);
@@ -570,7 +567,6 @@ export class CthulhuDeepGreenActorSheet extends foundry.appv1.sheets.ActorSheet 
 
   async simpleRoll(rollType) {
     let simpleRoll = await new Roll("1d6").evaluate();
-    this._configureDiceSoNiceAppearance(simpleRoll, CONFIG.CDG.BaseColor);
     let chatContentMessage = "";
 
     switch (rollType) {
@@ -594,12 +590,10 @@ export class CthulhuDeepGreenActorSheet extends foundry.appv1.sheets.ActorSheet 
     
     // ------
     ChatMessage.create({
-      user: game.user_id,
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      rollMode: game.settings.get("core", "rollMode"),
       content: chatContentMessage,
       rolls: [simpleRoll],
       flags: { cthulhudeepgreen: { chatID: "cthulhudeepgreen" }}
-    });
+    }, { messageMode: game.settings.get("core", "messageMode") });
   }
 }

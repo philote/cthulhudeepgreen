@@ -4,9 +4,9 @@
   "description": "An Unofficial Cthulhu Deep Green system for Foundry VTT.",
   "version": "#{VERSION}#",
   "compatibility": {
-    "minimum": 12,
-    "verified": 13.351,
-    "maximum": 13
+    "minimum": 14,
+    "verified": 14.369,
+    "maximum": 14
   },
   "authors": [
     {
