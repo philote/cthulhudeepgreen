@@ -348,71 +348,54 @@ export class CthulhuDeepGreenActorSheet extends foundry.appv1.sheets.ActorSheet 
   // -------------
 
   async asyncCDGDarkDieRollDialog() {
-    return await new Promise(async (resolve) => {
-      new Dialog({
-          title: game.i18n.localize("CDG.DarkDieDialogTitle"),
-          content: await foundry.applications.handlebars.renderTemplate('systems/cthulhudeepgreen/templates/dialog/dark-die.hbs'),
-          buttons: {
-            button1: {
-              icon: '<i class="fa-solid fa-dice"></i>',
-              label: game.i18n.localize("CDG.ActionRoll"),
-              callback: async (html) => {
-                const darkDieEffectsInsight =
-                  document.getElementById("insight").checked;
-                const darkDieEffectsStress =
-                  document.getElementById("stress").checked;
-
-                if (!darkDieEffectsInsight && !darkDieEffectsStress) {return;}
-
-                const darkDieRoll = await new Roll("1d6").evaluate();
-                this._configureDiceSoNiceAppearance(darkDieRoll, CONFIG.CDG.DarkDieColor);
-
-                let riskMessage = this.darkDieChatContent(
-                  darkDieRoll.result,
-                  darkDieEffectsInsight,
-                  darkDieEffectsStress
-                );
-                
-                let diceOutput = this.getDiceForOutput(
-                  darkDieRoll.result,
-                  CONFIG.CDG.DarkDieColor
-                );
-
-                if (!riskMessage) {
-                  riskMessage = game.i18n.localize(
-                    "CDG.DialogDarkDieRollPositive"
-                  );
-                }
-
-                // ------
-                // chat message setup
-                const dialogData = {
-                  diceOutput: diceOutput,
-                  riskMessage: riskMessage
-                }
-                const template = 'systems/cthulhudeepgreen/templates/msg/dark-die-chat-content.hbs';
-                const rendered_html = await foundry.applications.handlebars.renderTemplate(template, dialogData);
-            
-                ChatMessage.create({
-                  speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-                  content: rendered_html,
-                  rolls: [darkDieRoll],
-                  flags: { cthulhudeepgreen: { chatID: "cthulhudeepgreen" }}
-                }, { messageMode: game.settings.get("core", "messageMode") });
-
-                // ----
-                resolve(null);
-              },
-            },
-          },
-          close: () => {
-            resolve(null);
-          },
-        },
-        {
-          id: "cdg-dialog-darkdie"
-      }).render(true);
+    const data = await foundry.applications.api.DialogV2.input({
+      id: "cdg-dialog-darkdie",
+      window: { title: "CDG.DarkDieDialogTitle" },
+      content: await foundry.applications.handlebars.renderTemplate('systems/cthulhudeepgreen/templates/dialog/dark-die.hbs'),
+      ok: { icon: "fa-solid fa-dice", label: "CDG.ActionRoll" },
     });
+    if (!data) {return;}
+
+    const darkDieEffectsInsight = data.insight;
+    const darkDieEffectsStress = data.stress;
+
+    if (!darkDieEffectsInsight && !darkDieEffectsStress) {return;}
+
+    const darkDieRoll = await new Roll("1d6").evaluate();
+    this._configureDiceSoNiceAppearance(darkDieRoll, CONFIG.CDG.DarkDieColor);
+
+    let riskMessage = this.darkDieChatContent(
+      darkDieRoll.result,
+      darkDieEffectsInsight,
+      darkDieEffectsStress
+    );
+
+    let diceOutput = this.getDiceForOutput(
+      darkDieRoll.result,
+      CONFIG.CDG.DarkDieColor
+    );
+
+    if (!riskMessage) {
+      riskMessage = game.i18n.localize(
+        "CDG.DialogDarkDieRollPositive"
+      );
+    }
+
+    // ------
+    // chat message setup
+    const dialogData = {
+      diceOutput: diceOutput,
+      riskMessage: riskMessage
+    }
+    const template = 'systems/cthulhudeepgreen/templates/msg/dark-die-chat-content.hbs';
+    const rendered_html = await foundry.applications.handlebars.renderTemplate(template, dialogData);
+
+    ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      content: rendered_html,
+      rolls: [darkDieRoll],
+      flags: { cthulhudeepgreen: { chatID: "cthulhudeepgreen" }}
+    }, { messageMode: game.settings.get("core", "messageMode") });
   }
 
   // ----------------
@@ -427,118 +410,101 @@ export class CthulhuDeepGreenActorSheet extends foundry.appv1.sheets.ActorSheet 
   }
 
   async asyncCDGRiskyThingDialog() {
-    return await new Promise(async (resolve) => {
-      new Dialog(
-        {
-          title: game.i18n.localize("CDG.RiskyDialogTitle"),
-          content: await this.riskyDialogContent(),
-          buttons: {
-            button1: {
-              icon: '<i class="fa-solid fa-dice"></i>',
-              label: game.i18n.localize("CDG.ActionRoll"),
-              callback: async (html) => {
-                // get and roll selected dice
-                const dice = [];
-                if (document.getElementById("humanDie").checked) {
-                  let hdRoll = await new Roll("1d6").evaluate();
-                  dice.push({
-                    dieColor: CONFIG.CDG.BaseColor,
-                    isRisk: false,
-                    rollVal: hdRoll.result,
-                    roll: hdRoll,
-                  });
-                }
-
-                if (document.getElementById("occupationalDie").checked) {
-                  let odRoll = await new Roll("1d6").evaluate();
-                  dice.push({
-                    dieColor: CONFIG.CDG.BaseColor,
-                    isRisk: false,
-                    rollVal: odRoll.result,
-                    roll: odRoll,
-                  });
-                }
-
-                if (document.getElementById("darkDie").checked) {
-                  let idRoll = await new Roll("1d6").evaluate();
-                  dice.push({
-                    dieColor: CONFIG.CDG.DarkDieColor,
-                    isRisk: true,
-                    rollVal: idRoll.result,
-                    roll: idRoll,
-                  });
-                }
-
-                const darkDieEffectsInsight =
-                  document.getElementById("insight").checked &&
-                  document.getElementById("darkDie").checked;
-
-                if (dice.length === 0) {return;}
-
-                const maxDie = dice.reduce((a, b) =>
-                  a.rollVal > b.rollVal ? a : b
-                );
-
-                // Determine if the risk die won
-                let isRiskDie = false;
-                dice.every((die) => {
-                  if (die.rollVal == maxDie.rollVal && die.isRisk) {
-                    isRiskDie = true;
-                    return false;
-                  }
-                  return true;
-                });
-
-                let riskMessage = "";
-                if (isRiskDie) {
-                  riskMessage = this.darkDieChatContent(
-                    maxDie.rollVal,
-                    darkDieEffectsInsight,
-                    true
-                  );
-                }
-
-                // Build Dice list
-                let diceOutput = "";
-                dice.forEach((die) => {
-                  diceOutput = diceOutput.concat(
-                    this.getDiceForOutput(die.rollVal, die.dieColor),
-                    " "
-                  );
-                });
-
-                // ------
-                // chat message setup
-                const dialogData = {
-                  diceOutput: diceOutput,
-                  maxDieNumber: this.getMaxDieMessage(maxDie.rollVal),
-                  riskMessage: riskMessage
-                }
-                const template = 'systems/cthulhudeepgreen/templates/msg/risky-thing-chat-content.hbs';
-                const rendered_html = await foundry.applications.handlebars.renderTemplate(template, dialogData);
-            
-                ChatMessage.create({
-                  speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-                  content: rendered_html,
-                  rolls: dice.map((die) => {
-                    if (die.isRisk) this._configureDiceSoNiceAppearance(die.roll, die.dieColor);
-                    return die.roll;
-                  }),
-                  flags: { cthulhudeepgreen: { chatID: "cthulhudeepgreen" }}
-                }, { messageMode: game.settings.get("core", "messageMode") });
-
-                // ----
-                resolve(null);
-              },
-            },
-          },
-          close: () => {
-            resolve(null);
-          },
-        },
-        { id: "cdg-dialog-risky" }
-      ).render(true);
+    const data = await foundry.applications.api.DialogV2.input({
+      id: "cdg-dialog-risky",
+      window: { title: "CDG.RiskyDialogTitle" },
+      content: await this.riskyDialogContent(),
+      ok: { icon: "fa-solid fa-dice", label: "CDG.ActionRoll" },
     });
+    if (!data) {return;}
+
+    // get and roll selected dice
+    const dice = [];
+    if (data.humanDie) {
+      let hdRoll = await new Roll("1d6").evaluate();
+      dice.push({
+        dieColor: CONFIG.CDG.BaseColor,
+        isRisk: false,
+        rollVal: hdRoll.result,
+        roll: hdRoll,
+      });
+    }
+
+    if (data.occupationalDie) {
+      let odRoll = await new Roll("1d6").evaluate();
+      dice.push({
+        dieColor: CONFIG.CDG.BaseColor,
+        isRisk: false,
+        rollVal: odRoll.result,
+        roll: odRoll,
+      });
+    }
+
+    if (data.darkDie) {
+      let idRoll = await new Roll("1d6").evaluate();
+      dice.push({
+        dieColor: CONFIG.CDG.DarkDieColor,
+        isRisk: true,
+        rollVal: idRoll.result,
+        roll: idRoll,
+      });
+    }
+
+    const darkDieEffectsInsight = data.insight && data.darkDie;
+
+    if (dice.length === 0) {return;}
+
+    const maxDie = dice.reduce((a, b) =>
+      a.rollVal > b.rollVal ? a : b
+    );
+
+    // Determine if the risk die won
+    let isRiskDie = false;
+    dice.every((die) => {
+      if (die.rollVal == maxDie.rollVal && die.isRisk) {
+        isRiskDie = true;
+        return false;
+      }
+      return true;
+    });
+
+    let riskMessage = "";
+    if (isRiskDie) {
+      riskMessage = this.darkDieChatContent(
+        maxDie.rollVal,
+        darkDieEffectsInsight,
+        true
+      );
+    }
+
+    // Build Dice list
+    let diceOutput = "";
+    dice.forEach((die) => {
+      diceOutput = diceOutput.concat(
+        this.getDiceForOutput(die.rollVal, die.dieColor),
+        " "
+      );
+    });
+
+    // ------
+    // chat message setup
+    const dialogData = {
+      diceOutput: diceOutput,
+      maxDieNumber: this.getMaxDieMessage(maxDie.rollVal),
+      riskMessage: riskMessage
+    }
+    const template = 'systems/cthulhudeepgreen/templates/msg/risky-thing-chat-content.hbs';
+    const rendered_html = await foundry.applications.handlebars.renderTemplate(template, dialogData);
+
+    ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      content: rendered_html,
+      rolls: dice.map((die) => {
+        if (die.isRisk) this._configureDiceSoNiceAppearance(die.roll, die.dieColor);
+        return die.roll;
+      }),
+      flags: { cthulhudeepgreen: { chatID: "cthulhudeepgreen" }}
+    }, { messageMode: game.settings.get("core", "messageMode") });
   }
 
   // ------------

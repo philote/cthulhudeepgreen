@@ -767,11 +767,16 @@
   background-repeat: no-repeat;
   color: #cbd9cd;
 }
-#cdg-dialog-risky .dialog-buttons button,
-#cdg-dialog-darkdie .dialog-buttons button {
+#cdg-dialog-risky .form-footer button,
+#cdg-dialog-darkdie .form-footer button {
   background: rgba(255, 255, 240, 0.8);
   border: none;
   margin: 0 5px 0 0;
+  color: #191813;
 }
-
-/*# sourceMappingURL=cthulhudeepgreen.css.map */
+#cdg-dialog-risky .form-footer button:hover, #cdg-dialog-risky .form-footer button:focus,
+#cdg-dialog-darkdie .form-footer button:hover,
+#cdg-dialog-darkdie .form-footer button:focus {
+  background: #ffffff;
+  color: #191813;
+}

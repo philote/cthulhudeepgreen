@@ -9,10 +9,17 @@
     color: $c-title;
   }
 
-  .dialog-buttons button {
+  .form-footer button {
     background: $c-light-yellow-80;
     border: none;
     margin: 0 5px 0 0;
+    color: $c-dark;
+
+    &:hover,
+    &:focus {
+      background: $c-white;
+      color: $c-dark;
+    }
   }
 
 }
