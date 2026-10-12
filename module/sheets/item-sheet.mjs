@@ -1,62 +1,48 @@
+const { HandlebarsApplicationMixin } = foundry.applications.api;
+
 /**
- * Extend the basic ItemSheet with some very simple modifications
- * @extends {ItemSheet}
+ * Extend the basic ItemSheetV2 with some very simple modifications
+ * @extends {ItemSheetV2}
  */
-export class CthulhuDeepGreenItemSheet extends foundry.appv1.sheets.ItemSheet {
+export class CthulhuDeepGreenItemSheet extends HandlebarsApplicationMixin(foundry.applications.sheets.ItemSheetV2) {
   /** @override */
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["cthulhudeepgreen", "sheet", "item"],
-      width: 310,
-      height: 620,
-      tabs: [
-        {
-          navSelector: ".sheet-tabs",
-          contentSelector: ".sheet-body",
-          initial: "description",
-        },
-      ],
-    });
-  }
+  static DEFAULT_OPTIONS = {
+    classes: ["cthulhudeepgreen", "sheet", "item"],
+    position: { width: 310, height: 620 },
+    window: { resizable: true },
+    form: { submitOnChange: true },
+  };
 
   /** @override */
-  get template() {
-    return `systems/cthulhudeepgreen/templates/item/item-sheet.hbs`;
-  }
+  static PARTS = {
+    sheet: { template: "systems/cthulhudeepgreen/templates/item/item-sheet.hbs" },
+  };
 
   /* -------------------------------------------- */
 
   /** @override */
-  getData() {
-    // Retrieve base data structure.
-    const context = super.getData();
+  async _prepareContext(options) {
+    const context = await super._prepareContext(options);
 
-    // Use a safe clone of the item data for further operations.
-    const itemData = context.item;
+    // Add the item's data to context for easier access, as well as flags.
+    context.item = this.item;
+    context.system = this.item.system;
+    context.flags = this.item.flags;
 
-    // Retrieve the roll data for TinyMCE editors.
-    context.rollData = {};
-    let actor = this.object?.parent ?? null;
-    if (actor) {
-      context.rollData = actor.getRollData();
-    }
-
-    // Add the actor's data to context.data for easier access, as well as flags.
-    context.system = itemData.system;
-    context.flags = itemData.flags;
+    // Enriched description for the ProseMirror editor.
+    context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.item.system.description, {
+      secrets: this.item.isOwner,
+      rollData: this.item.getRollData() ?? {},
+      relativeTo: this.item,
+    });
 
     return context;
   }
 
-  /* -------------------------------------------- */
-
-  /** @override */
-  activateListeners(html) {
-    super.activateListeners(html);
-
-    // Everything below here is only needed if the sheet is editable
-    if (!this.isEditable) return;
-
-    // Roll handlers, click handlers, etc. would go here.
+  /** @inheritDoc */
+  async _onRender(context, options) {
+    await super._onRender(context, options);
+    // Mark sheets the user can view but not edit, so their fields can be dimmed
+    this.element.classList.toggle("read-only", !this.isEditable);
   }
 }

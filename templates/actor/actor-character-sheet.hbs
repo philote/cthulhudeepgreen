@@ -1,8 +1,8 @@
-<form class="{{cssClass}} {{actor.type}} flexcol" autocomplete="off">
+<div class="{{actor.type}} flexcol">
 
   {{!-- Sheet Header --}}
   <header class="sheet-header">
-    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="180" width="180"/>
+    <img class="profile-img" src="{{actor.img}}" data-action="editImage" data-edit="img" title="{{actor.name}}" height="180" width="180"/>
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize "CDG.ActorName"}}"/></h1>
       
@@ -21,7 +21,7 @@
           {{localize "CDG.ActorInsight"}}
           <!-- <b class="rollable" data-roll-type="clear-insight" style="color: {{system.insight.color}}">{{localize "CTHULHUDARK.Insight"}}</b> -->
           {{#each system.insight.states as |state count|}}
-            <input class="rollable" type="checkbox" data-pos="{{count}}" data-roll-type="toggle-insight" {{#if state}}checked{{/if}} >
+            <input class="rollable" type="checkbox" data-action="roll" data-pos="{{count}}" data-roll-type="toggle-insight" {{#if state}}checked{{/if}} >
           {{/each}}
         </div>
 
@@ -29,7 +29,7 @@
           {{localize "CDG.ActorStress"}}
           <!-- <b class="rollable" data-roll-type="clear-insight" style="color: {{system.insight.color}}">{{localize "CTHULHUDARK.Insight"}}</b> -->
           {{#each system.stress.states as |state count|}}
-            <input class="rollable" type="checkbox" data-pos="{{count}}" data-roll-type="toggle-stress" {{#if state}}checked{{/if}} >
+            <input class="rollable" type="checkbox" data-action="roll" data-pos="{{count}}" data-roll-type="toggle-stress" {{#if state}}checked{{/if}} >
           {{/each}}
         </div>
       </section>
@@ -38,15 +38,15 @@
 
   {{!-- Sheet Tab Navigation --}}
   <nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="main">{{localize "CDG.ActorTabMain"}}</a>
-    <a class="item" data-tab="biography">{{localize "CDG.ActorTabBiography"}}</a>
+    <a class="item {{tabs.main.cssClass}}" data-action="tab" data-group="primary" data-tab="main">{{localize tabs.main.label}}</a>
+    <a class="item {{tabs.biography.cssClass}}" data-action="tab" data-group="primary" data-tab="biography">{{localize tabs.biography.label}}</a>
   </nav>
 
   {{!-- Sheet Body --}}
   <section class="sheet-body">
 
     {{!-- Main Tab --}}
-    <div class="tab full-height" data-group="primary" data-tab="main">
+    <div class="tab full-height {{tabs.main.cssClass}}" data-group="primary" data-tab="main">
       <section class="grid grid-2col full-height">
         <section class="grid-span-1">
           <h3>{{localize "CDG.ActorDisorders"}}</h3>
@@ -65,7 +65,7 @@
             <div class="rollbox">
               <div class="rolltitle">
                 <h3>{{localize "CDG.ActionRiskyThingTitle"}}</h3>
-                <button class="rollable" data-roll-type="riskything"><i class="fa-solid fa-dice"></i>{{localize "CDG.ActionRoll"}}</button>
+                <button type="button" class="rollable" data-action="roll" data-roll-type="riskything"><i class="fa-solid fa-dice"></i>{{localize "CDG.ActionRoll"}}</button>
               </div>
               <p>{{localize "CDG.ActionRiskyThingDesc"}}</p>
             </div>
@@ -73,7 +73,7 @@
             <div class="rollbox">
               <div class="rolltitle">
                 <h3>{{localize "CDG.ActionFailureTitle"}}</h3>
-                <button class="rollable" data-roll-type="failure"><i class="fa-solid fa-dice"></i>{{localize "CDG.ActionRoll"}}</button>
+                <button type="button" class="rollable" data-action="roll" data-roll-type="failure"><i class="fa-solid fa-dice"></i>{{localize "CDG.ActionRoll"}}</button>
               </div>
               <p>{{localize "CDG.ActionFailureDesc"}}</p>
             </div>
@@ -85,7 +85,7 @@
         <section class="right-side grid-span-1 full-height">
           <div class="harm-label">
             <h3>{{localize "CDG.ActorHarm"}}</h3>
-            <button class="rollable" data-roll-type="clearharm"><i class="fa-solid fa-circle-x"></i>{{localize "CDG.ClearHarm"}}</button>
+            <button type="button" class="rollable" data-action="roll" data-roll-type="clearharm"><i class="fa-solid fa-circle-x"></i>{{localize "CDG.ClearHarm"}}</button>
           </div>
           {{#each system.harm as |harm key|}}
             <div class="harm">
@@ -98,7 +98,7 @@
             <div class="rollbox">
               <div class="rolltitle">
                 <h3>{{localize "CDG.ActionDarkDieTitle"}}</h3>
-                <button class="rollable" data-roll-type="darkdie"><i class="fa-solid fa-dice"></i>{{localize "CDG.ActionRoll"}}</button>
+                <button type="button" class="rollable" data-action="roll" data-roll-type="darkdie"><i class="fa-solid fa-dice"></i>{{localize "CDG.ActionRoll"}}</button>
               </div>
               <p>{{localize "CDG.ActionDarkDieDesc"}}</p>
             </div>
@@ -106,7 +106,7 @@
             <div class="rollbox">
               <div class="rolltitle">
                 <h3>{{localize "CDG.ActionSelfCareTitle"}}</h3>
-                <button class="rollable" data-roll-type="selfcare"><i class="fa-solid fa-dice"></i>{{localize "CDG.ActionRoll"}}</button>
+                <button type="button" class="rollable" data-action="roll" data-roll-type="selfcare"><i class="fa-solid fa-dice"></i>{{localize "CDG.ActionRoll"}}</button>
               </div>
               <p>{{localize "CDG.ActionSelfCareDesc"}}</p>
             </div>
@@ -117,11 +117,11 @@
     </div>
 
     {{!-- Biography Tab --}}
-    <div class="tab full-height" data-group="primary" data-tab="biography">
+    <div class="tab full-height {{tabs.biography.cssClass}}" data-group="primary" data-tab="biography">
       <section class="full-height grid grid-2col">
         <section class="grid-span-1">
           <h3>{{localize "CDG.ActorAnchors"}}</h3>
-          <div class="grid grid-5col">
+          <div class="anchors grid grid-5col">
             {{#each system.anchors as |anchor key|}}
               <input class="grid-span-1" type="checkbox" id="{{key}}-anchor" name="system.anchors.{{key}}.checked" {{checked anchor.checked}}>
               {{#if anchor.checked}} 
@@ -140,7 +140,7 @@
         <section class="full-height right-side grid-span-1">
           <h3>{{localize "CDG.ActorNotes"}}</h3>
           <div class="notes">
-            {{editor system.notes target="system.notes" rollData=rollData button=true owner=owner editable=editable}}
+            <prose-mirror name="system.notes" value="{{system.notes}}" toggled>{{{enrichedNotes}}}</prose-mirror>
           </div>
         </section>
 
@@ -148,4 +148,4 @@
     </div>
 
   </section>
-</form>
+</div>

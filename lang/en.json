@@ -103,5 +103,14 @@
         "increaseMessage": "<b>Exposure</b> has increased from {oldExposure} to {newExposure}"
       }
     }
+  },
+  "TYPES": {
+    "Actor": {
+      "character": "Character",
+      "npc": "NPC"
+    },
+    "Item": {
+      "item": "Item"
+    }
   }
 }

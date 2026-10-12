@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 /* Global styles */
-.window-app {
+.cthulhudeepgreen.sheet,
+#cdg-dialog-risky,
+#cdg-dialog-darkdie {
   font-family: "Roboto", sans-serif;
 }
 
@@ -325,6 +327,35 @@
   color: #cbd9cd;
   margin: 0;
   padding: 0;
+  --input-height: 26px;
+  overflow-y: auto;
+}
+.cthulhudeepgreen .window-content h1,
+.cthulhudeepgreen .window-content h2,
+.cthulhudeepgreen .window-content h3,
+.cthulhudeepgreen .window-content h4,
+.cthulhudeepgreen .window-content h5,
+.cthulhudeepgreen .window-content h6 {
+  font-family: var(--font-primary);
+  font-weight: normal;
+  line-height: unset;
+  color: inherit;
+  margin: 0 0 0.5rem;
+}
+.cthulhudeepgreen .window-content h1 {
+  font-size: 2em;
+}
+.cthulhudeepgreen .window-content h2 {
+  font-size: 1.5em;
+}
+.cthulhudeepgreen .window-content h3 {
+  font-size: 1.25em;
+}
+.cthulhudeepgreen .window-content input[type=checkbox] {
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  margin: 3px 5px;
 }
 .cthulhudeepgreen .window-content .notes {
   color: #cbd9cd;
@@ -344,7 +375,7 @@
   border: 1px solid rgba(255, 255, 255, 0.1803921569);
   padding: 0px 10px;
 }
-.cthulhudeepgreen .window-content input:disabled {
+.cthulhudeepgreen .window-content input.strike-input:disabled {
   border: 1px solid rgba(137, 21, 0, 0.7490196078);
   background-color: rgba(31, 5, 0, 0.7490196078);
 }
@@ -353,6 +384,8 @@
   border: 1px solid rgba(255, 255, 255, 0.1803921569);
   color: #cbd9cd;
   padding: 5px 10px;
+  min-height: 50px;
+  font-family: "Roboto", sans-serif;
 }
 .cthulhudeepgreen .window-content textarea::placeholder {
   color: rgb(110, 110, 110);
@@ -539,7 +572,8 @@
   align-self: center;
 }
 .cthulhudeepgreen .disorder {
-  margin: 8px 0;
+  align-items: center;
+  margin: 0 0 8px;
 }
 .cthulhudeepgreen .right-side {
   padding-left: 10px;
@@ -557,6 +591,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  align-items: center;
   margin: 0;
   margin-bottom: 8px;
 }
@@ -645,6 +680,18 @@
   font-size: 16px;
   margin: 0;
   color: #9d9d9d;
+}
+.cthulhudeepgreen .anchors {
+  grid-template-columns: auto repeat(4, minmax(0, 1fr));
+  row-gap: 5px;
+}
+.cthulhudeepgreen.read-only .window-content input,
+.cthulhudeepgreen.read-only .window-content select,
+.cthulhudeepgreen.read-only .window-content textarea,
+.cthulhudeepgreen.read-only .window-content button,
+.cthulhudeepgreen.read-only .window-content prose-mirror,
+.cthulhudeepgreen.read-only .window-content .profile-img {
+  opacity: 0.7;
 }
 .cthulhudeepgreen .items-header {
   height: 28px;

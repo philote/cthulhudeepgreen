@@ -12,6 +12,42 @@
   margin: 0;
   padding: 0;
 
+  // Match AppV1 sizing and scrolling (core's .app rules don't apply to AppV2 sheets)
+  --input-height: 26px;
+  overflow-y: auto;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-primary);
+    font-weight: normal;
+    line-height: unset;
+    color: inherit;
+    margin: 0 0 0.5rem;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  h3 {
+    font-size: 1.25em;
+  }
+
+  input[type="checkbox"] {
+    flex: 0 0 20px;
+    width: 20px;
+    height: 20px;
+    margin: 3px 5px;
+  }
+
   .notes {
     color: $c-body;
   }
@@ -33,7 +69,8 @@
     padding: 0px 10px;
   }
 
-  input:disabled {
+  // Struck-through disorders and anchors
+  input.strike-input:disabled {
     border: 1px solid $c-red-75;
     background-color: $c-dark-red-75;
   }
@@ -43,6 +80,8 @@
     border: 1px solid $c-white-18;
     color: $c-title;
     padding: 5px 10px;
+    min-height: 50px;
+    font-family: $font-primary;
   }
 
   textarea::placeholder {
@@ -271,7 +310,8 @@
 }
 
 .disorder {
-  margin: 8px 0;
+  align-items: center;
+  margin: 0 0 8px;
 }
 
 .right-side {
@@ -293,6 +333,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  align-items: center;
   margin: 0;
   margin-bottom: 8px;
 
@@ -399,5 +440,23 @@ a:focus {
     font-size: 16px;
     margin: 0;
     color: $c-subtitle;
+  }
+}
+
+// Anchors: a narrow checkbox column, with the name and description sharing the rest
+.anchors {
+  grid-template-columns: auto repeat(4, minmax(0, 1fr));
+  row-gap: 5px;
+}
+
+// Dim fields on sheets the user can view but not edit
+&.read-only .window-content {
+  input,
+  select,
+  textarea,
+  button,
+  prose-mirror,
+  .profile-img {
+    opacity: 0.7;
   }
 }

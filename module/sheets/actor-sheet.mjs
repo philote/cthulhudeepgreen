@@ -1,128 +1,123 @@
+const { HandlebarsApplicationMixin } = foundry.applications.api;
+
 /**
- * Extend the basic ActorSheet with some very simple modifications
- * @extends {ActorSheet}
+ * Extend the basic ActorSheetV2 with some very simple modifications
+ * @extends {ActorSheetV2}
  */
-export class CthulhuDeepGreenActorSheet extends foundry.appv1.sheets.ActorSheet {
-  constructor(...args) {
-    super(...args);
+export class CthulhuDeepGreenActorSheet extends HandlebarsApplicationMixin(foundry.applications.sheets.ActorSheetV2) {
+  /** @override */
+  static DEFAULT_OPTIONS = {
+    classes: ["cthulhudeepgreen", "sheet", "actor"],
+    position: { width: 670, height: 650 },
+    window: { resizable: true },
+    form: { submitOnChange: true },
+    actions: {
+      roll: CthulhuDeepGreenActorSheet.#onRoll,
+    },
+  };
 
-    let width = 670;
-    let height = 650;
-    if (this.actor.type == "npc") {
-      width = 310;
-      height = 780;
+  /** @override */
+  static PARTS = {
+    sheet: { template: "systems/cthulhudeepgreen/templates/actor/actor-character-sheet.hbs" },
+  };
+
+  /** @override */
+  static TABS = {
+    primary: {
+      tabs: [
+        { id: "main", label: "CDG.ActorTabMain" },
+        { id: "biography", label: "CDG.ActorTabBiography" },
+      ],
+      initial: "main",
+    },
+  };
+
+  /** @inheritDoc */
+  _initializeApplicationOptions(options) {
+    options = super._initializeApplicationOptions(options);
+    if (options.document.type === "npc") {
+      options.position.width = 310;
+      options.position.height = 780;
     }
-    this.position.width = width;
-    this.position.height = height;
+    return options;
   }
 
-  /** @override */
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["cthulhudeepgreen", "sheet", "actor"],
-      tabs: [{
-          navSelector: ".sheet-tabs",
-          contentSelector: ".sheet-body",
-          initial: "main",
-      }]
-    });
-  }
-
-  /** @override */
-  get template() {
-    return `systems/cthulhudeepgreen/templates/actor/actor-${this.actor.type}-sheet.hbs`;
+  /** @inheritDoc */
+  _configureRenderParts(options) {
+    const parts = super._configureRenderParts(options);
+    parts.sheet.template = `systems/cthulhudeepgreen/templates/actor/actor-${this.actor.type}-sheet.hbs`;
+    return parts;
   }
 
   /* -------------------------------------------- */
 
   /** @override */
-  getData() {
-    // Retrieve the data structure from the base sheet. You can inspect or log
-    // the context variable to see the structure, but some key properties for
-    // sheets are the actor object, the data object, whether or not it's
-    // editable, the items array, and the effects array.
-    const context = super.getData();
+  async _prepareContext(options) {
+    const context = await super._prepareContext(options);
 
-    // Use a safe clone of the actor data for further operations.
-    const actorData = this.actor.toObject(false);
+    // Add the actor's data to context for easier access, as well as flags.
+    context.actor = this.actor;
+    context.system = this.actor.system;
+    context.flags = this.actor.flags;
 
-    // Add the actor's data to context.data for easier access, as well as flags.
-    context.system = actorData.system;
-    context.flags = actorData.flags;
-
-    // Add roll data for TinyMCE editors.
-    context.rollData = context.actor.getRollData();
+    // Enriched notes for the ProseMirror editor.
+    context.enrichedNotes = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.actor.system.notes, {
+      secrets: this.actor.isOwner,
+      rollData: this.actor.getRollData(),
+      relativeTo: this.actor,
+    });
 
     return context;
   }
 
-  /* -------------------------------------------- */
-
-  /** @override */
-  activateListeners(html) {
-    super.activateListeners(html);
-
-    // -------------------------------------------------------------
-    // Everything below here is only needed if the sheet is editable
-    if (!this.isEditable) return;
-
-    // Rollable.
-    html.find(".rollable").click(this._onRoll.bind(this));
+  /** @inheritDoc */
+  async _onRender(context, options) {
+    await super._onRender(context, options);
+    // Mark sheets the user can view but not edit, so their fields can be dimmed
+    this.element.classList.toggle("read-only", !this.isEditable);
   }
+
+  /* -------------------------------------------- */
 
   /**
    * Handle clickable rolls.
-   * @param {Event} event   The originating click event
-   * @private
+   * @param {PointerEvent} event   The originating click event
+   * @param {HTMLElement} target   The element with the data-action
+   * @this {CthulhuDeepGreenActorSheet}
    */
-  async _onRoll(event) {
-    event.preventDefault();
-    const dataset = event.currentTarget.dataset;
+  static #onRoll(event, target) {
+    const dataset = target.dataset;
 
-    // Handle rolls.
-    if (dataset.rollType) {
-      switch (dataset.rollType) {
-        case "selfcare":
-        case "failure": {
-          this.simpleRoll(dataset.rollType);
-          return;
-        }
-        case "darkdie": {
-          this.asyncCDGDarkDieRollDialog();
-          return;
-        }
-        case "riskything": {
-          this.asyncCDGRiskyThingDialog();
-          return;
-        }
-        case "clearharm": {
-          this.clearHarm();
-          return;
-        }
-        case "toggle-insight": {
-          this._onToggleInsight(dataset.pos);
-          return;
-        }
-        case "toggle-stress": {
-          this._onToggleStress(dataset.pos);
-          return;
-        }
-        default: {
-          console.error("_onRoll, bad roll type.");
-          return;
-        }
+    switch (dataset.rollType) {
+      case "selfcare":
+      case "failure": {
+        this.simpleRoll(dataset.rollType);
+        return;
       }
-    }
-
-    // Handle rolls that supply the formula directly.
-    if (dataset.roll) {
-      let label = dataset.label ? `[ability] ${dataset.label}` : "";
-      let roll = new Roll(dataset.roll, this.actor.getRollData());
-      roll.toMessage({
-        speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-        flavor: label,
-      });
-      return roll;
+      case "darkdie": {
+        this.asyncCDGDarkDieRollDialog();
+        return;
+      }
+      case "riskything": {
+        this.asyncCDGRiskyThingDialog();
+        return;
+      }
+      case "clearharm": {
+        this.clearHarm();
+        return;
+      }
+      case "toggle-insight": {
+        this._onToggleInsight(dataset.pos);
+        return;
+      }
+      case "toggle-stress": {
+        this._onToggleStress(dataset.pos);
+        return;
+      }
+      default: {
+        console.error("_onRoll, bad roll type.");
+        return;
+      }
     }
   }
 

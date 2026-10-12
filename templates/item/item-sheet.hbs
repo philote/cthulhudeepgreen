@@ -1,16 +1,16 @@
-<form class="{{cssClass}} flexcol" autocomplete="off">
+<div class="flexcol">
   
   {{!-- Sheet Header --}}
   <header class="npc-sheet-header">
     <input class="charname" name="name" type="text" value="{{item.name}}" placeholder="{{localize "CDG.ItemName"}}"/>
-    <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+    <img class="profile-img" src="{{item.img}}" data-action="editImage" data-edit="img" title="{{item.name}}" />
   </header>
 
   <section class="sheet-body">
     <h2>{{localize "CDG.ItemDescription"}}</h2>
     <div class="tab description">
-      {{editor system.description target="system.description" rollData=rollData button=true owner=owner editable=editable}}
+      <prose-mirror name="system.description" value="{{system.description}}" toggled>{{{enrichedDescription}}}</prose-mirror>
     </div>
   </section>
 
-</form>
+</div>
