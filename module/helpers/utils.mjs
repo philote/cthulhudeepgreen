@@ -64,6 +64,6 @@ export const registerSettings = function () {
 		type: Number,
 		default: 0,
 		config: false,
-		onChange: (_) => ui.exposurePanel.render(true),
+		onChange: (_) => ui.exposurePanel?.render(),
 	});
 };

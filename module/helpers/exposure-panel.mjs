@@ -1,25 +1,29 @@
-export class ExposurePanel extends Application {
+const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
-    constructor(options) {
-        super(options);
-    }
-
-    static get defaultOptions() {
-        return {
-            ...super.defaultOptions,
-            id: "exposure-panel",
-            popOut: false,
-            template: "systems/cthulhudeepgreen/templates/panel/exposure-panel.hbs",
-        };
-    }
+export class ExposurePanel extends HandlebarsApplicationMixin(ApplicationV2) {
 
     /** @override */
-    getData(options) {
-        const data = super.getData(options);
+    static DEFAULT_OPTIONS = {
+        id: "exposure-panel",
+        window: { frame: false, positioned: false },
+        actions: {
+            changeExposure: { handler: ExposurePanel.#onChangeExposure, buttons: [0, 2] },
+            clearExposure: ExposurePanel.#onClearExposure,
+        },
+    };
+
+    /** @override */
+    static PARTS = {
+        panel: { template: "systems/cthulhudeepgreen/templates/panel/exposure-panel.hbs" },
+    };
+
+    /** @override */
+    async _prepareContext(options) {
+        const context = await super._prepareContext(options);
         const savedCurrentExposure = game.settings.get("cthulhudeepgreen", "current-exposure");
 
         return {
-            ...data,
+            ...context,
             currentExposure: savedCurrentExposure,
             exposureTitle: game.i18n.localize("CDG.dialog.exposure.title"),
             max: CONFIG.CDG.ExposureMax,
@@ -28,50 +32,45 @@ export class ExposurePanel extends Application {
         };
     }
 
-    /** @override */
-    activateListeners(html) {
-        super.activateListeners(html);
-
-        html.find('.on-click').click(this._onExposureIncrease.bind(this));
-        html.find('.on-click').contextmenu(this._onExposureDecrease.bind(this));
-        html.find('.on-click-clear').click(this._onClearExposure.bind(this));
+    /**
+     * Left-click increases Exposure, right-click decreases it.
+     * @this {ExposurePanel}
+     */
+    static #onChangeExposure(event) {
+        if (!game.user.isGM) return;
+        if (event.button === 2) this._onExposureDecrease();
+        else this._createExposureChatMessage();
     }
 
-    async _onExposureIncrease(event) {
-        event.preventDefault();
-        this._createExposureChatMessage();
+    /** @this {ExposurePanel} */
+    static #onClearExposure() {
+        if (!game.user.isGM) return;
+        game.settings.set("cthulhudeepgreen", "current-exposure", 0);
     }
 
-    _onExposureDecrease(event) {
-        event.preventDefault();
+    _onExposureDecrease() {
         let exposure = game.settings.get("cthulhudeepgreen", "current-exposure");
         exposure = Math.max(exposure - 1, 0);
         game.settings.set("cthulhudeepgreen", "current-exposure", exposure);
-    }
-
-
-    _onClearExposure(event) {
-        event.preventDefault();
-        game.settings.set("cthulhudeepgreen", "current-exposure", 0);
     }
 
     async _createExposureChatMessage() {
         const oldExposure = game.settings.get("cthulhudeepgreen", "current-exposure");
         if (oldExposure >= CONFIG.CDG.ExposureMax) return;
         const newExposure = oldExposure + 1;
-      
+
         const increaseMessage = game.i18n.format("CDG.chat.exposureIncrease.increaseMessage", {
           oldExposure: oldExposure,
           newExposure: newExposure
         });
-      
+
         const dialogData = {
             increaseMessage: increaseMessage
         };
-        
+
         const template = 'systems/cthulhudeepgreen/templates/msg/exposure-increased-chat-msg.hbs';
         const rendered_html = await foundry.applications.handlebars.renderTemplate(template, dialogData);
-      
+
         ChatMessage.create({
             content: rendered_html,
             flags: { cthulhudeepgreen: { data: {
@@ -79,8 +78,8 @@ export class ExposurePanel extends Application {
               exposureUpdate: true,
               exposure: newExposure
             },
-            chatID: "cthulhudeepgreen"   
+            chatID: "cthulhudeepgreen"
             }}
-        });                 
+        });
     }
 }

@@ -70,7 +70,7 @@ Hooks.once("ready", () => {
 
 Hooks.on("ready", () => {
   if (game.settings.get("cthulhudeepgreen", "show_exposure")) {
-    ui.exposurePanel.render(true);
+    ui.exposurePanel.render({ force: true });
   }
 });
 
