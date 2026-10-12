@@ -122,14 +122,11 @@ export class CthulhuDeepGreenActorSheet extends HandlebarsApplicationMixin(found
   }
 
   clearHarm() {
-    this.actor.system.harm.injury.name = "";
-    this.actor.update({ "system.harm.injury.name": "" });
-
-    this.actor.system.harm.debility.name = "";
-    this.actor.update({ "system.harm.debility.name": "" });
-
-    this.actor.system.harm.mortal_wound.name = "";
-    this.actor.update({ "system.harm.mortal_wound.name": "" });
+    this.actor.update({
+      "system.harm.injury.name": "",
+      "system.harm.debility.name": "",
+      "system.harm.mortal_wound.name": "",
+    });
   }
 
   // Insight
@@ -148,31 +145,6 @@ export class CthulhuDeepGreenActorSheet extends HandlebarsApplicationMixin(found
     this.actor.update({ ["system.insight.states"]: currentArray });
   }
 
-  // _onClearInsight() {
-  //   let currentArray = this.actor.system.insight.states;
-  //   for (const i in currentArray) {
-  //     if (currentArray[i] === true) {
-  //       currentArray[i] = false;
-  //     }
-  //   }
-
-  //   this.actor.update({ ["system.insight.states"]: currentArray });
-  // }
-
-  // _increaseInsightByOne() {
-  //   let newInsight = duplicate(this.actor.system.insight.value);
-
-  //   if (newInsight < 6) {
-  //     let currentArray = this.actor.system.insight.states;
-  //     const firstPos = currentArray.indexOf(false);
-  //     if (firstPos != -1) {
-  //       currentArray[firstPos] = true;
-  //       this.actor.update({ ["system.insight.states"]: currentArray });
-  //     }
-  //   }
-
-  //   this.actor.update({ "system.insight.value": newInsight });
-  // }
 
   // Stress
   _onToggleStress(pos) {
@@ -207,7 +179,7 @@ export class CthulhuDeepGreenActorSheet extends HandlebarsApplicationMixin(found
   }
 
   _increaseStressByOne() {
-    let newStress = foundry.utils.duplicate(this.actor.system.stress.value);
+    let newStress = this.actor.system.stress.value;
 
     if (newStress < 6) {
       let currentArray = this.actor.system.stress.states;
@@ -220,7 +192,7 @@ export class CthulhuDeepGreenActorSheet extends HandlebarsApplicationMixin(found
   }
 
   _increaseInsightByOne() {
-    let newInsight = foundry.utils.duplicate(this.actor.system.insight.value);
+    let newInsight = this.actor.system.insight.value;
 
     if (newInsight < 6) {
       let currentArray = this.actor.system.insight.states;
@@ -246,29 +218,15 @@ export class CthulhuDeepGreenActorSheet extends HandlebarsApplicationMixin(found
     }
   }
 
-  getDiceForOutput(dieNumber, colorHex) {
-    switch (dieNumber) {
-      case 1:
-      case "1":
-        return `<i class="fas fa-dice-one" style="color:${colorHex}; font-size: 2em;"></i>`;
-      case 2:
-      case "2":
-        return `<i class="fas fa-dice-two" style="color:${colorHex}; font-size: 2em;"></i>`;
-      case 3:
-      case "3":
-        return `<i class="fas fa-dice-three" style="color:${colorHex}; font-size: 2em;"></i>`;
-      case 4:
-      case "4":
-        return `<i class="fas fa-dice-four" style="color:${colorHex}; font-size: 2em;"></i>`;
-      case 5:
-      case "5":
-        return `<i class="fas fa-dice-five" style="color:${colorHex}; font-size: 2em;"></i>`;
-      case 6:
-      case "6":
-        return `<i class="fas fa-dice-six" style="color:${colorHex}; font-size: 2em;"></i>`;
-      default:
-        console.error("Error in the getDiceForOutput, bad die number used.");
-    }
+  /**
+   * Data for one die in the dice-icons chat partial.
+   * @param {number|string} dieNumber  The rolled value, 1-6
+   * @param {string} colorHex          The icon color
+   */
+  _dieIcon(dieNumber, colorHex) {
+    const face = ["one", "two", "three", "four", "five", "six"][Number(dieNumber) - 1];
+    if (!face) console.error("Error in _dieIcon, bad die number used.");
+    return { face, color: colorHex };
   }
 
   getMaxDieMessage(maxDieNumber) {
@@ -291,8 +249,8 @@ export class CthulhuDeepGreenActorSheet extends HandlebarsApplicationMixin(found
   }
 
   darkDieChatContent(diceNumber, effectsInsight, effectsStress) {
-    const previousStress = foundry.utils.duplicate(this.actor.system.stress.value);
-    const previousInsight = foundry.utils.duplicate(this.actor.system.insight.value);
+    const previousStress = this.actor.system.stress.value;
+    const previousInsight = this.actor.system.insight.value;
     const rollValue = +diceNumber;
     let newStress = previousStress;
     let newInsight = previousInsight;
@@ -365,11 +323,6 @@ export class CthulhuDeepGreenActorSheet extends HandlebarsApplicationMixin(found
       darkDieEffectsStress
     );
 
-    let diceOutput = this.getDiceForOutput(
-      darkDieRoll.result,
-      CONFIG.CDG.DarkDieColor
-    );
-
     if (!riskMessage) {
       riskMessage = game.i18n.localize(
         "CDG.DialogDarkDieRollPositive"
@@ -379,7 +332,7 @@ export class CthulhuDeepGreenActorSheet extends HandlebarsApplicationMixin(found
     // ------
     // chat message setup
     const dialogData = {
-      diceOutput: diceOutput,
+      dice: [this._dieIcon(darkDieRoll.result, CONFIG.CDG.DarkDieColor)],
       riskMessage: riskMessage
     }
     const template = 'systems/cthulhudeepgreen/templates/msg/dark-die-chat-content.hbs';
@@ -472,19 +425,10 @@ export class CthulhuDeepGreenActorSheet extends HandlebarsApplicationMixin(found
       );
     }
 
-    // Build Dice list
-    let diceOutput = "";
-    dice.forEach((die) => {
-      diceOutput = diceOutput.concat(
-        this.getDiceForOutput(die.rollVal, die.dieColor),
-        " "
-      );
-    });
-
     // ------
     // chat message setup
     const dialogData = {
-      diceOutput: diceOutput,
+      dice: dice.map((die) => this._dieIcon(die.rollVal, die.dieColor)),
       maxDieNumber: this.getMaxDieMessage(maxDie.rollVal),
       riskMessage: riskMessage
     }
@@ -507,19 +451,16 @@ export class CthulhuDeepGreenActorSheet extends HandlebarsApplicationMixin(found
   // ------------
 
   async selfCareChatContent(diceNumber) {
-    let previousStress = foundry.utils.duplicate(this.actor.system.stress.value);
+    let previousStress = this.actor.system.stress.value;
     const rollValue = +diceNumber;
     let newStress = previousStress - rollValue;
     newStress = newStress < 0 ? 0 : newStress;
 
-    // reduce stress Stress
-    // TODO update check boxes
-    console.log("LOG rollValue: "+rollValue);
+    // reduce Stress
     this._reduceStressBy(rollValue);
-    // this.actor.update({ "system.stress.value": newStress });
 
     const dialogData = {
-      diceForOutput: this.getDiceForOutput(rollValue, CONFIG.CDG.BaseColor),
+      dice: [this._dieIcon(rollValue, CONFIG.CDG.BaseColor)],
       selfCareRollContent: game.i18n.format("CDG.SelfCareRollContent", {previousstress: previousStress, newstress: newStress})
     }
     const template = 'systems/cthulhudeepgreen/templates/msg/self-care-chat-content.hbs';
@@ -537,7 +478,7 @@ export class CthulhuDeepGreenActorSheet extends HandlebarsApplicationMixin(found
       }
       case "failure": {
         const dialogData = {
-          diceOutput: this.getDiceForOutput(simpleRoll.result, CONFIG.CDG.BaseColor),
+          dice: [this._dieIcon(simpleRoll.result, CONFIG.CDG.BaseColor)],
         }
         const template = 'systems/cthulhudeepgreen/templates/msg/failure-chat-content.hbs';
         chatContentMessage = await foundry.applications.handlebars.renderTemplate(template, dialogData);

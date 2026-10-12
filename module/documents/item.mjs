@@ -4,15 +4,6 @@
  */
 export class CthulhuDeepGreenItem extends Item {
   /**
-   * Augment the basic Item data model with additional dynamic data.
-   */
-  prepareData() {
-    // As with the actor class, items are documents that can have their data
-    // preparation methods overridden (such as prepareBaseData()).
-    super.prepareData();
-  }
-
-  /**
    * Prepare a data object which is passed to any Roll formulas which are created related to this Item
    * @private
    */
@@ -24,42 +15,5 @@ export class CthulhuDeepGreenItem extends Item {
     rollData.item = foundry.utils.deepClone(this.system);
 
     return rollData;
-  }
-
-  /**
-   * Handle clickable rolls.
-   * @param {Event} event   The originating click event
-   * @private
-   */
-  async roll() {
-    const item = this;
-
-    // Initialize chat data.
-    const speaker = ChatMessage.getSpeaker({ actor: this.actor });
-    const label = `[${item.type}] ${item.name}`;
-
-    // If there's no roll data, send a chat message.
-    if (!this.system.formula) {
-      ChatMessage.create({
-        speaker: speaker,
-        flavor: label,
-        content: item.system.description ?? "",
-      }, { messageMode: game.settings.get("core", "messageMode") });
-    }
-    // Otherwise, create a roll and send a chat message from it.
-    else {
-      // Retrieve roll data.
-      const rollData = this.getRollData();
-
-      // Invoke the roll and submit it to chat.
-      const roll = new Roll(rollData.item.formula, rollData);
-      // If you need to store the value first, uncomment the next line.
-      // let result = await roll.roll({async: true});
-      roll.toMessage({
-        speaker: speaker,
-        flavor: label,
-      });
-      return roll;
-    }
   }
 }

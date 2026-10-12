@@ -19,7 +19,6 @@
 
         <div class="insight resource-list">
           {{localize "CDG.ActorInsight"}}
-          <!-- <b class="rollable" data-roll-type="clear-insight" style="color: {{system.insight.color}}">{{localize "CTHULHUDARK.Insight"}}</b> -->
           {{#each system.insight.states as |state count|}}
             <input class="rollable" type="checkbox" data-action="roll" data-pos="{{count}}" data-roll-type="toggle-insight" {{#if state}}checked{{/if}} >
           {{/each}}
@@ -27,7 +26,6 @@
 
         <div class="stress resource-list">
           {{localize "CDG.ActorStress"}}
-          <!-- <b class="rollable" data-roll-type="clear-insight" style="color: {{system.insight.color}}">{{localize "CTHULHUDARK.Insight"}}</b> -->
           {{#each system.stress.states as |state count|}}
             <input class="rollable" type="checkbox" data-action="roll" data-pos="{{count}}" data-roll-type="toggle-stress" {{#if state}}checked{{/if}} >
           {{/each}}

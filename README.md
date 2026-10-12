@@ -4,11 +4,9 @@
 
 An unofficial, community-supported system for playing the Cthulhu Deep Green TTRPG (Created by Justin Ford) on Foundry VTT.
 <p align="center">
-    <img alt="Foundry Version 12 support" src="https://img.shields.io/badge/Foundry-v12-informational">
-    <img alt="Foundry Version 13 support" src="https://img.shields.io/badge/Foundry-v13-informational">
+    <img alt="Foundry Version 14 support" src="https://img.shields.io/badge/Foundry-v14-informational">
     <img alt="Latest Release Download Count" src="https://img.shields.io/github/downloads/philote/cthulhudeepgreen/latest/total"> 
     <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/philote/cthulhudeepgreen"> 
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/philote/cthulhudeepgreen">
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/philote/cthulhudeepgreen">
 </p>
 <p align="center">
@@ -60,12 +58,15 @@ Image of the Character Sheet and roll messages in Foundry's chat:
 
 - Add roll tables to the module
 - UI for non-die roll "at home" actions
-- Update to App v2
 
 ## How to Install
 
 You can install the latest released version of the system by using this manifest link in Foundry VTT.
-[Instructions](https://foundryvtt.com/article/tutorial/): https://github.com/philote/FoundryVTT-CthulhuDeepGreen/releases/latest/download/system.json
+[Instructions](https://foundryvtt.com/article/tutorial/): https://github.com/philote/cthulhudeepgreen/releases/latest/download/system.json
+
+### Older Foundry Versions
+
+This system requires Foundry VTT v14. If you are on Foundry v12 or v13, install release [1.1.2](https://github.com/philote/cthulhudeepgreen/releases/tag/1.1.2), the last version that supports them, with this manifest link: https://github.com/philote/cthulhudeepgreen/releases/download/1.1.2/system.json
 
 ## Attribution
 

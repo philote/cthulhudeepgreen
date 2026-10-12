@@ -50,6 +50,7 @@
     "SelfCareRollContent": "You engaged in Self Care. Your <span class=\"stress-format\">Stress</span> was <b>{previousstress}</b>, your <span class=\"stress-format\">Stress</span> has been reduced to <b>{newstress}</b>.",
     "SelfCareRoll": "<b>Self Care Roll</b>:",
 
+    "DialogDarkDieDesc": "Stress and/or Insight Check:",
     "DialogStressCheck": "Test for <span class=\"stress-format\">Stress</span>.",
     "DialogInsightCheck": "Test for <span class=\"insight-format\">Insight</span>.",
     "DialogDarkDieRollPositive": "Your resolve is tested and holds up, for now...",
