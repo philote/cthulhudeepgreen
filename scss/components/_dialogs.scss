@@ -7,6 +7,23 @@
     background-size: cover;
     background-repeat: no-repeat;
     color: $c-title;
+
+    // Dark background regardless of the Applications theme, so pin text colors
+    --color-text-primary: #{$c-title};
+    --color-text-secondary: #{$c-subtitle};
+    --color-form-label: #{$c-title};
+    --color-form-hint: #{$c-subtitle};
+
+    p,
+    b,
+    strong,
+    label {
+      color: $c-title;
+    }
+
+    hr {
+      border-color: $c-white-30;
+    }
   }
 
   .form-footer button {
