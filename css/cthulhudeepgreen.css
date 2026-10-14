@@ -813,6 +813,24 @@
   background-size: cover;
   background-repeat: no-repeat;
   color: #cbd9cd;
+  --color-text-primary: #cbd9cd;
+  --color-text-secondary: #9d9d9d;
+  --color-form-label: #cbd9cd;
+  --color-form-hint: #9d9d9d;
+}
+#cdg-dialog-risky .window-content p,
+#cdg-dialog-risky .window-content b,
+#cdg-dialog-risky .window-content strong,
+#cdg-dialog-risky .window-content label,
+#cdg-dialog-darkdie .window-content p,
+#cdg-dialog-darkdie .window-content b,
+#cdg-dialog-darkdie .window-content strong,
+#cdg-dialog-darkdie .window-content label {
+  color: #cbd9cd;
+}
+#cdg-dialog-risky .window-content hr,
+#cdg-dialog-darkdie .window-content hr {
+  border-color: rgba(255, 255, 255, 0.3098039216);
 }
 #cdg-dialog-risky .form-footer button,
 #cdg-dialog-darkdie .form-footer button {
