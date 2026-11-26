@@ -1,0 +1,117 @@
+{
+  "CDG": {
+    "ActorName": "Nom",
+    "ActorAlias": "Pseudonyme",
+    "ActorOccupation": "Profession",
+    "ActorNotes": "Notes",
+    "ActorAnchors": "Ancrages",
+    "ActorSpecialty": "Compétence spéciale",
+    "ActorInsight": "Clairvoyance",
+    "ActorStress": "Stress",
+    "ActorDisorders": "Troubles",
+    "ActorFirstDisorder": "Premier trouble",
+    "ActorSecondDisorder": "Deuxième trouble",
+    "ActorThirdDisorder": "Troisième trouble",
+    "ActorAnchorName": "Nom de l'ancrage",
+    "ActorAnchorDescription": "Description de l'ancrage",
+    "ActorAnchorMarked": "Cet ancrage est coché !",
+    "ActorHarm": "Dégâts",
+    "ClearHarm": "Effacer les dégâts",
+    "ActorHarmInjury": "Blessure",
+    "ActorHarmDebility": "Handicap",
+    "ActorHarmMortalWound": "Blessure mortelle",
+    "ActorHarmInjuryLabel": "Niveau 1",
+    "ActorHarmDebilityLabel": "Niveau 2",
+    "ActorHarmMortalWoundLabel": "Niveau 3",
+    "ActorTabMain": "Principal",
+    "ActorTabBiography": "Biographie",
+
+    "SelectOption.default": "-- Choisir --",
+
+    "LooksNpcInput": "Apparence",
+    "BehaviorsNpcInput": "Comportements",
+    "MotivationsNpcInput": "Motivations",
+    "InnocentNpcLabel": "Témoin innocent",
+    "OppositionNpcLabel": "Agent de l'opposition",
+
+    "ActionRoll": "Lancer !",
+    "ActionRiskyThingTitle": "Faire un acte risqué",
+    "ActionRiskyThingDesc": "Chaque fois que l'Agent agit en risquant sa vie ou sa stabilité émotionnelle.",
+    "ActionDarkDieTitle": "Jet du dé sombre",
+    "ActionDarkDieDesc": "Quand l'Agent s'expose volontairement à des forces surnaturelles, des images dérangeantes ou des dilemmes moraux.",
+    "ActionFailureTitle": "Jet d'échec",
+    "ActionFailureDesc": "Décrivez une issue pire pour l'action d'un autre Agent. Si le résultat dépasse son dé le plus élevé, son action échoue de la manière décrite.",
+    "ActionSelfCareTitle": "Prendre soin de soi",
+    "ActionSelfCareDesc": "Quand l'Agent pratique une activité qui soulage son stress, lancez le dé et réduisez le Stress du résultat.",
+
+    "FailureRollContent": "Si votre résultat est supérieur au dé le plus élevé de l'autre <b><i>Agent</i></b>, il échoue, exactement comme vous l'aviez décrit. Sinon, il réussit comme prévu.",
+    "FailureRoll": "<b>Jet d'échec</b> :",
+
+    "SelfCareRollContent": "Vous avez pris soin de vous. Votre <span class=\"stress-format\">Stress</span> était de <b>{previousstress}</b>, votre <span class=\"stress-format\">Stress</span> est réduit à <b>{newstress}</b>.",
+    "SelfCareRoll": "<b>Jet pour prendre soin de soi</b> :",
+
+    "DialogDarkDieDesc": "Test de Stress ou Clairvoyance :",
+    "DialogStressCheck": "Tester le <span class=\"stress-format\">Stress</span>.",
+    "DialogInsightCheck": "Tester la <span class=\"insight-format\">Clairvoyance</span>.",
+    "DialogDarkDieRollPositive": "Votre détermination est mise à l'épreuve et tient bon, pour l'instant...",
+
+    "RiskyDialogTitle": "Faire quelque chose de risqué",
+    "RiskyDialogDesc": "Faites quelque chose qui met en danger votre vie ou votre stabilité émotionnelle, cochez tout ce qui s'applique :",
+    "DialogHumanDie": "<b>Dé humain</b> : si l'action est humainement possible.",
+    "DialogOccupDie": "<b>Dé de profession</b> : si l'action relève du domaine d'expertise de l'Agent.",
+    "DialogRiskDie": "<span class=\"dark-die-format\">Dé sombre :</span> si l'action met en péril la santé physique ou émotionnelle de l'Agent pour réussir <b>OU</b> si le joueur ajoute un élément d'horreur à une tâche par ailleurs banale.",
+    "DialogRiskDieInsight": "Si l'action expose l'Agent à la connaissance du Mythe, risquez aussi sa <span class=\"insight-format\">Clairvoyance</span>.",
+
+    "DarkDieDialogTitle": "Jet de dé sombre",
+
+    "StressContent": "Votre <span class=\"stress-format\">Stress</span> augmente ! Il était de <b>{previousstress}</b>, il est maintenant de <b>{newstress}</b>.",
+    "InsightContent": "Votre <span class=\"insight-format\">Clairvoyance</span> augmente ! Elle était de <b>{previousinsight}</b>, elle est maintenant de <b>{newinsight}</b>.",
+
+    "MaxDieMessage123": "Vous réussissez de justesse, mais peut-être pas de la manière espérée. L'Officier Traitant décide comment.",
+    "MaxDieMessage4": "Vous réussissez avec compétence. Décrivez comment.",
+    "MaxDieMessage5": "Vous réussissez et obtenez peut-être un avantage. L'Officier Traitant décide lequel.",
+    "MaxDieMessage6": "Vous réussissez brillamment et obtenez un bonus. Peut-être plus que ce à quoi vous vous attendiez. L'Officier Traitant peut vous confronter à une vérité difficile.",
+
+    "ItemName": "Nom",
+    "ItemDescription": "Description",
+    "settings": {
+      "special": {
+        "name": "Activer la compétence spéciale",
+        "hint": "Il arrive que des Agents veuillent revendiquer une maîtrise pour des actions qui ne relèvent pas de leur profession. Cette option leur permet de choisir une « compétence spéciale » au cours d'une séance."
+      },
+      "exposure": {
+        "name": "Activer le suivi d'Exposition",
+        "hint": "Tôt ou tard, les Agents se procureront des ressources auprès de sources douteuses ou ils agiront au grand jour alors que la discrétion s'impose. Cette option permet de créer un suivi de l'Exposition."
+      },
+      "game": {
+        "heading": "Cthulhu Deep Green",
+        "publisher": {
+          "title": "Justin Ford"
+        },
+        "github": {
+          "title": "Dépôt du module"
+        },
+        "kofi": {
+          "title": "Me soutenir sur Ko-fi"
+        }
+      }
+    },
+    "dialog": {
+      "exposure.title": "Exposition"
+    },
+    "chat": {
+      "exposureIncrease": {
+        "increaseMessage": "L'<b>Exposition</b> est passée de {oldExposure} à {newExposure}"
+      }
+    }
+  },
+  "TYPES": {
+    "Actor": {
+      "character": "Personnage",
+      "npc": "PNJ"
+    },
+    "Item": {
+      "item": "Objet"
+    }
+  }
+}
